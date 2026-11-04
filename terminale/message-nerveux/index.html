@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le message nerveux (TP 2) – revise svt</title>
+<link rel="icon" href="../../assets/favicon.png">
+<meta name="description" content="Révisions du TP 2 de SVT (Terminale spécialité): potentiel d'action, codage du message nerveux, synapse et curare.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light dark;
+  --paper:#F4F8F5; --panel:#FFFFFF; --grid:#E1EAE4; --grid2:#C5D8CD;
+  --ink:#16233B; --ink2:#43536E;
+  --elec:#1D55E0;   /* signal électrique */
+  --chem:#7A3CC8;   /* signal chimique */
+  --ok:#1B7F4F; --bad:#C8342C; --seuil:#B45309;
+  --myel:#F2C14E; --pre:#DDEFC9; --post:#D9DEE3;
+  --ph-repos:#64748B; --ph-seuil:#B45309; --ph-dep:#1D55E0; --ph-rep:#0E8F7E; --ph-hyp:#B8407F;
+  --font-d:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-b:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#10171C; --panel:#18222A; --grid:#1A262D; --grid2:#27383F;
+    --ink:#E7EFF3; --ink2:#A2B4BF;
+    --elec:#7BA2FF; --chem:#BC93F2; --ok:#52C98F; --bad:#FF8279; --seuil:#F2A93B;
+    --myel:#C9972B; --pre:#2C4030; --post:#2B3640;
+    --ph-repos:#9AA9BC; --ph-seuil:#F2A93B; --ph-dep:#7BA2FF; --ph-rep:#4FD0BE; --ph-hyp:#F08BC0;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font:400 1.0625rem/1.6 var(--font-b);
+}
+h1,h2,h3{font-family:var(--font-d);line-height:1.1;margin:0;letter-spacing:-.01em}
+h1{font-weight:800;font-size:clamp(2.4rem,7vw,4.4rem);letter-spacing:-.03em}
+h2{font-weight:700;font-size:clamp(1.65rem,3.4vw,2.3rem)}
+h3{font-weight:700;font-size:1.2rem}
+p{margin:0 0 .9em}
+.wrap{width:min(1140px,100% - 32px);margin-inline:auto}
+@media (min-width:700px){.wrap{width:min(1140px,100% - 64px)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--paper);padding:.6em 1em;border-radius:8px;z-index:50}
+.skip:focus{top:8px}
+:focus-visible{outline:3px solid var(--elec);outline-offset:2px;border-radius:4px}
+
+/* barre du haut */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1.5px solid var(--ink)}
+.top .wrap{display:flex;align-items:center;gap:18px;min-height:56px}
+.brand{font:700 1rem var(--font-d);white-space:nowrap;margin-right:auto;color:var(--ink);text-decoration:none}
+.nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;order:3;flex:1 1 100%}
+.nav::-webkit-scrollbar{display:none}
+.nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem;padding:.55em .8em;white-space:nowrap;border-radius:6px;background:linear-gradient(var(--elec),var(--elec)) no-repeat 0 100%/0 3px;transition:background-size .2s}
+.nav a:hover{background-size:100% 3px}
+.nav a[aria-current="true"]{background-size:100% 3px}
+.top .wrap{flex-wrap:wrap;padding-block:6px 0}
+.prog{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:700;white-space:nowrap}
+.prog .bar{width:84px;height:10px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--panel)}
+.prog .bar i{display:block;height:100%;width:calc(var(--p,0)*100%);background:var(--ok);transition:width .4s}
+@media (min-width:980px){
+  .top .wrap{flex-wrap:nowrap;padding-block:0}
+  .nav{order:0;flex:0 1 auto}
+  .brand{margin-right:12px}
+  .prog{margin-left:auto}
+}
+
+/* éléments communs */
+.sec{padding-block:clamp(48px,8vw,96px) 0}
+.sec>header{max-width:62ch;margin-bottom:28px}
+.lead{color:var(--ink2);font-size:1.15rem;margin-top:.7em}
+.panel{background:var(--panel);border:1.5px solid var(--ink);border-radius:10px;padding:clamp(14px,2.4vw,24px)}
+.btn{font:700 1rem var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.6em 1.05em;cursor:pointer;min-height:44px;transition:background .15s,color .15s}
+.btn:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+.btn.pri{background:var(--ink);color:var(--paper)}
+.btn.pri:hover:not(:disabled){background:var(--elec);border-color:var(--elec);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.sm{min-height:38px;padding:.4em .8em;font-size:.95rem}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;margin:0;padding:0;min-width:0}
+.seg label{position:relative;cursor:pointer}
+.seg input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.seg span{display:block;padding:.55em 1em;font-weight:700;min-height:44px;line-height:1.7}
+.seg input:checked+span{background:var(--ink);color:var(--paper)}
+.seg input:focus-visible+span{outline:3px solid var(--elec);outline-offset:-3px}
+.seg label+label{border-left:1.5px solid var(--ink)}
+.chk{display:inline-flex;gap:.55em;align-items:center;font-weight:700;cursor:pointer;min-height:44px}
+.chk input{width:20px;height:20px;accent-color:var(--ink)}
+.note{color:var(--ink2);font-size:.95rem}
+.two{display:grid;gap:clamp(20px,4vw,48px);align-items:start}
+@media (min-width:900px){.two{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}.two.flip{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}}
+.key{font-weight:700;border-bottom:3px solid color-mix(in srgb,var(--elec) 45%,transparent)}
+.chem{border-bottom-color:color-mix(in srgb,var(--chem) 55%,transparent)}
+
+/* hero */
+.hero{padding-top:clamp(28px,6vw,64px)}
+.hero h1{max-width:12ch}
+.hero .lead{max-width:56ch}
+.sim{margin-top:28px;box-shadow:7px 7px 0 var(--ink);padding:0;overflow:hidden}
+.sim-head{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;padding:12px clamp(12px,2vw,20px);border-bottom:1.5px solid var(--ink)}
+#simCanvas{display:block;width:100%;height:270px;background:var(--panel)}
+@media (max-width:600px){#simCanvas{height:210px}}
+.fibres{display:none;gap:8px;padding:10px clamp(12px,2vw,20px) 0;align-items:center;flex-wrap:wrap}
+.fibres.on{display:flex}
+.fibres i{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--ink);background:var(--panel);transition:background .2s}
+.fibres i.on{background:var(--elec)}
+.sim-ctl{padding:14px clamp(12px,2vw,20px) 6px}
+.sim-ctl label{display:flex;justify-content:space-between;font-weight:700;margin-bottom:6px;gap:12px}
+.slider{position:relative;padding-top:20px}
+.slider .tick{position:absolute;top:0;left:var(--s);transform:translateX(-50%);font-size:.85rem;font-weight:700;color:var(--seuil);white-space:nowrap}
+.slider .tick::after{content:"";display:block;width:2px;height:8px;background:var(--seuil);margin:1px auto 0}
+.slider.nerf .tick{display:none}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:0;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:10px;border-radius:6px;border:1.5px solid var(--ink);background:linear-gradient(90deg,var(--grid2) 0 var(--s),color-mix(in srgb,var(--elec) 55%,var(--panel)) var(--s) 100%)}
+input[type=range]::-moz-range-track{height:10px;border-radius:6px;border:1.5px solid var(--ink);background:linear-gradient(90deg,var(--grid2) 0 var(--s),color-mix(in srgb,var(--elec) 55%,var(--panel)) var(--s) 100%)}
+.slider.nerf input[type=range]::-webkit-slider-runnable-track{background:color-mix(in srgb,var(--elec) 30%,var(--panel))}
+.slider.nerf input[type=range]::-moz-range-track{background:color-mix(in srgb,var(--elec) 30%,var(--panel))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--ink);border:4px solid var(--panel);box-shadow:0 0 0 1.5px var(--ink);margin-top:-12px}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--ink);border:4px solid var(--panel);box-shadow:0 0 0 1.5px var(--ink)}
+.sim-cap{margin:0;padding:6px clamp(12px,2vw,20px) 18px;min-height:4.6em;font-size:1.05rem}
+
+/* potentiel d'action */
+.pa{width:100%;height:auto;display:block}
+.pa .g{stroke:var(--grid2);stroke-width:1.5;stroke-dasharray:4 5}
+.pa .g.s{stroke:var(--seuil);stroke-dasharray:7 5}
+.pa text{fill:var(--ink);font:600 14px var(--font-b)}
+.pa .ax{fill:var(--ink2);font-weight:400;font-size:13px}
+.pa path.seg{fill:none;stroke-width:6;stroke-linecap:round}
+.pa .ph-repos{stroke:var(--ph-repos)} .pa .ph-seuil{stroke:var(--ph-seuil)} .pa .ph-dep{stroke:var(--ph-dep)} .pa .ph-rep{stroke:var(--ph-rep)} .pa .ph-hyp{stroke:var(--ph-hyp)}
+.pa g[data-ph]{cursor:pointer;transition:opacity .2s}
+.pa.focus g[data-ph]{opacity:.22}
+.pa.focus g[data-ph].on{opacity:1}
+.pa.focus g[data-ph].on path.seg{stroke-width:9}
+.phases{display:grid;gap:8px;margin:0 0 16px;padding:0;list-style:none}
+.phase{display:flex;gap:12px;align-items:center;width:100%;text-align:left;font:700 1rem var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.55em .9em;cursor:pointer;min-height:46px}
+.phase i{flex:none;width:26px;height:8px;border-radius:5px}
+.phase[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.phase small{margin-left:auto;font-weight:400;opacity:.85}
+#pa-info{min-height:5.6em;border-left:5px solid var(--elec);padding:.2em 0 .2em 14px;margin:0}
+
+/* codage */
+.cmp{display:grid;gap:20px}
+@media (min-width:800px){.cmp{grid-template-columns:1fr 1fr}}
+.cmp h3{margin-bottom:.3em}
+.cmp svg{width:100%;height:auto;display:block;margin:10px 0}
+.cmp .big{font:700 1.15rem var(--font-d)}
+.cmp svg text{fill:var(--ink);font:600 13px var(--font-b)}
+.cmp svg .ln{stroke:var(--grid2);stroke-width:1.5}
+.cmp svg .sg{fill:none;stroke:var(--elec);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+
+/* propagation */
+.prop{width:100%;height:auto;display:block}
+.prop .lane-t{fill:var(--ink);font:700 15px var(--font-b)}
+.prop .tm{fill:var(--ink2);font:700 15px var(--font-b);text-anchor:end}
+.prop .tube{fill:var(--panel);stroke:var(--ink);stroke-width:2}
+.prop .sheath{fill:var(--myel);stroke:var(--ink);stroke-width:1.5}
+.prop .trail{stroke:var(--elec);stroke-width:6;stroke-linecap:round;opacity:.45}
+.prop .dot{fill:var(--elec);stroke:var(--panel);stroke-width:3}
+.prop .nd{fill:var(--ink2);font:400 12px var(--font-b);text-anchor:middle}
+.result-line{min-height:3.4em;font-weight:700;margin:14px 0 0}
+
+/* synapse */
+.scene{width:100%;height:auto;display:block}
+.scene .post{fill:var(--post);stroke:var(--ink);stroke-width:3}
+.scene .pre{fill:var(--pre);stroke:var(--ink);stroke-width:3}
+.scene .ring{fill:var(--panel);stroke:var(--ink);stroke-width:2.5;transition:opacity .6s}
+.scene .vd{fill:var(--chem);transition:opacity .5s}
+.scene .ves{transition:transform 1.1s ease}
+.scene .nt{fill:var(--chem);opacity:0;transition:transform 1.5s ease,opacity .5s}
+.scene .rc{fill:var(--ink);transition:transform .6s}
+.scene .ion{fill:var(--elec);stroke:var(--panel);stroke-width:1.5;opacity:0;transition:transform 1.3s ease .3s,opacity .4s}
+.scene .cur{fill:var(--seuil);stroke:var(--ink);stroke-width:2;opacity:0;transition:transform .9s ease,opacity .5s}
+.scene .trace{fill:none;stroke:var(--elec);stroke-width:3.5;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
+.scene .trace-bg{fill:none;stroke:var(--ink2);stroke-width:2;opacity:.35;stroke-linejoin:round}
+.scene .res{opacity:0;transition:opacity .6s .5s}
+.scene .spike{fill:none;stroke:var(--elec);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
+.scene .fibre{fill:var(--panel);stroke:var(--ink);stroke-width:2.5;transform-box:fill-box;transform-origin:center;transition:transform .8s ease .5s}
+.scene .stri{stroke:var(--ink2);stroke-width:1.5}
+.scene .rt{fill:var(--ink);font:700 17px var(--font-b);text-anchor:middle}
+.scene .labels text{fill:var(--ink);font:700 15px var(--font-b);paint-order:stroke;stroke:var(--paper);stroke-width:5px;stroke-linejoin:round}
+.scene .labels line{stroke:var(--ink);stroke-width:1.6}
+.scene.nolabels .labels{display:none}
+.scene .l-nt{opacity:0;transition:opacity .4s}
+.scene .pin circle{fill:var(--ink);stroke:var(--panel);stroke-width:2}
+.scene .pin text{fill:var(--paper);font:700 14px var(--font-b);text-anchor:middle;dominant-baseline:central}
+/* étapes cumulatives */
+.scene.st-1 .trace{animation:draw 1.6s ease forwards}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.scene.st-2 .ves{transform:translate(var(--tx),0)}
+.scene.st-3 .ves .ring{opacity:.2}
+.scene.st-3 .ves .vd{opacity:0}
+.scene.st-3 .nt{opacity:1;transform:translate(var(--dx),var(--dy))}
+.scene.curare.st-3 .nt{transform:translate(var(--cdx),var(--cdy))}
+.scene.st-3 .l-nt{opacity:1}
+.scene.curare.st-3 .cur{opacity:1;transform:translate(24px,0)}
+.scene.st-4:not(.curare) .rc-u{transform:translateY(-8px)}
+.scene.st-4:not(.curare) .rc-l{transform:translateY(8px)}
+.scene.st-4:not(.curare) .ion{opacity:1;transform:translate(var(--ix),var(--iy))}
+.scene.st-5 .res{opacity:1}
+.scene .t-neu,.scene .t-mus,.scene .t-musno,.scene .lab-neu,.scene .lab-mus,.scene .res-neu,.scene .res-mus{display:none}
+.scene.neu .lab-neu,.scene.neu .res-neu{display:block}
+.scene.neu:not(.curare) .t-neu{display:block}
+.scene.mus .lab-mus,.scene.mus .res-mus{display:block}
+.scene.mus:not(.curare) .t-mus{display:block}
+.scene.mus.curare .t-musno{display:block}
+.scene.curare .spike{opacity:0}
+.scene.mus:not(.curare).st-5 .fibre{transform:scaleX(.7)}
+.scene.quiz .nt{opacity:1;transform:translate(var(--dx),var(--dy))}
+.scene.quiz .trace{animation:none;stroke-dashoffset:0}
+.syn-ctl{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;margin-bottom:14px}
+.steps{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px;counter-reset:s}
+.steps li{counter-increment:s}
+.steps button{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;font:400 1rem/1.45 var(--font-b);color:var(--ink);background:transparent;border:1.5px solid var(--grid2);border-radius:8px;padding:.6em .9em;cursor:pointer;min-height:44px}
+.steps button::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font:700 .9rem var(--font-b);background:var(--panel)}
+.steps button[aria-current="step"]{border-color:var(--ink);background:var(--panel);font-weight:700}
+.steps button[aria-current="step"]::before{background:var(--ink);color:var(--paper)}
+
+/* curare */
+.chart{width:100%;height:auto;display:block}
+.chart text{fill:var(--ink);font:600 15px var(--font-b)}
+.chart .ax{fill:var(--ink2);font-weight:400}
+.chart .gl{stroke:var(--grid2);stroke-width:1}
+.chart .cv{fill:none;stroke-width:3.2;stroke-linejoin:round;stroke-linecap:round;transition:opacity .2s}
+.legend{display:grid;gap:8px;margin-top:14px}
+.legend button{display:flex;align-items:center;gap:10px;font:700 .98rem var(--font-b);text-align:left;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.5em .8em;cursor:pointer;min-height:44px}
+.legend button i{flex:none;width:28px;height:6px;border-radius:4px}
+.legend button[aria-pressed="false"]{opacity:.5;border-style:dashed}
+
+/* exercices */
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:-1.5px;position:relative;z-index:1;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;font:700 1rem var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-bottom-color:var(--ink);border-radius:10px 10px 0 0;padding:.6em 1em;cursor:pointer;min-height:46px;display:flex;gap:.5em;align-items:center}
+.tab[aria-selected="true"]{background:var(--panel);border-bottom-color:var(--panel)}
+.tab .ok{display:none;color:var(--ok)}
+.tab.done .ok{display:inline}
+.tabpanel{background:var(--panel);border:1.5px solid var(--ink);border-radius:0 10px 10px 10px;padding:clamp(16px,3vw,32px)}
+.tabpanel[hidden]{display:none}
+.tabpanel h3{margin-bottom:.4em}
+/* fiches */
+.card{display:block;width:100%;max-width:560px;min-height:220px;text-align:left;cursor:pointer;font:400 1.15rem/1.5 var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:12px;padding:22px;perspective:900px}
+.card .face-t{font:700 1.5rem var(--font-d);margin:0}
+.card .hint{display:block;margin-top:14px;font-size:.9rem;color:var(--ink2)}
+.card.back{background:color-mix(in srgb,var(--elec) 10%,var(--panel));border-color:var(--elec)}
+.fl-meta{margin:14px 0;color:var(--ink2);font-weight:700}
+/* trous */
+.cloze{line-height:2.5;font-size:1.1rem;max-width:72ch}
+.cloze select{font:700 1rem var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;padding:.2em .3em;margin:0 2px;max-width:100%;min-height:38px}
+.cloze select.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,var(--panel));color:var(--ink)}
+.cloze select.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--panel));color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px;padding:0;list-style:none}
+.bank li{border:1.5px solid var(--ink);border-radius:20px;padding:.15em .8em;font-weight:700;background:var(--paper)}
+.bank li.used{opacity:.4;text-decoration:line-through}
+.fb{min-height:2em;font-weight:700;margin:14px 0 0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+/* qcm */
+.q-top{display:flex;justify-content:space-between;gap:12px;font-weight:700;color:var(--ink2);margin-bottom:10px}
+.q-bar{height:8px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--panel);margin-bottom:18px}
+.q-bar i{display:block;height:100%;background:var(--elec);width:0;transition:width .3s}
+.q-text{font:700 1.3rem/1.3 var(--font-d);margin:0 0 16px;max-width:52ch}
+.opts{display:grid;gap:10px;margin:0 0 16px;padding:0;list-style:none;max-width:640px}
+.opts button{width:100%;text-align:left;font:400 1.05rem/1.4 var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:.7em 1em;cursor:pointer;min-height:48px}
+.opts button:hover:not(:disabled){background:var(--panel);border-width:2.5px;padding:calc(.7em - 1px) calc(1em - 1px)}
+.opts button:disabled{cursor:default}
+.opts button.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--panel));font-weight:700}
+.opts button.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--panel));color:var(--bad)}
+.expl{border-left:5px solid var(--ink);padding:.2em 0 .2em 14px;margin:0 0 16px;max-width:60ch}
+.score{font:800 clamp(2.4rem,6vw,3.6rem) var(--font-d)}
+.miss{padding-left:1.2em;max-width:62ch}
+/* légender */
+.quiz-wrap{display:grid;gap:20px}
+@media (min-width:900px){.quiz-wrap{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}}
+.lg{display:grid;gap:10px;align-content:start}
+.lg label{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;font-weight:700}
+.lg label b{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:.9rem}
+.lg select{font:400 1rem var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;padding:.4em;min-height:44px;width:100%}
+.lg select.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,var(--panel))}
+.lg select.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--panel));color:var(--bad)}
+/* bilan */
+.bil{display:grid;gap:26px}
+.bil article{border-top:1.5px solid var(--ink);padding-top:18px}
+.bil h3{font-size:1.15rem;max-width:56ch}
+textarea{width:100%;min-height:120px;font:400 1.05rem/1.5 var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:.7em .9em;margin:10px 0;resize:vertical}
+.attendus{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.attendus label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.attendus input{width:22px;height:22px;margin-top:2px;flex:none;accent-color:var(--ok)}
+footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);padding:22px 0 40px;color:var(--ink2);background:var(--paper)}
+@media print{.top,.sim-head,.syn-ctl{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span aria-hidden="true">←</span> Terminale</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#simulateur">Simulateur</a>
+      <a href="#potentiel">Potentiel d'action</a>
+      <a href="#codage">Codage</a>
+      <a href="#propagation">Propagation</a>
+      <a href="#synapse">Synapse</a>
+      <a href="#curare">Curare</a>
+      <a href="#exercices">Exercices</a>
+    </nav>
+    <div class="prog" title="Exercices réussis">
+      <span id="prog-text">0 sur 5</span>
+      <span class="bar" aria-hidden="true"><i id="prog-bar"></i></span>
+      <span class="sr">exercices réussis</span>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+
+<!-- ============ SIMULATEUR ============ -->
+<section class="hero wrap" id="simulateur" aria-labelledby="h-sim">
+  <h1 id="h-sim">Le message nerveux</h1>
+  <p class="lead">Révisions du TP 2 sur le fonctionnement du neurone. Règle l'intensité de la stimulation et regarde comment la fibre nerveuse répond.</p>
+
+  <div class="sim panel">
+    <div class="sim-head">
+      <fieldset class="seg" id="modeSeg">
+        <legend class="sr">Ce qu'on observe</legend>
+        <label><input type="radio" name="mode" value="neurone" checked><span>Un neurone</span></label>
+        <label><input type="radio" name="mode" value="nerf"><span>Un nerf entier</span></label>
+      </fieldset>
+      <button class="btn sm" id="simPause" type="button">Mettre en pause</button>
+    </div>
+    <canvas id="simCanvas" role="img" aria-label="Enregistrement de l'activité électrique de la fibre nerveuse en fonction du temps"></canvas>
+    <div class="fibres" id="fibres" aria-hidden="true"></div>
+    <div class="sim-ctl">
+      <label for="simI"><span>Intensité de la stimulation</span><output id="simOut" for="simI">55</output></label>
+      <div class="slider" id="sliderBox" style="--s:30%">
+        <span class="tick">valeur seuil</span>
+        <input id="simI" type="range" min="0" max="100" value="55">
+      </div>
+    </div>
+    <p class="sim-cap" id="simCap" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- ============ POTENTIEL D'ACTION ============ -->
+<section class="sec wrap" id="potentiel" aria-labelledby="h-pa">
+  <header>
+    <h2 id="h-pa">Du potentiel de repos au potentiel d'action</h2>
+    <p class="lead">Quand la stimulation dépasse un certain seuil, la différence de potentiel de part et d'autre de la membrane varie brièvement, puis revient à sa valeur de départ.</p>
+  </header>
+  <div class="two flip">
+    <div class="panel">
+      <svg class="pa" id="paSvg" viewBox="0 0 640 340" role="img" aria-label="Courbe d'un potentiel d'action: repos à moins 70 millivolts, seuil à moins 50, dépolarisation jusqu'à plus 30, repolarisation, hyperpolarisation puis retour au repos.">
+        <line class="g" x1="48" x2="630" y1="60" y2="60"/>
+        <line class="g" x1="48" x2="630" y1="120" y2="120"/>
+        <line class="g s" x1="48" x2="630" y1="220" y2="220"/>
+        <line class="g" x1="48" x2="630" y1="260" y2="260"/>
+        <text class="ax" x="40" y="26" text-anchor="end">mV</text>
+        <text class="ax" x="40" y="65" text-anchor="end">+30</text>
+        <text class="ax" x="40" y="125" text-anchor="end">0</text>
+        <text class="ax" x="40" y="225" text-anchor="end" style="fill:var(--seuil);font-weight:700">−50</text>
+        <text class="ax" x="40" y="265" text-anchor="end">−70</text>
+        <line x1="48" x2="48" y1="30" y2="312" stroke="var(--ink)" stroke-width="2"/>
+        <line x1="48" x2="628" y1="312" y2="312" stroke="var(--ink)" stroke-width="2"/>
+        <text class="ax" x="628" y="334" text-anchor="end">Temps (ms)</text>
+        <g data-ph="repos"><path class="seg ph-repos" d="M52 260 H150 M440 260 H626"/><text x="470" y="246">Potentiel de repos</text></g>
+        <g data-ph="seuil"><path class="seg ph-seuil" d="M150 260 C168 258 182 242 192 220"/><text x="118" y="206">Seuil</text></g>
+        <g data-ph="dep"><path class="seg ph-dep" d="M192 220 C210 150 236 62 268 60"/><text x="208" y="128" text-anchor="end">Dépolarisation</text></g>
+        <g data-ph="rep"><path class="seg ph-rep" d="M268 60 C300 62 322 200 338 282"/><text x="318" y="112">Repolarisation</text></g>
+        <g data-ph="hyp"><path class="seg ph-hyp" d="M338 282 C350 292 380 278 440 260"/><text x="372" y="306">Hyperpolarisation</text></g>
+      </svg>
+    </div>
+    <div>
+      <ul class="phases" id="phases"></ul>
+      <p id="pa-info" aria-live="polite">Choisis une phase pour la repérer sur la courbe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CODAGE ============ -->
+<section class="sec wrap" id="codage" aria-labelledby="h-cod">
+  <header>
+    <h2 id="h-cod">Comment l'intensité est codée</h2>
+    <p class="lead">Un potentiel d'action a toujours la même forme. L'information passe donc par autre chose que sa taille, et l'échelle d'observation change la réponse.</p>
+  </header>
+  <div class="cmp">
+    <div class="panel">
+      <h3>Dans un neurone</h3>
+      <svg id="cod-neu" viewBox="0 0 400 190" role="img" aria-label="Trois enregistrements: aucune réponse pour une stimulation nulle, quelques potentiels d'action espacés pour une stimulation faible, de nombreux potentiels d'action rapprochés pour une stimulation forte."></svg>
+      <p class="big">Codage en <span class="key">fréquence</span></p>
+      <p>Plus la stimulation est intense (à durée égale), plus les potentiels d'action sont nombreux. Chacun garde la même amplitude.</p>
+      <button class="btn sm" type="button" data-sim="neurone">Essayer dans le simulateur</button>
+    </div>
+    <div class="panel">
+      <h3>Dans un nerf</h3>
+      <svg id="cod-nerf" viewBox="0 0 400 190" role="img" aria-label="Trois réponses globales d'un nerf: l'amplitude augmente avec l'intensité de la stimulation."></svg>
+      <p class="big">Codage en <span class="key">amplitude</span></p>
+      <p>Un nerf contient de nombreux prolongements de neurones. Quand l'intensité augmente, plus de fibres répondent, et l'activité électrique globale du nerf est plus grande.</p>
+      <button class="btn sm" type="button" data-sim="nerf">Essayer dans le simulateur</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROPAGATION ============ -->
+<section class="sec wrap" id="propagation" aria-labelledby="h-prop">
+  <header>
+    <h2 id="h-prop">La gaine de myéline accélère le message</h2>
+    <p class="lead">Lance la simulation: le même message nerveux part en même temps dans deux fibres.</p>
+  </header>
+  <div class="panel">
+    <svg class="prop" id="propSvg" viewBox="0 0 760 228" role="img" aria-label="Course entre un message nerveux dans une fibre sans gaine de myéline, qui avance de proche en proche, et dans une fibre myélinisée, qui avance par sauts."></svg>
+    <div class="row" style="margin-top:6px">
+      <button class="btn pri" id="propGo" type="button">Lancer la course</button>
+      <span class="note">Les durées sont celles de la simulation, pas des durées réelles.</span>
+    </div>
+    <p class="result-line" id="propRes" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- ============ SYNAPSE ============ -->
+<section class="sec wrap" id="synapse" aria-labelledby="h-syn">
+  <header>
+    <h2 id="h-syn">La synapse: un message électrique, un relais chimique</h2>
+    <p class="lead">La synapse est la zone de jonction entre deux neurones, ou entre un neurone et un muscle. Suis les cinq étapes de la transmission.</p>
+  </header>
+  <div class="panel">
+    <div class="syn-ctl">
+      <fieldset class="seg" id="cellSeg">
+        <legend class="sr">Cellule post-synaptique</legend>
+        <label><input type="radio" name="cell" value="neu" checked><span>Neurone</span></label>
+        <label><input type="radio" name="cell" value="mus"><span>Muscle</span></label>
+      </fieldset>
+      <label class="chk"><input type="checkbox" id="curareToggle"> Ajouter du curare</label>
+      <label class="chk"><input type="checkbox" id="labelsToggle" checked> Légendes</label>
+      <button class="btn sm" id="synPlay" type="button">Jouer les étapes</button>
+    </div>
+    <div id="synScene"></div>
+    <ol class="steps" id="steps"></ol>
+  </div>
+</section>
+
+<!-- ============ CURARE ============ -->
+<section class="sec wrap" id="curare" aria-labelledby="h-cur">
+  <header>
+    <h2 id="h-cur">Le curare paralyse le muscle</h2>
+    <p class="lead">Les Indiens d'Amazonie l'utilisent sur leurs flèchettes. Un muscle isolé reçoit une dose test d'acétylcholine (courbe 1), puis la même dose avec des concentrations croissantes de curare (courbes 2 à 4).</p>
+  </header>
+  <div class="two">
+    <div class="panel">
+      <svg class="chart" id="chart" viewBox="0 0 640 360" role="img" aria-label="Contraction du muscle en fonction du temps. La contraction est forte avec l'acétylcholine seule et diminue quand la concentration de curare augmente."></svg>
+      <p class="note" style="margin:8px 0 0">Tracés redessinés d'après les résultats expérimentaux du TP. L'acétylcholine est ajoutée à t = 0.</p>
+    </div>
+    <div>
+      <p>Compare les courbes: plus il y a de curare, plus la contraction est faible. Le curare n'a pas la forme de l'acétylcholine, mais il peut se fixer sur ses récepteurs.</p>
+      <div class="legend" id="legend" role="group" aria-label="Courbes affichées"></div>
+      <p style="margin-top:18px">Il empêche ainsi l'ouverture du canal à Na<sup>+</sup> du récepteur: pas d'entrée d'ions, pas de contraction.</p>
+      <button class="btn sm" type="button" id="seeCurare">Voir l'effet dans la synapse</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXERCICES ============ -->
+<section class="sec wrap" id="exercices" aria-labelledby="h-ex">
+  <header>
+    <h2 id="h-ex">À toi de jouer</h2>
+    <p class="lead">Cinq façons de t'entraîner. Tes réponses et ta progression restent enregistrées sur cet appareil.</p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Exercices" id="tabs">
+    <button class="tab" role="tab" id="t-fiches" aria-controls="p-fiches" aria-selected="true">Fiches</button>
+    <button class="tab" role="tab" id="t-trous1" aria-controls="p-trous" aria-selected="false">Textes à trous<span class="ok" aria-hidden="true">✓</span></button>
+    <button class="tab" role="tab" id="t-qcm" aria-controls="p-qcm" aria-selected="false">QCM<span class="ok" aria-hidden="true">✓</span></button>
+    <button class="tab" role="tab" id="t-schema" aria-controls="p-schema" aria-selected="false">Légender la synapse<span class="ok" aria-hidden="true">✓</span></button>
+    <button class="tab" role="tab" id="t-bilan" aria-controls="p-bilan" aria-selected="false">Rédiger<span class="ok" aria-hidden="true">✓</span></button>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-fiches" aria-labelledby="t-fiches">
+    <h3>Fiches de vocabulaire</h3>
+    <p class="note">Lis le terme, essaie de le définir, puis retourne la fiche.</p>
+    <div id="flash"></div>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-trous" aria-labelledby="t-trous1" hidden>
+    <h3>Conclusion de l'activité 1</h3>
+    <p class="note">Complète avec les mots proposés. Chaque mot sert une seule fois.</p>
+    <ul class="bank" id="bank1"></ul>
+    <div class="cloze" id="cloze1"></div>
+    <div class="row" id="ctl1" style="margin-top:12px"></div>
+    <p class="fb" id="fb1" aria-live="polite"></p>
+    <hr style="border:0;border-top:1.5px solid var(--ink);margin:30px 0">
+    <h3>Conclusion de l'activité 3</h3>
+    <p class="note">Même principe, avec le vocabulaire de la synapse.</p>
+    <ul class="bank" id="bank2"></ul>
+    <div class="cloze" id="cloze2"></div>
+    <div class="row" id="ctl2" style="margin-top:12px"></div>
+    <p class="fb" id="fb2" aria-live="polite"></p>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-qcm" aria-labelledby="t-qcm" hidden>
+    <div id="qcm"></div>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-schema" aria-labelledby="t-schema" hidden>
+    <h3>Légende le schéma de la synapse</h3>
+    <p class="note">Choisis le bon nom pour chaque numéro.</p>
+    <div class="quiz-wrap">
+      <div id="quizScene"></div>
+      <div class="lg" id="lg"></div>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn pri" id="lgCheck" type="button">Vérifier</button>
+      <button class="btn" id="lgReset" type="button">Recommencer</button>
+    </div>
+    <p class="fb" id="lgFb" aria-live="polite"></p>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-bilan" aria-labelledby="t-bilan" hidden>
+    <h3>Rédige, puis compare</h3>
+    <p class="note">Écris ta réponse avec tes mots. Ensuite, affiche les éléments attendus et coche ceux que tu as donnés.</p>
+    <div class="bil" id="bil"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Révisions du TP 2: fonctionnement du neurone et message nerveux. Les valeurs et les schémas suivent la fiche d'activité et son corrigé. <a href="../../index.html">Retour à l'accueil de revise svt</a>.</div>
+</footer>
+
+<noscript><p class="wrap">Cette page de révision a besoin de JavaScript pour fonctionner.</p></noscript>
+
+<script>
+(()=>{
+'use strict';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MIN='−', NB=' ';
+const store={
+  get(k,d){try{const v=localStorage.getItem('svt-tp2:'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('svt-tp2:'+k,JSON.stringify(v))}catch(e){}}
+};
+/* ---------- typographie française (espaces insécables, apostrophes) ---------- */
+window.frAll=function(root){
+  const w=document.createTreeWalker(root||document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{
+    const p=n.parentNode&&n.parentNode.nodeName; return (p==='SCRIPT'||p==='STYLE')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
+  const arr=[];while(w.nextNode())arr.push(w.currentNode);
+  arr.forEach(n=>{
+    const v=n.nodeValue.replace(/ ([:;?!»])/g,' $1').replace(/« /g,'« ').replace(/(\d) (mV|ms|s)\b/g,'$1 $2').replace(/'/g,'’');
+    if(v!==n.nodeValue)n.nodeValue=v;
+  });
+};
+const ns='http://www.w3.org/2000/svg';
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ---------- progression ---------- */
+const KEYS=['trous1','trous2','qcm','schema','bilan'];
+let done=store.get('done',{});
+function renderProgress(){
+  const n=KEYS.filter(k=>done[k]).length;
+  $('#prog-text').textContent=n+' sur 5';
+  $('#prog-bar').style.setProperty('--p',n/5);
+  $('#prog-bar').parentElement.style.setProperty('--p',n/5);
+  $('#t-trous1').classList.toggle('done',!!(done.trous1&&done.trous2));
+  $('#t-qcm').classList.toggle('done',!!done.qcm);
+  $('#t-schema').classList.toggle('done',!!done.schema);
+  $('#t-bilan').classList.toggle('done',!!done.bilan);
+}
+function mark(k){ if(!done[k]){done[k]=true;store.set('done',done);} renderProgress(); }
+
+/* ---------- simulateur ---------- */
+const sim=(()=>{
+  const cv=$('#simCanvas'), ctx=cv.getContext('2d');
+  const SEUIL=30, STEP=2, N=500, SPEED=.5;
+  const FIB=[15,25,35,45,55,65,75,85,92,98];
+  let mode='neurone', I=55, paused=RM, W=0, H=0, acc=0, last=0, visible=true, raf=0;
+  let buf=new Array(N).fill(-70);
+  let st={tau:null,since:1e9,stim:0};
+  let col={};
+  const ease=x=>x*x*(3-2*x);
+  function wave(t,base){
+    if(t<3) return base+(-50-base)*(t/3);
+    if(t<9) return -50+80*ease((t-3)/6);
+    if(t<19) return 30-108*ease((t-9)/10);
+    if(t<46){const x=(t-19)/27; return -78+(base+78)*(1-(1-x)*(1-x));}
+    return base;
+  }
+  function stepOnce(){
+    let v;
+    if(mode==='neurone'){
+      const f=I>=SEUIL?4+(I-SEUIL)/(100-SEUIL)*16:0;
+      const base=-70+Math.min(I,SEUIL)/SEUIL*12;
+      st.since+=STEP;
+      if(st.tau===null&&f>0&&st.since>=1000/f){st.tau=0;st.since=0;}
+      if(st.tau!==null){v=wave(st.tau,base);st.tau+=STEP;if(st.tau>=46)st.tau=null;}
+      else v=base;
+    }else{
+      st.stim+=STEP;
+      if(st.stim>=500){st.stim=0;st.tau=0;}
+      v=-70;
+      if(st.tau!==null){
+        const t=st.tau, A=FIB.filter(x=>I>=x).length/10*95;
+        v+= (t<4?(t<2?10:-6):0) + A*Math.exp(-Math.pow((t-18)/7,2));
+        st.tau+=STEP; if(st.tau>=60) st.tau=null;
+      }
+    }
+    buf.push(v);buf.shift();
+  }
+  function reset(){st={tau:null,since:1e9,stim:400};buf=new Array(N).fill(-70);}
+  function refill(){reset();for(let i=0;i<N;i++)stepOnce();draw();}
+  function readColors(){
+    col={elec:css('--elec'),ink:css('--ink'),ink2:css('--ink2'),panel:css('--panel'),grid:css('--grid2'),seuil:css('--seuil')};
+  }
+  function resize(){
+    const r=cv.getBoundingClientRect(); if(!r.width) return;
+    const d=Math.min(window.devicePixelRatio||1,2);
+    cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);
+    ctx.setTransform(d,0,0,d,0,0);W=r.width;H=r.height;readColors();draw();
+  }
+  function draw(){
+    if(!W) return;
+    const padL=mode==='neurone'?52:16, padR=12, padT=14, padB=16;
+    const ym=mv=>padT+(50-mv)/145*(H-padT-padB);
+    ctx.fillStyle=col.panel;ctx.fillRect(0,0,W,H);
+    ctx.font='13px "Atkinson Hyperlegible",system-ui,sans-serif';
+    ctx.lineWidth=1;
+    // quadrillage vertical (100 ms)
+    ctx.strokeStyle=col.grid;ctx.globalAlpha=.45;
+    for(let i=1;i<10;i++){const x=padL+i/10*(W-padL-padR);ctx.beginPath();ctx.moveTo(x,padT);ctx.lineTo(x,H-padB);ctx.stroke();}
+    ctx.globalAlpha=1;
+    const lv=mode==='neurone'?[30,0,-70]:[-70];
+    ctx.setLineDash([4,5]);
+    lv.forEach(m=>{ctx.strokeStyle=col.grid;ctx.beginPath();ctx.moveTo(padL,ym(m));ctx.lineTo(W-padR,ym(m));ctx.stroke();});
+    if(mode==='neurone'){
+      ctx.setLineDash([8,5]);ctx.strokeStyle=col.seuil;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(padL,ym(-50));ctx.lineTo(W-padR,ym(-50));ctx.stroke();
+    }
+    ctx.setLineDash([]);
+    ctx.textAlign='right';ctx.fillStyle=col.ink2;
+    if(mode==='neurone'){
+      [[30,'+30'],[0,'0'],[-70,MIN+'70']].forEach(([m,t])=>ctx.fillText(t,padL-8,ym(m)+4));
+      ctx.fillStyle=col.seuil;ctx.font='700 13px "Atkinson Hyperlegible",system-ui,sans-serif';
+      ctx.fillText(MIN+'50',padL-8,ym(-50)+4);
+      ctx.textAlign='left';ctx.fillStyle=col.ink2;ctx.font='13px "Atkinson Hyperlegible",system-ui,sans-serif';
+      ctx.fillText('mV',6,padT+8);
+      ctx.textAlign='right';ctx.fillText('1 seconde',W-padR-4,H-padB-6);
+    }else{
+      ctx.textAlign='left';ctx.fillText('Activité électrique globale du nerf',padL+6,padT+12);
+      ctx.textAlign='right';ctx.fillText('1 seconde',W-padR-4,H-padB-6);
+    }
+    ctx.strokeStyle=col.elec;ctx.lineWidth=2.6;ctx.lineJoin='round';ctx.lineCap='round';
+    ctx.beginPath();
+    for(let i=0;i<N;i++){
+      const x=padL+i/(N-1)*(W-padL-padR), y=ym(buf[i]);
+      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+    }
+    ctx.stroke();
+  }
+  function frame(ts){
+    raf=0;
+    if(paused||!visible) return;
+    const dt=Math.min(50,ts-(last||ts));last=ts;
+    acc+=dt*SPEED;
+    while(acc>=STEP){stepOnce();acc-=STEP;}
+    draw();
+    raf=requestAnimationFrame(frame);
+  }
+  function kick(){ if(!paused&&visible&&!raf){last=0;raf=requestAnimationFrame(frame);} }
+  function caption(){
+    if(mode==='neurone'){
+      if(I<SEUIL) return "Sous la valeur seuil, aucun potentiel d'action: le neurone reste au repos.";
+      const f=Math.round(4+(I-SEUIL)/(100-SEUIL)*16);
+      return `Au-dessus du seuil, le neurone émet des potentiels d'action, environ ${f} par seconde ici. Leur amplitude ne change jamais: seule leur fréquence augmente avec l'intensité.`;
+    }
+    const n=FIB.filter(t=>I>=t).length;
+    if(!n) return "Aucune fibre n'est recrutée: le nerf ne répond pas.";
+    return `${n} fibre${n>1?'s':''} sur 10 ${n>1?'sont recrutées':'est recrutée'}. Plus il y a de fibres recrutées, plus l'amplitude de l'activité globale du nerf est grande.`;
+  }
+  function ui(){
+    const box=$('#sliderBox');
+    box.classList.toggle('nerf',mode==='nerf');
+    $('#fibres').classList.toggle('on',mode==='nerf');
+    $$('#fibres i').forEach((e,i)=>e.classList.toggle('on',I>=FIB[i]));
+    $('#simOut').textContent=I;
+    $('#simI').style.setProperty('--s',SEUIL+'%');
+    $('#simCap').textContent=caption();
+    window.frAll&&window.frAll($('#simCap'));
+  }
+  function setMode(m){mode=m;$$('input[name=mode]').forEach(r=>r.checked=r.value===m);reset();if(paused)refill();ui();draw();}
+  // init
+  const fb=$('#fibres');
+  FIB.forEach(()=>fb.appendChild(document.createElement('i')));
+  const lab=document.createElement('span');lab.className='note';lab.textContent='Fibres recrutées';fb.prepend(lab);
+  $('#simI').addEventListener('input',e=>{I=+e.target.value;ui();if(paused)refill();});
+  $$('input[name=mode]').forEach(r=>r.addEventListener('change',()=>setMode(r.value)));
+  $('#simPause').addEventListener('click',()=>{
+    paused=!paused;$('#simPause').textContent=paused?'Reprendre':'Mettre en pause';
+    if(!paused)kick();
+  });
+  if(paused) $('#simPause').textContent='Reprendre';
+  new ResizeObserver(resize).observe(cv);
+  new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible)kick();}).observe(cv);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{readColors();draw();});
+  reset();for(let i=0;i<N;i++)stepOnce();ui();resize();kick();
+  return {setMode, focus(m,){setMode(m);}};
+})();
+$$('[data-sim]').forEach(b=>b.addEventListener('click',()=>{
+  sim.setMode(b.dataset.sim);
+  $('#simulateur').scrollIntoView({behavior:RM?'auto':'smooth'});
+}));
+
+/* ---------- potentiel d'action ---------- */
+(()=>{
+  const PH=[
+    {id:'repos',c:'--ph-repos',n:'Potentiel de repos',v:MIN+'70 mV',t:"Sans stimulation, l'intérieur de la fibre est négatif par rapport à l'extérieur: "+MIN+"70 mV. Pour le mesurer, une électrode doit être à l'intérieur et l'autre à l'extérieur: avec les deux dehors, on ne voit rien."},
+    {id:'seuil',c:'--ph-seuil',n:'Seuil',v:MIN+'50 mV',t:"Une stimulation trop faible ne provoque rien. Le potentiel d'action n'apparaît que si, et seulement si, la stimulation dépasse la valeur seuil. Au-delà, il a toujours les mêmes caractéristiques."},
+    {id:'dep',c:'--ph-dep',n:'Dépolarisation',v:'jusqu\'à +30 mV',t:"Le potentiel de membrane monte de "+MIN+"70 mV jusqu'à environ +30 mV. Les charges s'inversent de part et d'autre de la membrane plasmique."},
+    {id:'rep',c:'--ph-rep',n:'Repolarisation',v:'',t:"Le potentiel de membrane redescend rapidement vers sa valeur de repos."},
+    {id:'hyp',c:'--ph-hyp',n:'Hyperpolarisation',v:'',t:"Le potentiel passe brièvement sous "+MIN+"70 mV, puis reprend sa valeur initiale: la fibre est de nouveau au repos."}
+  ];
+  const svg=$('#paSvg'), list=$('#phases'), info=$('#pa-info');
+  let cur=null;
+  function pick(id){
+    cur=cur===id?null:id;
+    svg.classList.toggle('focus',!!cur);
+    $$('g[data-ph]',svg).forEach(g=>g.classList.toggle('on',g.dataset.ph===cur));
+    $$('.phase',list).forEach(b=>b.setAttribute('aria-pressed',b.dataset.ph===cur));
+    const p=PH.find(x=>x.id===cur);
+    info.textContent=p?p.t:"Choisis une phase pour la repérer sur la courbe.";
+    window.frAll(info);
+  }
+  PH.forEach(p=>{
+    const li=document.createElement('li');
+    li.innerHTML=`<button class="phase" type="button" data-ph="${p.id}" aria-pressed="false"><i style="background:var(${p.c})"></i>${p.n}${p.v?`<small>${p.v}</small>`:''}</button>`;
+    li.firstChild.addEventListener('click',()=>pick(p.id));
+    list.appendChild(li);
+  });
+  $$('g[data-ph]',svg).forEach(g=>g.addEventListener('click',()=>pick(g.dataset.ph)));
+})();
+
+/* ---------- codage: petits schémas ---------- */
+(()=>{
+  const el=(t,a={},p)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e;};
+  const neu=$('#cod-neu'), nerf=$('#cod-nerf');
+  const rows=[['Stimulation forte',50,16],['Stimulation faible',110,4],['Stimulation nulle',165,0]];
+  rows.forEach(([lab,y,n])=>{
+    el('line',{class:'ln',x1:150,x2:392,y1:y+10,y2:y+10},neu);
+    const t=el('text',{x:0,y:y+14},neu);t.textContent=lab;
+    if(n){
+      let d='';
+      for(let i=0;i<n;i++){
+        const x=160+ (i+.5)*(222/n);
+        d+=`M${x-3} ${y+10} L${x} ${y-12} L${x+3} ${y+10}`;
+      }
+      el('path',{class:'sg',d},neu);
+    }
+  });
+  [['Stimulation forte',50,52],['Stimulation moyenne',110,30],['Stimulation faible',165,12]].forEach(([lab,y,h])=>{
+    el('line',{class:'ln',x1:150,x2:392,y1:y+10,y2:y+10},nerf);
+    const t=el('text',{x:0,y:y+14},nerf);t.textContent=lab;
+    el('path',{class:'sg',d:`M160 ${y+10} H200 C215 ${y+10} 222 ${y+10-h} 250 ${y+10-h} S285 ${y+10} 300 ${y+10} H390`},nerf);
+  });
+})();
+
+/* ---------- propagation ---------- */
+(()=>{
+  const svg=$('#propSvg');
+  const el=(t,a={},p=svg,txt)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!==undefined)e.textContent=txt;p.appendChild(e);return e;};
+  el('text',{class:'lane-t',x:30,y:34},svg,"Fibre sans gaine de myéline");
+  const tA=el('text',{class:'tm',x:730,y:34},svg,"0,0 s");
+  el('rect',{class:'tube',x:30,y:48,width:700,height:28,rx:14});
+  const trA=el('line',{class:'trail',x1:44,x2:44,y1:62,y2:62});
+  const dA=el('circle',{class:'dot',cx:44,cy:62,r:11});
+  el('text',{class:'lane-t',x:30,y:134},svg,"Fibre avec gaine de myéline");
+  const tB=el('text',{class:'tm',x:730,y:134},svg,"0,0 s");
+  el('rect',{class:'tube',x:30,y:148,width:700,height:28,rx:14});
+  const nodes=[];const NN=7;
+  for(let k=0;k<=NN;k++) nodes.push(44+k*(676/NN));
+  for(let k=0;k<NN;k++){
+    el('rect',{class:'sheath',x:nodes[k]+9,y:142,width:nodes[k+1]-nodes[k]-18,height:40,rx:10});
+  }
+  nodes.forEach((x,k)=>{ if(k>0&&k<NN){} });
+  el('text',{class:'nd',x:380,y:208},svg,"Gaine de myéline (en jaune) et zones nues entre les segments");
+  const trB=el('line',{class:'trail',x1:44,x2:44,y1:162,y2:162});
+  const dB=el('circle',{class:'dot',cx:44,cy:162,r:11});
+  const TA=3.2,TB=1.3, seg=TB/NN, X0=44, X1=720;
+  const fmt=s=>s.toFixed(1).replace('.',',')+' s';
+  const btn=$('#propGo'), res=$('#propRes');
+  const e1=x=>x*x*(3-2*x);
+  function place(t){
+    const a=Math.min(1,t/TA), xa=X0+(X1-X0)*a;
+    dA.setAttribute('cx',xa);trA.setAttribute('x2',xa);
+    let xb;
+    if(t>=TB) xb=nodes[NN];
+    else{const k=Math.floor(t/seg),u=(t-k*seg)/seg,p=u<.5?e1(u/.5):1;xb=nodes[k]+(nodes[k+1]-nodes[k])*p;}
+    dB.setAttribute('cx',xb);trB.setAttribute('x2',xb);
+    tA.textContent=fmt(Math.min(t,TA));tB.textContent=fmt(Math.min(t,TB));
+  }
+  function finish(){
+    res.textContent="Avec gaine de myéline, le message nerveux arrive beaucoup plus vite. Il saute d'une zone nue à la suivante au lieu d'avancer de proche en proche.";
+    window.frAll(res);btn.disabled=false;btn.textContent='Relancer la course';
+  }
+  btn.addEventListener('click',()=>{
+    res.textContent='';
+    if(RM){place(TA);finish();return;}
+    btn.disabled=true;const t0=performance.now();
+    (function loop(now){
+      const t=(now-t0)/1000;place(Math.min(t,TA));
+      if(t<TA) requestAnimationFrame(loop); else finish();
+    })(t0);
+  });
+  place(0);
+})();
+
+/* ---------- synapse ---------- */
+function sceneHTML({quiz=false}={}){
+  const rec=[110,180,250];
+  const nts=[[442,112,506,104],[446,150,480,140],[440,176,506,176],[448,210,488,222],[442,240,506,246],[446,128,470,96],[444,196,476,200],[442,256,470,268],[448,164,492,158]];
+  const dock=[0,2,4];
+  let h=`<svg class="scene neu st-1${quiz?' quiz nolabels':''}" viewBox="-6 0 806 360" role="img" aria-label="${quiz?'Schéma d\'une synapse à légender: terminaison présynaptique avec vésicules, fente synaptique et membrane post-synaptique avec récepteurs.':'Schéma animé d\'une synapse: terminaison présynaptique, fente synaptique et cellule post-synaptique.'}">`;
+  h+=`<path class="post" d="M520 30 C508 100 534 140 520 180 C506 220 534 260 520 330 L800 330 L800 30 Z"/>`;
+  h+=`<path class="pre" d="M0 150 H250 C285 150 300 118 335 102 C380 84 428 100 432 140 C436 175 424 200 432 235 C428 268 380 280 335 262 C300 246 285 214 250 214 H0 Z"/>`;
+  const spikes='M30 80 H58 L64 30 L72 92 L78 80 H100 L106 30 L114 92 L120 80 H142 L148 30 L156 92 L162 80 H184 L190 30 L198 92 L204 80 H226';
+  h+=`<path class="trace-bg" d="${spikes}"/><path class="trace" pathLength="1" d="${spikes}"/>`;
+  [[350,140,62],[385,190,30],[345,232,68]].forEach(([x,y,tx])=>{
+    h+=`<g class="ves" style="--tx:${tx}px"><g transform="translate(${x} ${y})"><circle class="ring" r="24"/><g class="vd"><circle cx="-8" cy="-6" r="5"/><circle cx="8" cy="-4" r="5"/><circle cx="0" cy="9" r="5"/></g></g></g>`;
+  });
+  nts.forEach(([x,y,tx,ty],i)=>{
+    const d=dock.includes(i);
+    h+=`<circle class="nt" cx="${x}" cy="${y}" r="5.5" style="--dx:${tx-x}px;--dy:${ty-y}px;--cdx:${(d?484:tx)-x}px;--cdy:${(d?ty-6:ty)-y}px"/>`;
+  });
+  rec.forEach(y=>{
+    h+=`<g transform="translate(520 ${y})"><rect class="rc rc-u" x="-6" y="-15" width="15" height="14" rx="4"/><rect class="rc rc-l" x="-6" y="1" width="15" height="14" rx="4"/></g>`;
+    h+=`<circle class="ion" cx="506" cy="${y-5}" r="5" style="--ix:84px;--iy:-4px"/><circle class="ion" cx="506" cy="${y+5}" r="5" style="--ix:96px;--iy:6px"/>`;
+    h+=`<polygon class="cur" points="470,${y-9} 480,${y-9} 485,${y} 480,${y+9} 470,${y+9} 465,${y}"/>`;
+  });
+  // résultat
+  h+=`<g class="res">
+    <g class="res-neu"><path class="spike" d="M620 262 H650 L658 206 L668 276 L676 262 H700 L708 206 L718 276 L726 262 H760"/></g>
+    <g class="res-mus"><rect class="fibre" x="620" y="214" width="150" height="36" rx="14"/><line class="stri" x1="660" x2="660" y1="214" y2="250"/><line class="stri" x1="695" x2="695" y1="214" y2="250"/><line class="stri" x1="730" x2="730" y1="214" y2="250"/></g>
+    <text class="rt t-neu" x="690" y="304">Potentiel d'action</text>
+    <text class="rt t-mus" x="695" y="284">Contraction</text>
+    <text class="rt t-musno" x="695" y="284">Pas de contraction</text>
+  </g>`;
+  // légendes
+  h+=`<g class="labels">
+    <line x1="300" y1="66" x2="318" y2="112"/><text x="262" y="60">Zone présynaptique</text>
+    <line x1="318" y1="302" x2="342" y2="258"/><text x="150" y="320">Vésicules synaptiques</text>
+    <line x1="476" y1="48" x2="476" y2="88"/><text x="476" y="38" text-anchor="middle">Fente synaptique</text>
+    <line x1="556" y1="338" x2="526" y2="262"/><text x="548" y="354">Récepteurs</text>
+    <text class="lab-neu" x="660" y="62" text-anchor="middle">Zone post-synaptique</text>
+    <text class="lab-mus" x="660" y="62" text-anchor="middle">Fibre musculaire</text>
+    <g class="l-nt"><line x1="440" y1="302" x2="470" y2="266"/><text x="408" y="322">Neurotransmetteurs</text></g>
+  </g>`;
+  if(quiz){
+    const pins=[[1,262,185],[2,318,130],[3,472,226],[4,478,70],[5,548,180],[6,650,110]];
+    h+=`<g class="pin">${pins.map(([n,x,y])=>`<circle cx="${x}" cy="${y}" r="13"/><text x="${x}" y="${y}">${n}</text>`).join('')}</g>`;
+  }
+  return h+'</svg>';
+}
+(()=>{
+  $('#synScene').innerHTML=sceneHTML();
+  const svg=$('#synScene svg');
+  let step=1, cell='neu', cur=false, timer=null;
+  const T=()=>({
+    1:"Le message nerveux arrive à la terminaison présynaptique: une série de potentiels d'action.",
+    2:"Les vésicules synaptiques fusionnent avec la membrane présynaptique.",
+    3:cur?"L'acétylcholine est libérée dans la fente, mais le curare occupe déjà les récepteurs de la membrane post-synaptique.":
+      `Les ${cell==='mus'?'molécules d\'acétylcholine':'neurotransmetteurs'} sont libéré${cell==='mus'?'e':''}s dans la fente et se fixent sur les récepteurs de la membrane post-synaptique.`,
+    4:cur?"Le canal à Na+ ne s'ouvre pas: aucun ion n'entre dans la cellule.":"Les récepteurs s'ouvrent: des ions entrent dans la cellule post-synaptique.",
+    5:cur?"Pas d'entrée d'ions, donc pas de signal et pas de contraction: le muscle est paralysé.":
+      cell==='mus'?"La fibre musculaire se contracte.":"Un potentiel d'action naît dans le neurone post-synaptique: le message est transmis."
+  });
+  function render(){
+    svg.setAttribute('class',`scene ${cell} ${cur?'curare ':''}${$('#labelsToggle').checked?'':'nolabels '}`+[1,2,3,4,5].filter(i=>i<=step).map(i=>'st-'+i).join(' '));
+    const tx=T();
+    const ol=$('#steps');ol.innerHTML='';
+    [1,2,3,4,5].forEach(i=>{
+      const li=document.createElement('li');
+      li.innerHTML=`<button type="button"${i===step?' aria-current="step"':''}>${tx[i].replace('Na+','Na<sup>+</sup>')}</button>`;
+      li.firstChild.addEventListener('click',()=>{stop();step=i;render();});
+      ol.appendChild(li);
+    });
+    window.frAll(ol);
+  }
+  function stop(){clearInterval(timer);timer=null;$('#synPlay').textContent='Jouer les étapes';}
+  $('#synPlay').addEventListener('click',()=>{
+    if(timer){stop();return;}
+    if(RM){step=step===5?1:step+1;render();return;}
+    step=1;render();$('#synPlay').textContent='Arrêter';
+    timer=setInterval(()=>{ if(step>=5){stop();return;} step++;render(); },2200);
+  });
+  $$('input[name=cell]').forEach(r=>r.addEventListener('change',()=>{
+    cell=r.value; if(cell==='neu'&&cur){cur=false;$('#curareToggle').checked=false;} render();
+  }));
+  $('#curareToggle').addEventListener('change',e=>{
+    cur=e.target.checked;
+    if(cur){cell='mus';$$('input[name=cell]').forEach(r=>r.checked=r.value==='mus');if(step<3)step=5;}
+    render();
+  });
+  $('#labelsToggle').addEventListener('change',render);
+  $('#seeCurare').addEventListener('click',()=>{
+    $('#curareToggle').checked=true;cur=true;cell='mus';
+    $$('input[name=cell]').forEach(r=>r.checked=r.value==='mus');step=5;render();
+    $('#synapse').scrollIntoView({behavior:RM?'auto':'smooth'});
+  });
+  render();
+})();
+
+/* ---------- courbes du curare ---------- */
+(()=>{
+  const svg=$('#chart');
+  const L=60,R=70,T=22,B=48,W=640,H=360;
+  const X=t=>L+t/55*(W-L-R), Y=v=>T+(1.2-v)/(1.2-.3)*(H-T-B);
+  const DATA=[
+    {n:'Acétylcholine seule',c:'--ink',p:[[0,.48],[3,.46],[6,.44],[8,.45],[10,.6],[12,.85],[15,1.07],[17,1.12],[20,1.1],[25,1.0],[30,.9],[35,.8],[40,.72],[45,.66],[50,.62],[55,.6]]},
+    {n:'Avec un peu de curare',c:'--ok',p:[[0,.48],[5,.52],[10,.62],[15,.66],[20,.66],[30,.64],[40,.61],[50,.6],[55,.6]]},
+    {n:'Avec plus de curare',c:'--seuil',p:[[0,.48],[5,.52],[10,.57],[15,.58],[25,.57],[35,.54],[45,.52],[55,.5]]},
+    {n:'Avec beaucoup de curare',c:'--elec',p:[[0,.48],[5,.47],[10,.45],[15,.44],[25,.44],[35,.43],[45,.42],[55,.42]]}
+  ];
+  const on=[true,true,true,true];
+  let g='';
+  [.3,.6,.9,1.2].forEach(v=>{g+=`<line class="gl" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ax" x="${L-8}" y="${Y(v)+4}" text-anchor="end">${String(v).replace('.',',')}</text>`;});
+  [0,10,20,30,40,50].forEach(t=>{g+=`<text class="ax" x="${X(t)}" y="${H-B+18}" text-anchor="middle">${t}</text>`;});
+  g+=`<line x1="${L}" x2="${L}" y1="${T}" y2="${H-B}" stroke="var(--ink)" stroke-width="2"/><line x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}" stroke="var(--ink)" stroke-width="2"/>`;
+  g+=`<text class="ax" x="${(L+W-R)/2}" y="${H-8}" text-anchor="middle">Temps (en s)</text>`;
+  g+=`<text class="ax" transform="translate(16 ${(T+H-B)/2}) rotate(-90)" text-anchor="middle">Contraction du muscle (U.A.)</text>`;
+  DATA.forEach((d,i)=>{
+    const path=d.p.map(([t,v],k)=>(k?'L':'M')+X(t).toFixed(1)+' '+Y(v).toFixed(1)).join(' ');
+    const last=d.p[d.p.length-1];
+    g+=`<g class="cv-g" data-i="${i}"><path class="cv" d="${path}" style="stroke:var(${d.c})"/><text x="${X(last[0])+8}" y="${Y(last[1])+5+(i===0?-7:i===1?3:0)}" style="fill:var(${d.c});font-weight:700">${i+1}</text></g>`;
+  });
+  svg.innerHTML=g;
+  const lg=$('#legend');
+  DATA.forEach((d,i)=>{
+    const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed','true');
+    b.innerHTML=`<i style="background:var(${d.c})"></i>${i+1}. ${d.n}`;
+    b.addEventListener('click',()=>{
+      on[i]=!on[i];b.setAttribute('aria-pressed',on[i]);
+      $(`.cv-g[data-i="${i}"]`,svg).style.opacity=on[i]?1:.08;
+    });
+    lg.appendChild(b);
+  });
+})();
+
+/* ---------- onglets ---------- */
+(()=>{
+  const tabs=$$('.tab'), map={'t-fiches':'p-fiches','t-trous1':'p-trous','t-qcm':'p-qcm','t-schema':'p-schema','t-bilan':'p-bilan'};
+  function sel(t){
+    tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$('#'+map[x.id]).hidden=!on;});
+  }
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click',()=>sel(t));
+    t.addEventListener('keydown',e=>{
+      let j=null;
+      if(e.key==='ArrowRight')j=(i+1)%tabs.length; if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;
+      if(j!==null){e.preventDefault();sel(tabs[j]);tabs[j].focus();}
+    });
+  });
+  sel(tabs[0]);
+})();
+
+/* ---------- fiches ---------- */
+(()=>{
+  const CARDS=[
+    ["Potentiel de membrane","Différence de potentiel entre le cytoplasme et la face externe de la membrane plasmique du neurone."],
+    ["Potentiel de repos","Potentiel de membrane en l'absence de stimulation: "+MIN+"70 mV."],
+    ["Potentiel d'action","Variation brève et transitoire du potentiel de membrane (de "+MIN+"70 mV à environ +30 mV, puis retour au repos). Les charges s'inversent de part et d'autre de la membrane."],
+    ["Valeur seuil","Intensité minimale de stimulation pour déclencher un potentiel d'action. En dessous, rien ne se passe. Au-delà, le potentiel d'action garde toujours les mêmes caractéristiques."],
+    ["Codage en fréquence","À l'échelle d'un neurone: plus la stimulation est intense, plus les potentiels d'action sont nombreux. Le message nerveux est codé en fréquence de potentiels d'action."],
+    ["Codage en amplitude","À l'échelle d'un nerf: plus la stimulation est intense, plus l'activité électrique globale est grande, car plus de fibres sont recrutées."],
+    ["Gaine de myéline","Enveloppe qui entoure certaines fibres nerveuses. Le message nerveux s'y propage beaucoup plus vite."],
+    ["Synapse","Zone de jonction entre deux neurones, ou entre un neurone et un muscle. Elle permet la transmission chimique d'un message nerveux de nature électrique."],
+    ["Zone présynaptique","Continuité de l'axone du neurone 1. Elle possède des vésicules synaptiques qui stockent les neurotransmetteurs."],
+    ["Fente synaptique","Espace entre la membrane présynaptique et la membrane post-synaptique, où sont libérés les neurotransmetteurs."],
+    ["Zone post-synaptique","Elle appartient au neurone 2 (ou à l'organe effecteur). Elle possède des récepteurs aux neurotransmetteurs et permet de retransmettre le message."],
+    ["Neurotransmetteur","Molécule chimique libérée par la zone présynaptique, qui transmet l'information à la cellule post-synaptique. À la jonction neuromusculaire: l'acétylcholine."],
+    ["Codage chimique","La quantité de neurotransmetteur libérée est proportionnelle à la fréquence des potentiels d'action qui arrivent à la terminaison: le message est codé en concentration de neurotransmetteur."],
+    ["Jonction neuromusculaire","Synapse entre un neurone moteur et une fibre musculaire. La réponse à la libération de neurotransmetteurs est la contraction de la fibre."],
+    ["Curare","Poison qui se fixe sur les récepteurs de l'acétylcholine et empêche l'ouverture du canal à Na+: le muscle ne se contracte plus."]
+  ];
+  const root=$('#flash');
+  let known=new Set(store.get('known',[])), queue=[], flipped=false;
+  function rebuild(){queue=CARDS.map((_,i)=>i).filter(i=>!known.has(i));}
+  function render(){
+    root.innerHTML='';
+    if(!queue.length){
+      root.innerHTML=`<p class="score" style="margin:.2em 0">${CARDS.length} sur ${CARDS.length}</p><p>Tu connais toutes les fiches. Reviens les relire avant le contrôle.</p><button class="btn" type="button" id="flReset">Tout revoir</button>`;
+      $('#flReset').addEventListener('click',()=>{known=new Set();store.set('known',[]);rebuild();flipped=false;render();});
+      window.frAll(root);return;
+    }
+    const i=queue[0], c=CARDS[i];
+    const b=document.createElement('button');
+    b.type='button';b.className='card'+(flipped?' back':'');
+    b.setAttribute('aria-label',flipped?'Définition. Retourner la fiche':'Terme. Retourner la fiche pour voir la définition');
+    b.innerHTML=flipped?`<span>${c[1].replace('Na+','Na<sup>+</sup>')}</span><span class="hint">${c[0]}</span>`:`<p class="face-t">${c[0]}</p><span class="hint">Touche la fiche pour voir la définition</span>`;
+    b.addEventListener('click',()=>{flipped=!flipped;render();$('.card',root).focus();});
+    const meta=document.createElement('p');meta.className='fl-meta';
+    meta.textContent=`Fiches maîtrisées: ${known.size} sur ${CARDS.length}`;
+    const row=document.createElement('div');row.className='row';
+    row.innerHTML=`<button class="btn" type="button" id="flNo">À revoir</button><button class="btn pri" type="button" id="flYes">Je sais</button>`;
+    root.append(b,meta,row);
+    $('#flNo').disabled=$('#flYes').disabled=!flipped;
+    $('#flYes').addEventListener('click',()=>{known.add(i);store.set('known',[...known]);queue.shift();flipped=false;render();});
+    $('#flNo').addEventListener('click',()=>{queue.push(queue.shift());flipped=false;render();});
+    window.frAll(root);
+  }
+  rebuild();render();
+})();
+
+/* ---------- textes à trous ---------- */
+function cloze({root,bank,ctl,fb,segments,key}){
+  const words=[...new Set(segments.filter(s=>typeof s!=='string').map(s=>s.a))].sort((a,b)=>a.localeCompare(b,'fr'));
+  const sels=[];
+  segments.forEach(s=>{
+    if(typeof s==='string'){root.append(document.createTextNode(s));return;}
+    const sel=document.createElement('select');
+    sel.setAttribute('aria-label','Mot manquant '+(sels.length+1));
+    const o0=document.createElement('option');o0.value='';o0.textContent='…';sel.appendChild(o0);
+    words.forEach(w=>{const o=document.createElement('option');o.value=w;o.textContent=w;sel.appendChild(o);});
+    sel.dataset.a=s.a;sels.push(sel);root.appendChild(sel);
+    sel.addEventListener('change',()=>{sel.className='';updateBank();});
+  });
+  const chips=words.map(w=>{const li=document.createElement('li');li.textContent=w;li.dataset.w=w;bank.appendChild(li);return li;});
+  function updateBank(){const used=sels.map(s=>s.value);chips.forEach(c=>c.classList.toggle('used',used.includes(c.dataset.w)));}
+  const bCheck=document.createElement('button'),bShow=document.createElement('button'),bReset=document.createElement('button');
+  bCheck.className='btn pri';bCheck.textContent='Vérifier';
+  bShow.className='btn';bShow.textContent='Voir les réponses';
+  bReset.className='btn';bReset.textContent='Recommencer';
+  [bCheck,bShow,bReset].forEach(b=>{b.type='button';ctl.appendChild(b);});
+  bCheck.addEventListener('click',()=>{
+    let ok=0,empty=0;
+    sels.forEach(s=>{
+      if(!s.value){empty++;s.className='';return;}
+      if(s.value===s.dataset.a){s.className='ok';ok++;}else s.className='bad';
+    });
+    fb.className='fb';
+    if(ok===sels.length){fb.textContent='Tout est juste. Bravo!';fb.classList.add('ok');mark(key);}
+    else{fb.textContent=`${ok} réponse${ok>1?'s':''} juste${ok>1?'s':''} sur ${sels.length}. Corrige les mots en rouge${empty?' et complète les trous vides':''}, puis vérifie à nouveau.`;fb.classList.add('bad');}
+    window.frAll(fb);
+  });
+  bShow.addEventListener('click',()=>{sels.forEach(s=>{s.value=s.dataset.a;s.className='ok';});updateBank();fb.textContent='Voici la correction. Recommence sans l'+"'"+'aide pour valider l'+"'"+'exercice.';fb.className='fb';window.frAll(fb);});
+  bReset.addEventListener('click',()=>{sels.forEach(s=>{s.value='';s.className='';});updateBank();fb.textContent='';});
+}
+(()=>{
+  const G=a=>({a});
+  cloze({key:'trous1',root:$('#cloze1'),bank:$('#bank1'),ctl:$('#ctl1'),fb:$('#fb1'),segments:[
+    "La différence de potentiel entre le cytoplasme et la face externe de la membrane plasmique du neurone définit le potentiel de ",G('membrane'),
+    ". En l'absence de stimulation, ce potentiel est de ",G(MIN+'70'+NB+'mV')," et constitue le potentiel de ",G('repos'),
+    ". Lorsque le neurone est stimulé, le potentiel de membrane peut varier ",G('transitoirement'),". C'est le potentiel d'",G('action'),
+    ". Il n'est observé que si, et seulement si, la stimulation du neurone dépasse une ",G('valeur seuil'),
+    ". Au-delà de cette valeur, le potentiel conserve toujours les mêmes caractéristiques. La stimulation d'un neurone au-delà de la valeur seuil induit l'émission d'une ",G('succession'),
+    " de potentiels d'action dont la fréquence est proportionnelle à l'intensité de la stimulation. C'est le message nerveux. Il est codé en ",G('fréquence')," de potentiels d'action."
+  ]});
+  cloze({key:'trous2',root:$('#cloze2'),bank:$('#bank2'),ctl:$('#ctl2'),fb:$('#fb2'),segments:[
+    "Le terme de synapse désignait au départ les zones de contact entre neurones, spécialisées dans la ",G('transmission'),
+    " de l'information. Les synapses sont caractérisées par la présence d'un ",G('espace'),
+    " entre la membrane présynaptique et la membrane post-synaptique: la fente synaptique. Une molécule ",G('chimique'),
+    " transmet les informations de la cellule présynaptique à la cellule post-synaptique. La synapse comprend trois parties: une zone ",G('présynaptique'),
+    ", continuité de l'axone du neurone 1, qui possède des ",G('vésicules')," synaptiques stockant des ",G('neurotransmetteurs'),
+    "; la ",G('fente'),", espace où sont ",G('libérés')," les neurotransmetteurs; la zone ",G('post-synaptique'),
+    ", qui possède des ",G('récepteurs'),
+    " aux neurotransmetteurs et permet de retransmettre le message. La quantité de neurotransmetteur libérée est proportionnelle à la fréquence des potentiels d'action: il y a un codage chimique du message nerveux en ",G('concentration'),
+    " de neurotransmetteur."
+  ]});
+})();
+
+/* ---------- QCM ---------- */
+(()=>{
+  const Q=[
+    {q:"Quelle est la valeur du potentiel de repos d'un neurone non stimulé?",o:[MIN+'70 mV','0 mV','+30 mV',MIN+'50 mV'],a:0,e:"Sans stimulation, l'intérieur de la fibre est à "+MIN+"70 mV par rapport à l'extérieur: c'est le potentiel de repos."},
+    {q:"Les deux électrodes sont posées à l'extérieur de la fibre et on stimule. Que voit-on à l'écran?",o:["Un potentiel d'action","Rien","Une valeur de "+MIN+"70 mV","Une valeur de +30 mV"],a:1,e:"Pour mesurer une différence de potentiel de membrane, il faut une électrode de chaque côté de la membrane. Avec les deux dehors, rien ne se passe."},
+    {q:"À quelle condition un potentiel d'action apparaît-il?",o:["Dès qu'il y a une stimulation, même très faible","Quand la stimulation dépasse la valeur seuil","Quand la fibre est myélinisée","Seulement si la stimulation est très longue"],a:1,e:"Une stimulation faible ne provoque rien. Le potentiel d'action n'apparaît que si la stimulation dépasse la valeur seuil."},
+    {q:"Dans un neurone, l'intensité de la stimulation augmente au-delà du seuil. Que change-t-il?",o:["L'amplitude de chaque potentiel d'action","La fréquence des potentiels d'action","La valeur du potentiel de repos","Rien du tout"],a:1,e:"Au-delà du seuil, chaque potentiel d'action a les mêmes caractéristiques. L'intensité est codée en fréquence: les potentiels d'action sont plus nombreux."},
+    {q:"Comment l'intensité de la stimulation est-elle codée à l'échelle d'un nerf?",o:["En fréquence de potentiels d'action","En durée de chaque potentiel d'action","En amplitude de l'activité électrique globale","Elle n'est pas codée"],a:2,e:"Un nerf contient de nombreuses fibres. Quand l'intensité augmente, plus de fibres sont recrutées et l'amplitude de l'activité globale augmente."},
+    {q:"Que remarque-t-on dans une fibre avec gaine de myéline?",o:["Le message nerveux est plus rapide","Le message nerveux est plus lent","Le message nerveux est bloqué","Le potentiel de repos change"],a:0,e:"En présence de gaine de myéline, la transmission du message nerveux est beaucoup plus rapide."},
+    {q:"Où sont stockés les neurotransmetteurs avant leur libération?",o:["Dans la fente synaptique","Dans les récepteurs","Dans des vésicules de la zone présynaptique","Dans la zone post-synaptique"],a:2,e:"La zone présynaptique possède des vésicules synaptiques qui stockent les neurotransmetteurs."},
+    {q:"Que devient le message nerveux au niveau de la synapse?",o:["Il reste électrique du début à la fin","Il devient chimique: il est transmis par des neurotransmetteurs","Il devient mécanique","Il s'arrête toujours"],a:1,e:"La synapse permet la transmission chimique d'un message nerveux de nature électrique."},
+    {q:"De quoi dépend la quantité de neurotransmetteur libérée?",o:["De la longueur de l'axone","De la fréquence des potentiels d'action qui arrivent à la terminaison","De la taille du muscle","De la présence de myéline"],a:1,e:"La quantité de neurotransmetteur libérée est proportionnelle à la fréquence des potentiels d'action: c'est un codage chimique en concentration."},
+    {q:"Quelle est la différence entre une synapse neuro-neuronique et une synapse neuro-musculaire?",o:["Elles ne fonctionnent pas du tout de la même façon","La réponse: un potentiel d'action dans le neurone suivant, ou la contraction d'une fibre musculaire","Il n'y a pas de neurotransmetteur dans la synapse neuro-musculaire","Il n'y a pas de fente synaptique dans la synapse neuro-neuronique"],a:1,e:"Le fonctionnement est identique. Seule la réponse change: potentiel d'action dans le neurone post-synaptique, ou contraction de la fibre musculaire."},
+    {q:"Comment le curare empêche-t-il la contraction musculaire?",o:["Il détruit les vésicules synaptiques","Il se fixe sur les récepteurs de l'acétylcholine et empêche l'ouverture du canal à Na+","Il augmente la quantité d'acétylcholine libérée","Il bloque le potentiel d'action dans le neurone moteur"],a:1,e:"Le curare se fixe sur le récepteur de l'acétylcholine et empêche l'ouverture du canal à Na+: aucun ion n'entre, le muscle ne se contracte pas."}
+  ];
+  const root=$('#qcm');
+  let i=0,score=0,missed=[];
+  const shuffle=a=>{a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;};
+  function show(){
+    if(i>=Q.length) return end();
+    const q=Q[i];
+    const opts=shuffle(q.o.map((t,k)=>({t,ok:k===q.a})));
+    root.innerHTML=`<div class="q-top"><span>Question ${i+1} sur ${Q.length}</span><span>${score} juste${score>1?'s':''}</span></div>
+      <div class="q-bar" aria-hidden="true"><i style="width:${i/Q.length*100}%"></i></div>
+      <h3 class="q-text" id="qq" tabindex="-1">${q.q}</h3>
+      <ul class="opts" role="list"></ul><div id="qfb"></div>`;
+    const ul=$('.opts',root);
+    opts.forEach(o=>{
+      const li=document.createElement('li'),b=document.createElement('button');
+      b.type='button';b.innerHTML=o.t.replace('Na+','Na<sup>+</sup>');
+      b.addEventListener('click',()=>{
+        $$('button',ul).forEach(x=>x.disabled=true);
+        const all=$$('button',ul);
+        all.forEach((x,k)=>{if(opts[k].ok)x.classList.add('good');});
+        if(o.ok){score++;}else{b.classList.add('wrong');missed.push(i);}
+        $('#qfb').innerHTML=`<p class="expl"><b>${o.ok?'Juste.':'Pas tout à fait.'}</b> ${q.e.replace('Na+','Na<sup>+</sup>')}</p><button class="btn pri" type="button" id="qn">${i===Q.length-1?'Voir mon score':'Question suivante'}</button>`;
+        window.frAll($('#qfb'));
+        $('#qn').addEventListener('click',()=>{i++;show();$('#qq')&&$('#qq').focus();});
+        $('#qn').focus();
+      });
+      li.appendChild(b);ul.appendChild(li);
+    });
+    window.frAll(root);
+  }
+  function end(){
+    const good=score>=Math.ceil(Q.length*.8);
+    if(good) mark('qcm');
+    root.innerHTML=`<p class="score">${score} sur ${Q.length}</p>
+      <p>${score===Q.length?"Sans faute. Tu maîtrises les notions de ce TP.":good?"Très bien. Relis les explications des questions manquées.":"Repasse par les schémas et les fiches, puis recommence."}</p>
+      ${missed.length?`<p><b>À revoir:</b></p><ul class="miss">${missed.map(k=>`<li>${Q[k].q}</li>`).join('')}</ul>`:''}
+      <button class="btn pri" type="button" id="qr">Recommencer le QCM</button>`;
+    $('#qr').addEventListener('click',()=>{i=0;score=0;missed=[];show();});
+    window.frAll(root);
+  }
+  show();
+})();
+
+/* ---------- légender la synapse ---------- */
+(()=>{
+  $('#quizScene').innerHTML=sceneHTML({quiz:true});
+  const ANS=[
+    ["Zone présynaptique"],["Vésicule synaptique"],["Neurotransmetteurs"],["Fente synaptique"],["Récepteurs"],["Zone post-synaptique"]
+  ];
+  const OPT=["Axone","Corps cellulaire","Fente synaptique","Gaine de myéline","Neurotransmetteurs","Récepteurs","Vésicule synaptique","Zone post-synaptique","Zone présynaptique"];
+  const lg=$('#lg');
+  ANS.forEach((a,i)=>{
+    const l=document.createElement('label');
+    l.innerHTML=`<b>${i+1}</b><select aria-label="Légende du numéro ${i+1}"><option value="">Choisir…</option>${OPT.map(o=>`<option>${o}</option>`).join('')}</select>`;
+    const s=$('select',l);s.addEventListener('change',()=>s.className='');
+    lg.appendChild(l);
+  });
+  $('#lgCheck').addEventListener('click',()=>{
+    let ok=0;
+    $$('select',lg).forEach((s,i)=>{
+      if(!s.value){s.className='';return;}
+      if(s.value===ANS[i][0]){s.className='ok';ok++;}else s.className='bad';
+    });
+    const fb=$('#lgFb');fb.className='fb';
+    if(ok===ANS.length){fb.textContent='Schéma entièrement juste. Bravo!';fb.classList.add('ok');mark('schema');}
+    else{fb.textContent=`${ok} légende${ok>1?'s':''} juste${ok>1?'s':''} sur ${ANS.length}. Corrige celles en rouge.`;fb.classList.add('bad');}
+    window.frAll(fb);
+  });
+  $('#lgReset').addEventListener('click',()=>{$$('select',lg).forEach(s=>{s.value='';s.className='';});$('#lgFb').textContent='';});
+})();
+
+/* ---------- rédiger ---------- */
+(()=>{
+  const P=[
+    {id:'curare',q:"Explique comment le curare empêche la contraction musculaire.",a:[
+      "Le curare se fixe sur les récepteurs de l'acétylcholine, le neurotransmetteur de la jonction neuromusculaire.",
+      "Il empêche l'ouverture du canal à Na+ du récepteur.",
+      "Aucun ion n'entre dans la cellule musculaire: pas de signal, donc pas de contraction.",
+      "Le document le confirme: plus la concentration de curare augmente, plus la contraction diminue (courbes 2 à 4)."]},
+    {id:'diff',q:"Décris la différence entre une synapse neuro-neuronique et une synapse neuro-musculaire.",a:[
+      "Le fonctionnement est identique: potentiels d'action, libération de neurotransmetteurs, fixation sur les récepteurs.",
+      "Synapse neuro-neuronique: la réponse est un potentiel d'action dans le neurone suivant (post-synaptique).",
+      "Synapse neuro-musculaire: la réponse est la contraction de la fibre musculaire."]},
+    {id:'code',q:"Explique comment l'intensité d'une stimulation est codée dans un neurone, dans un nerf, puis à la synapse.",a:[
+      "Dans un neurone: en fréquence des potentiels d'action, dont l'amplitude ne change pas.",
+      "Dans un nerf: en amplitude de l'activité électrique globale, car plus de fibres sont recrutées.",
+      "À la synapse: en concentration de neurotransmetteur, proportionnelle à la fréquence des potentiels d'action."]}
+  ];
+  const root=$('#bil');
+  let checks=store.get('checks',{});
+  P.forEach(p=>{
+    const art=document.createElement('article');
+    art.innerHTML=`<h3>${p.q}</h3>
+      <label class="sr" for="ta-${p.id}">Ta réponse</label>
+      <textarea id="ta-${p.id}" placeholder="Écris ta réponse ici…"></textarea>
+      <button class="btn" type="button">Voir les éléments attendus</button>
+      <ul class="attendus" hidden></ul><p class="fb" aria-live="polite"></p>`;
+    const ta=$('textarea',art),ul=$('ul',art),fb=$('.fb',art),btn=$('button',art);
+    ta.value=store.get('ta-'+p.id,'');
+    ta.addEventListener('input',()=>store.set('ta-'+p.id,ta.value));
+    p.a.forEach((t,k)=>{
+      const li=document.createElement('li'),id=`ck-${p.id}-${k}`;
+      li.innerHTML=`<label><input type="checkbox" id="${id}"><span>${t.replace('Na+','Na<sup>+</sup>')}</span></label>`;
+      const cb=$('input',li);cb.checked=!!(checks[p.id]&&checks[p.id][k]);
+      cb.addEventListener('change',()=>{
+        checks[p.id]=checks[p.id]||{};checks[p.id][k]=cb.checked;store.set('checks',checks);upd();
+      });
+      ul.appendChild(li);
+    });
+    function upd(){
+      const n=$$('input',ul).filter(c=>c.checked).length;
+      fb.className='fb';
+      fb.textContent=`Tu as donné ${n} élément${n>1?'s':''} sur ${p.a.length}.`+(n===p.a.length?' Réponse complète.':n?' Complète ta réponse avec ce qui manque.':'');
+      if(n===p.a.length)fb.classList.add('ok');
+      window.frAll(fb);
+      if(P.every(x=>{const c=checks[x.id]||{};return x.a.every((_,k)=>c[k]);}))mark('bilan');
+    }
+    btn.addEventListener('click',()=>{
+      ul.hidden=!ul.hidden;btn.textContent=ul.hidden?'Voir les éléments attendus':'Masquer les éléments attendus';
+      if(!ul.hidden)upd();else fb.textContent='';
+    });
+    root.appendChild(art);
+  });
+})();
+
+/* ---------- navigation active ---------- */
+(()=>{
+  const links=$$('.nav a');
+  const secs=links.map(a=>$(a.getAttribute('href')));
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){links.forEach(a=>a.removeAttribute('aria-current'));const a=links.find(l=>l.getAttribute('href')==='#'+e.target.id);a&&a.setAttribute('aria-current','true');} });
+  },{rootMargin:'-30% 0px -60% 0px'});
+  secs.forEach(s=>s&&io.observe(s));
+})();
+
+frAll();
+renderProgress();
+})();
+</script>
+</body>
+</html>
