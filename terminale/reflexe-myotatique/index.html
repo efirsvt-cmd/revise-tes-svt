@@ -1,0 +1,1428 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le réflexe myotatique (TP 1) – revise svt</title>
+<link rel="icon" href="../../assets/favicon.png">
+<meta name="description" content="Révisions du TP 1 de SVT (Terminale spécialité): réflexe myotatique, électromyogrammes, temps de latence, moelle épinière, neurones sensitifs et moteurs, expériences de section et arc réflexe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light dark;
+  --paper:#F4F8F5; --panel:#FFFFFF; --grid:#E1EAE4; --grid2:#C5D8CD;
+  --ink:#16233B; --ink2:#43536E;
+  --elec:#1D55E0;   /* message sensitif */
+  --mot:#D9480F;    /* message moteur */
+  --ok:#1B7F4F; --bad:#C8342C; --seuil:#B45309;
+  --myel:#F2C14E; --nerve:#F4E6B8; --gm:#C9D0D8; --bone:#DCE2E7;
+  --muscle:#F2BDB3; --muscle2:#E39A8C; --tendon:#EDE2C4;
+  --font-d:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-b:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#10171C; --panel:#18222A; --grid:#1A262D; --grid2:#27383F;
+    --ink:#E7EFF3; --ink2:#A2B4BF;
+    --elec:#7BA2FF; --mot:#FF8A5C; --ok:#52C98F; --bad:#FF8279; --seuil:#F2A93B;
+    --myel:#C9972B; --nerve:#4E4631; --gm:#3B4754; --bone:#34404B;
+    --muscle:#74413B; --muscle2:#9A5248; --tendon:#6B6146;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px;-webkit-text-size-adjust:100%}
+@media (max-width:979px){html{scroll-padding-top:112px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--font-b)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(60% 55% at 6% 0%,rgba(14,124,102,.14),transparent 70%),radial-gradient(55% 50% at 100% 100%,rgba(217,169,63,.18),transparent 70%),url(../../assets/bg.svg) center/cover no-repeat}
+@media (prefers-color-scheme:dark){body::before{background:radial-gradient(60% 55% at 6% 0%,rgba(79,211,166,.12),transparent 70%),radial-gradient(55% 50% at 100% 100%,rgba(227,193,111,.10),transparent 70%),url(../../assets/bg-dark.svg) center/cover no-repeat}}
+h1,h2,h3{font-family:var(--font-d);line-height:1.1;margin:0;letter-spacing:-.01em}
+h1{font-weight:800;font-size:clamp(2.4rem,7vw,4.4rem);letter-spacing:-.03em}
+h2{font-weight:700;font-size:clamp(1.65rem,3.4vw,2.3rem)}
+h3{font-weight:700;font-size:1.2rem}
+p{margin:0 0 .9em}
+.wrap{width:min(1140px,100% - 32px);margin-inline:auto}
+@media (min-width:700px){.wrap{width:min(1140px,100% - 64px)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--paper);padding:.6em 1em;border-radius:8px;z-index:50}
+.skip:focus{top:8px}
+:focus-visible{outline:3px solid var(--elec);outline-offset:2px;border-radius:4px}
+
+/* barre du haut */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1.5px solid var(--ink)}
+.top .wrap{display:flex;align-items:center;gap:18px;min-height:56px;flex-wrap:wrap;padding-block:6px 0}
+.brand{font:700 1rem var(--font-d);white-space:nowrap;margin-right:auto;color:var(--ink);text-decoration:none}
+.nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;order:3;flex:1 1 100%}
+.nav::-webkit-scrollbar{display:none}
+.nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem;padding:.55em .8em;white-space:nowrap;border-radius:6px;background:linear-gradient(var(--elec),var(--elec)) no-repeat 0 100%/0 3px;transition:background-size .2s}
+.nav a:hover,.nav a[aria-current="true"]{background-size:100% 3px}
+.prog{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:700;white-space:nowrap}
+.prog .bar{width:84px;height:10px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--panel)}
+.prog .bar i{display:block;height:100%;width:calc(var(--p,0)*100%);background:var(--ok);transition:width .4s}
+@media (min-width:980px){
+  .top .wrap{flex-wrap:nowrap;padding-block:0}
+  .nav{order:0;flex:0 1 auto}
+  .brand{margin-right:12px}
+  .prog{margin-left:auto}
+}
+
+/* éléments communs */
+.sec{padding-block:clamp(48px,8vw,96px) 0}
+.sec>header{max-width:62ch;margin-bottom:28px}
+.lead{color:var(--ink2);font-size:1.15rem;margin-top:.7em}
+.panel{background:var(--panel);border:1.5px solid var(--ink);border-radius:10px;padding:clamp(14px,2.4vw,24px);min-width:0}
+.btn{font:700 1rem var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.6em 1.05em;cursor:pointer;min-height:44px;transition:background .15s,color .15s}
+.btn:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+.btn.pri{background:var(--ink);color:var(--paper)}
+.btn.pri:hover:not(:disabled){background:var(--elec);border-color:var(--elec);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.sm{min-height:38px;padding:.4em .8em;font-size:.95rem}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;flex-wrap:wrap;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;margin:0;padding:0;min-width:0}
+.seg label{position:relative;cursor:pointer}
+.seg input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.seg span{display:block;padding:.55em 1em;font-weight:700;min-height:44px;line-height:1.7}
+.seg input:checked+span{background:var(--ink);color:var(--paper)}
+.seg input:focus-visible+span{outline:3px solid var(--elec);outline-offset:-3px}
+.seg label+label{border-left:1.5px solid var(--ink)}
+.chk{display:inline-flex;gap:.55em;align-items:center;font-weight:700;cursor:pointer;min-height:44px}
+.chk input{width:20px;height:20px;accent-color:var(--ink)}
+.note{color:var(--ink2);font-size:.95rem}
+.two{display:grid;gap:clamp(20px,4vw,48px);align-items:start}
+@media (min-width:900px){.two{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}.two.flip{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}}
+.key{font-weight:700;border-bottom:3px solid color-mix(in srgb,var(--elec) 45%,transparent)}
+.s-col{color:var(--elec);font-weight:700}
+.m-col{color:var(--mot);font-weight:700}
+.box-key{border-left:5px solid var(--elec);background:color-mix(in srgb,var(--elec) 8%,var(--panel));border-radius:0 10px 10px 0;padding:14px 18px;margin:20px 0 0;max-width:72ch}
+.box-key p:last-child{margin:0}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:760px){.scroll-x>svg{min-width:720px}.scroll-x>svg.neur{min-width:500px}.scroll-x>svg.cord{min-width:600px}.scroll-x>svg.mag,.scroll-x>svg.emg2{min-width:560px}}
+.links{margin:14px 0 0;font-size:.95rem;color:var(--ink2)}
+.links a{color:var(--ink);font-weight:700}
+
+/* hero et simulateur */
+.hero{padding-top:clamp(28px,6vw,64px)}
+.kicker{font-weight:700;color:var(--ink2);margin:0 0 .6em}
+.hero h1{max-width:14ch}
+.hero .lead{max-width:58ch}
+.sim{margin-top:28px;box-shadow:7px 7px 0 var(--ink);padding:0;overflow:hidden}
+.sim-head{display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between;align-items:center;padding:10px clamp(12px,2vw,20px);border-bottom:1.5px solid var(--ink)}
+.sim-head b{font-family:var(--font-d)}
+.sim-body{display:grid}
+@media (min-width:980px){.sim-body{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}}
+.sim-scene{padding:6px 6px 0;border-bottom:1.5px solid var(--ink);min-width:0}
+@media (min-width:980px){.sim-scene{border-bottom:0;border-right:1.5px solid var(--ink)}}
+.sim-emg{padding:12px clamp(12px,2vw,18px) 6px;min-width:0}
+.sim-emg h3{font-size:1rem;margin:0 0 4px}
+.sim-ctl{display:grid;gap:12px;padding:14px clamp(12px,2vw,20px) 4px;border-top:1.5px solid var(--ink)}
+@media (min-width:700px){.sim-ctl{grid-template-columns:minmax(0,1fr) auto;align-items:end}}
+.sim-ctl label{display:flex;justify-content:space-between;font-weight:700;margin-bottom:6px;gap:12px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:0;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:10px;border-radius:6px;border:1.5px solid var(--ink);background:linear-gradient(90deg,color-mix(in srgb,var(--elec) 55%,var(--panel)) 0 var(--s),var(--grid2) var(--s) 100%)}
+input[type=range]::-moz-range-track{height:10px;border-radius:6px;border:1.5px solid var(--ink);background:linear-gradient(90deg,color-mix(in srgb,var(--elec) 55%,var(--panel)) 0 var(--s),var(--grid2) var(--s) 100%)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--ink);border:4px solid var(--panel);box-shadow:0 0 0 1.5px var(--ink);margin-top:-12px}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--ink);border:4px solid var(--panel);box-shadow:0 0 0 1.5px var(--ink)}
+.sim-cap{margin:0;padding:8px clamp(12px,2vw,20px) 18px;min-height:4.6em;font-size:1.05rem}
+
+/* scène de l'arc réflexe */
+.arc{width:100%;height:auto;display:block}
+.arc .skin-f{fill:var(--panel)}
+.arc .skin-o{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round}
+.arc .foot path{fill:var(--panel);stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round}
+.arc .bone{fill:var(--bone);stroke:var(--ink);stroke-width:1.5}
+.arc .foot{transform-box:view-box;transform-origin:305px 350px}
+.arc .mus{transform-box:view-box;transform-origin:262px 92px}
+.arc .mus path{fill:var(--muscle);stroke:var(--ink);stroke-width:2}
+.arc .stri{stroke:var(--muscle2);stroke-width:2;fill:none}
+.arc .ten-o{fill:none;stroke:var(--ink);stroke-width:12;stroke-linecap:round}
+.arc .ten{fill:none;stroke:var(--tendon);stroke-width:8;stroke-linecap:round}
+.arc .fus{fill:var(--muscle2);stroke:var(--ink);stroke-width:1.5;transition:stroke .3s}
+.arc .fus-c{stroke:var(--elec);stroke-width:2;fill:none}
+.arc .plq{fill:var(--mot);stroke:var(--ink);stroke-width:1.5}
+.arc .glow{fill:none;stroke-width:3;opacity:0}
+.arc .g-fus{stroke:var(--elec)} .arc .g-plq{stroke:var(--mot)} .arc .g-syn{stroke:var(--seuil)}
+.arc .ham line{stroke:var(--ink);stroke-width:7;stroke-linecap:round}
+.arc .ham rect{fill:var(--ink)}
+.arc.steps .ham{transition:transform .18s}
+.arc .ner-o{fill:none;stroke:var(--ink);stroke-width:24;stroke-linecap:round}
+.arc .ner{fill:none;stroke:var(--nerve);stroke-width:20;stroke-linecap:round}
+.arc .root-o{fill:none;stroke:var(--ink);stroke-width:19;stroke-linecap:round}
+.arc .root{fill:none;stroke:var(--nerve);stroke-width:15;stroke-linecap:round}
+.arc .gang{fill:var(--nerve);stroke:var(--ink);stroke-width:2}
+.arc .wm{fill:var(--panel);stroke:var(--ink);stroke-width:2.5}
+.arc .gm{fill:var(--gm);stroke:var(--ink);stroke-width:1.5}
+.arc .neu{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.arc .neu.base{stroke-width:3;opacity:.5}
+.arc .neu.sig{stroke-width:6}
+.arc .s{stroke:var(--elec)} .arc .m{stroke:var(--mot)}
+.arc .soma-s{fill:var(--elec);stroke:var(--ink);stroke-width:1.5}
+.arc .soma-m{fill:var(--mot);stroke:var(--ink);stroke-width:1.5}
+.arc .labels text,.arc .title{fill:var(--ink);font:700 15px var(--font-b);paint-order:stroke;stroke:var(--panel);stroke-width:5px;stroke-linejoin:round}
+.arc .title{font:700 17px var(--font-d)}
+.arc .labels text.ts{fill:var(--elec)} .arc .labels text.tm{fill:var(--mot)}
+.arc .labels line{stroke:var(--ink);stroke-width:1.4}
+.arc.nolabels .labels{display:none}
+.arc .pins circle{fill:var(--ink);stroke:var(--panel);stroke-width:2.5}
+.arc .pins text{fill:var(--paper);font:700 14px var(--font-b);text-anchor:middle;dominant-baseline:central}
+.arc .pins line{stroke:var(--ink);stroke-width:1.6}
+/* étapes cumulatives (section arc réflexe) */
+.arc.steps .neu.sig{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s ease}
+.arc.a3 .s.sig,.arc.a5 .m.sig{stroke-dashoffset:0}
+.arc .glow{transition:opacity .4s}
+.arc.c2 .g-fus,.arc.c4 .g-syn,.arc.c6 .g-plq{opacity:1}
+.arc.a4 .g-syn{opacity:.6}
+.arc.c1 .ham{transform:translateX(20px)}
+.arc.a7 .mus{transform:scale(1.07,.94)}
+.arc.a7 .foot{transform:rotate(14deg)}
+.arc.steps .mus,.arc.steps .foot{transition:transform .8s ease}
+.arc .pulse{transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:no-preference){.arc.c2 .g-fus,.arc.c4 .g-syn,.arc.c6 .g-plq{animation:pulse 1.1s ease-in-out infinite}}
+@keyframes pulse{50%{stroke-width:6}}
+@media (prefers-reduced-motion:reduce){.arc.steps .neu.sig,.arc.steps .mus,.arc.steps .foot,.arc .ham{transition:none}}
+
+/* électromyogramme */
+.emg{width:100%;height:auto;display:block}
+.emg text{fill:var(--ink);font:600 13px var(--font-b)}
+.emg .ax{fill:var(--ink2);font-weight:400}
+.emg .gl{stroke:var(--grid2);stroke-width:1}
+.emg .base0{stroke:var(--ink2);stroke-width:1;stroke-dasharray:4 4}
+.emg .cur{fill:none;stroke:var(--elec);stroke-width:2.6;stroke-linejoin:round}
+.emg .old path{fill:none;stroke:var(--ink2);stroke-width:2;opacity:.45}
+.emg .lat{opacity:0;transition:opacity .3s}
+.emg .lat.on{opacity:1}
+.emg .lat line{stroke:var(--seuil);stroke-width:2}
+.emg .lat text{fill:var(--seuil);font-weight:700}
+
+/* muscles antagonistes */
+.emg2{width:100%;height:auto;display:block}
+.emg2 text{fill:var(--ink);font:700 14px var(--font-b)}
+.emg2 .ph-t{font-weight:400;fill:var(--ink2);font-size:13px;text-anchor:middle}
+.emg2 .band{fill:transparent;transition:fill .2s}
+.emg2 .band.on{fill:color-mix(in srgb,var(--elec) 14%,transparent)}
+.emg2 .sep{stroke:var(--grid2);stroke-width:1.5;stroke-dasharray:4 4}
+.emg2 .tr{fill:none;stroke:var(--ink);stroke-width:1.3;stroke-linejoin:round}
+.phases{display:grid;gap:8px;margin:0 0 16px;padding:0;list-style:none}
+.phase{display:flex;gap:12px;align-items:center;width:100%;text-align:left;font:700 1rem var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.55em .9em;cursor:pointer;min-height:46px}
+.phase[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.phase small{margin-left:auto;font-weight:400;opacity:.85}
+.info{min-height:5.6em;border-left:5px solid var(--elec);padding:.2em 0 .2em 14px;margin:0}
+
+/* caractéristiques */
+.calc{font:700 clamp(1.3rem,3vw,1.7rem)/1.3 var(--font-d);margin:.3em 0 .5em}
+.traits{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+@media (min-width:600px){.traits{grid-template-columns:1fr 1fr}}
+.traits li{background:var(--panel);border:1.5px solid var(--ink);border-radius:10px;padding:14px 16px}
+.traits b{display:block;font:700 1.08rem var(--font-d);margin-bottom:.2em}
+
+/* schéma simple */
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:22px;max-width:520px}
+.flow li{position:relative;border:1.5px solid var(--ink);border-radius:10px;background:var(--panel);padding:12px 14px;display:flex;flex-direction:column;justify-content:center;min-height:78px}
+.flow li.dash{border-style:dashed}
+.flow li b{font:700 1.05rem/1.2 var(--font-d)}
+.flow li span{color:var(--ink2);font-size:.95rem;line-height:1.35}
+.flow li.to::after{content:"↓";position:absolute;left:20px;bottom:-22px;font-weight:700;color:var(--ink2)}
+.flow li.wire{border:0;background:transparent;padding:4px 0 4px 46px;min-height:64px}
+.flow li.wire::before{content:"";position:absolute;left:21px;top:-20px;bottom:-14px;width:4px;border-radius:2px;background:var(--wc)}
+.flow li.wire::after{content:"";position:absolute;left:16px;bottom:-22px;border:7px solid transparent;border-top:10px solid var(--wc);border-bottom:0}
+.flow li.wire b{color:var(--wc)}
+.flow .ws{--wc:var(--elec)} .flow .wmot{--wc:var(--mot)}
+@media (min-width:1000px){
+  .flow{grid-template-columns:repeat(7,minmax(0,1fr));gap:20px;max-width:none;align-items:stretch}
+  .flow li{min-height:120px}
+  .flow li.to::after{content:"→";left:auto;right:-17px;bottom:auto;top:50%;transform:translateY(-50%)}
+  .flow li.wire{padding:0;text-align:center;align-items:center;justify-content:center;gap:34px}
+  .flow li.wire::before{left:-16px;right:-6px;top:50%;bottom:auto;width:auto;height:4px;transform:translateY(-50%)}
+  .flow li.wire::after{left:auto;right:-16px;bottom:auto;top:50%;transform:translateY(-50%);border:7px solid transparent;border-left:10px solid var(--wc);border-right:0}
+}
+.flow-ctl{margin-bottom:18px}
+
+/* moelle */
+.cord{width:100%;height:auto;display:block}
+.cord text{fill:var(--ink);font:700 15px var(--font-b);paint-order:stroke;stroke:var(--panel);stroke-width:5px;stroke-linejoin:round}
+.cord .ll{stroke:var(--ink);stroke-width:1.4}
+.cord .wm{fill:var(--panel);stroke:var(--ink);stroke-width:2.5}
+.cord .gm{fill:var(--gm);stroke:var(--ink);stroke-width:1.5}
+.cord .root-o{fill:none;stroke:var(--ink);stroke-width:20;stroke-linecap:round}
+.cord .root{fill:none;stroke:var(--nerve);stroke-width:16;stroke-linecap:round}
+.cord .ner-o{fill:none;stroke:var(--ink);stroke-width:26;stroke-linecap:round}
+.cord .ner{fill:none;stroke:var(--nerve);stroke-width:22;stroke-linecap:round}
+.cord .gang{fill:var(--nerve);stroke:var(--ink);stroke-width:2}
+.cord g[data-p]{cursor:pointer;transition:opacity .2s}
+.cord.focus g[data-p]{opacity:.28}
+.cord.focus g[data-p].on{opacity:1}
+.cord.focus g[data-p].on .gm,.cord.focus g[data-p].on .wm,.cord.focus g[data-p].on .gang{stroke:var(--elec);stroke-width:4}
+.cord.focus g[data-p].on .root-o,.cord.focus g[data-p].on .ner-o{stroke:var(--elec)}
+.cord.focus g[data-p].on text{fill:var(--elec)}
+.nrf{width:100%;max-width:420px;height:auto;display:block;margin:6px 0 12px}
+.nrf text{fill:var(--ink);font:700 13px var(--font-b);paint-order:stroke;stroke:var(--panel);stroke-width:4px}
+.cols2{display:grid;gap:20px;margin-top:24px;align-items:start}
+@media (min-width:900px){.cols2{grid-template-columns:1fr 1fr}}
+
+/* neurones */
+.neur{width:100%;height:auto;display:block;margin:6px 0 10px}
+.neur text{fill:var(--ink);font:600 13.5px var(--font-b)}
+.neur .ln{stroke:var(--ink2);stroke-width:1.2}
+.neur .ax{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round}
+.neur .my{fill:var(--myel);stroke:var(--ink);stroke-width:1.4}
+.neur .arr{stroke:var(--ink);stroke-width:2.5;fill:none}
+.neur .arrh{fill:var(--ink)}
+.facts{margin:0;display:grid;gap:8px}
+.facts div{display:grid;grid-template-columns:9.5em 1fr;gap:10px;border-top:1.5px solid var(--grid2);padding-top:8px}
+.facts dt{font-weight:700;color:var(--ink2)}
+.facts dd{margin:0}
+@media (max-width:520px){.facts div{grid-template-columns:1fr;gap:2px}}
+.chain{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chain li{border:1.5px solid var(--ink);border-radius:20px;padding:.2em .9em;font-weight:700;background:var(--panel)}
+.chain li+li::before{content:"→";margin:0 10px 0 -2px;font-weight:700;color:var(--ink2)}
+.chain li+li{border:0;background:none;padding-left:0}
+.chain li+li span{border:1.5px solid var(--ink);border-radius:20px;padding:.2em .9em;background:var(--panel)}
+
+/* sections de Magendie */
+.mag{width:100%;height:auto;display:block}
+.mag text{fill:var(--ink);font:700 14px var(--font-b);paint-order:stroke;stroke:var(--panel);stroke-width:5px;stroke-linejoin:round}
+.mag .ll{stroke:var(--ink);stroke-width:1.3}
+.mag .wm{fill:var(--panel);stroke:var(--ink);stroke-width:2.5}
+.mag .gm{fill:var(--gm);stroke:var(--ink);stroke-width:1.5}
+.mag .o{fill:none;stroke:var(--ink);stroke-linecap:butt}
+.mag .f{fill:none;stroke:var(--nerve);stroke-linecap:butt;transition:stroke .3s}
+.mag .f.deg{stroke:var(--bad);stroke-dasharray:6 4}
+.mag .gang{fill:var(--nerve);stroke:var(--ink);stroke-width:2}
+.mag .cut{stroke:var(--ink);stroke-width:4;stroke-linecap:round;opacity:0;transition:opacity .2s}
+.mag .cut.on{opacity:1}
+.mag .lg-deg{stroke:var(--bad);stroke-width:8;stroke-dasharray:6 4}
+.status{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.status span{border:1.5px solid var(--ink);border-radius:20px;padding:.15em .85em;font-weight:700;background:var(--panel)}
+.status span.lost{border-color:var(--bad);color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--panel))}
+.status span.kept{border-color:var(--ok);color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--panel))}
+.res3{display:grid;gap:10px;margin:0}
+.res3 div{border-top:1.5px solid var(--grid2);padding-top:8px}
+.res3 dt{font-weight:700;color:var(--ink2);font-size:.95rem}
+.res3 dd{margin:0}
+.mag-ctl{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.mag-ctl button{font:700 .98rem var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.5em .9em;cursor:pointer;min-height:44px}
+.mag-ctl button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* étapes de l'arc */
+.syn-ctl{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;margin-bottom:10px}
+.steps-l{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px;counter-reset:s}
+@media (min-width:900px){.steps-l{grid-template-columns:1fr 1fr}}
+.steps-l li{counter-increment:s}
+.steps-l button{display:flex;gap:12px;align-items:flex-start;width:100%;height:100%;text-align:left;font:400 1rem/1.45 var(--font-b);color:var(--ink);background:transparent;border:1.5px solid var(--grid2);border-radius:8px;padding:.6em .9em;cursor:pointer;min-height:44px}
+.steps-l button::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font:700 .9rem var(--font-b);background:var(--panel)}
+.steps-l button[aria-current="step"]{border-color:var(--ink);background:var(--panel);font-weight:700}
+.steps-l button[aria-current="step"]::before{background:var(--ink);color:var(--paper)}
+
+/* exercices */
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:-1.5px;position:relative;z-index:1;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;font:700 1rem var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:10px 10px 0 0;padding:.6em 1em;cursor:pointer;min-height:46px;display:flex;gap:.5em;align-items:center}
+.tab[aria-selected="true"]{background:var(--panel);border-bottom-color:var(--panel)}
+.tab .ok{display:none;color:var(--ok)}
+.tab.done .ok{display:inline}
+.tabpanel{background:var(--panel);border:1.5px solid var(--ink);border-radius:0 10px 10px 10px;padding:clamp(16px,3vw,32px)}
+.tabpanel[hidden]{display:none}
+.tabpanel h3{margin-bottom:.4em}
+.card{display:block;width:100%;max-width:560px;min-height:220px;text-align:left;cursor:pointer;font:400 1.15rem/1.5 var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:12px;padding:22px}
+.card .face-t{font:700 1.5rem var(--font-d);margin:0}
+.card .hint{display:block;margin-top:14px;font-size:.9rem;color:var(--ink2)}
+.card.back{background:color-mix(in srgb,var(--elec) 10%,var(--panel));border-color:var(--elec)}
+.fl-meta{margin:14px 0;color:var(--ink2);font-weight:700}
+.cloze{line-height:2.5;font-size:1.1rem;max-width:72ch}
+.cloze select{font:700 1rem var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;padding:.2em .3em;margin:0 2px;max-width:100%;min-height:38px}
+.cloze select.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,var(--panel));color:var(--ink)}
+.cloze select.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--panel));color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px;padding:0;list-style:none}
+.bank li{border:1.5px solid var(--ink);border-radius:20px;padding:.15em .8em;font-weight:700;background:var(--paper)}
+.bank li.used{opacity:.4;text-decoration:line-through}
+.fb{min-height:2em;font-weight:700;margin:14px 0 0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.q-top{display:flex;justify-content:space-between;gap:12px;font-weight:700;color:var(--ink2);margin-bottom:10px}
+.q-bar{height:8px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--panel);margin-bottom:18px}
+.q-bar i{display:block;height:100%;background:var(--elec);width:0;transition:width .3s}
+.q-text{font:700 1.3rem/1.3 var(--font-d);margin:0 0 16px;max-width:52ch}
+.opts{display:grid;gap:10px;margin:0 0 16px;padding:0;list-style:none;max-width:640px}
+.opts button{width:100%;text-align:left;font:400 1.05rem/1.4 var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:.7em 1em;cursor:pointer;min-height:48px}
+.opts button:hover:not(:disabled){background:var(--panel);border-width:2.5px;padding:calc(.7em - 1px) calc(1em - 1px)}
+.opts button:disabled{cursor:default}
+.opts button.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--panel));font-weight:700}
+.opts button.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--panel));color:var(--bad)}
+.expl{border-left:5px solid var(--ink);padding:.2em 0 .2em 14px;margin:0 0 16px;max-width:60ch}
+.score{font:800 clamp(2.4rem,6vw,3.6rem) var(--font-d)}
+.miss{padding-left:1.2em;max-width:62ch}
+.quiz-wrap{display:grid;gap:20px}
+@media (min-width:1000px){.quiz-wrap{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}}
+.lg{display:grid;gap:10px;align-content:start}
+.lg label{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;font-weight:700}
+.lg label b{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:.9rem}
+.lg select{font:400 1rem var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;padding:.4em;min-height:44px;width:100%}
+.lg select.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,var(--panel))}
+.lg select.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--panel));color:var(--bad)}
+.bil{display:grid;gap:26px}
+.bil article{border-top:1.5px solid var(--ink);padding-top:18px}
+.bil h3{font-size:1.15rem;max-width:56ch}
+textarea{width:100%;min-height:120px;font:400 1.05rem/1.5 var(--font-b);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:.7em .9em;margin:10px 0;resize:vertical}
+.attendus{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.attendus label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.attendus input{width:22px;height:22px;margin-top:2px;flex:none;accent-color:var(--ok)}
+.next{margin-top:28px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;padding:14px 0;border-top:1.5px solid var(--ink)}
+.next b{font-family:var(--font-d)}
+footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);padding:22px 0 40px;color:var(--ink2);background:var(--paper)}
+@media print{.top,.sim-head,.syn-ctl{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span aria-hidden="true">←</span> Terminale</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#simulateur">Simulateur</a>
+      <a href="#muscles">Antagonistes</a>
+      <a href="#caracteres">Caractéristiques</a>
+      <a href="#schema">Schéma</a>
+      <a href="#moelle">Moelle épinière</a>
+      <a href="#neurones">Neurones</a>
+      <a href="#sections">Sections</a>
+      <a href="#arc">Arc réflexe</a>
+      <a href="#exercices">Exercices</a>
+    </nav>
+    <div class="prog" title="Exercices réussis">
+      <span id="prog-text">0 sur 5</span>
+      <span class="bar" aria-hidden="true"><i id="prog-bar"></i></span>
+      <span class="sr">exercices réussis</span>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+
+<!-- ============ SIMULATEUR ============ -->
+<section class="hero wrap" id="simulateur" aria-labelledby="h-sim">
+  <p class="kicker">Thème 3 · Chapitre 1 · TP 1</p>
+  <h1 id="h-sim">Le réflexe myotatique</h1>
+  <p class="lead">Quelles structures et quelles étapes permettent la réalisation d'un réflexe ? Percute le tendon d'Achille et suis le trajet du message nerveux, puis regarde l'électromyogramme du soléaire.</p>
+
+  <div class="sim panel">
+    <div class="sim-head">
+      <b>Le réflexe achilléen</b>
+      <div class="row">
+        <label class="chk"><input type="checkbox" id="heroLabels" checked> Légendes</label>
+        <button class="btn sm" id="heroClear" type="button">Effacer les essais</button>
+      </div>
+    </div>
+    <div class="sim-body">
+      <div class="sim-scene" id="heroScene"></div>
+      <div class="sim-emg">
+        <h3>Électromyogramme du soléaire</h3>
+        <svg class="emg" id="emg" viewBox="0 0 520 270" role="img" aria-label="Électromyogramme du soléaire en fonction du temps après le choc sur le tendon. La réponse commence environ 27 millisecondes après le choc."></svg>
+        <p class="note" style="margin:0">Animation ralentie environ 60 fois. Les essais précédents restent en gris.</p>
+      </div>
+    </div>
+    <div class="sim-ctl">
+      <div>
+        <label for="heroI"><span>Intensité de la percussion</span><output id="heroOut" for="heroI">moyenne</output></label>
+        <input id="heroI" type="range" min="10" max="100" value="60" style="--s:55%">
+      </div>
+      <button class="btn pri" id="heroGo" type="button">Percuter le tendon</button>
+    </div>
+    <p class="sim-cap" id="heroCap" aria-live="polite">Règle l'intensité, puis percute le tendon d'Achille. Essaie deux fois de suite sans toucher au curseur.</p>
+  </div>
+</section>
+
+<!-- ============ MUSCLES ANTAGONISTES ============ -->
+<section class="sec wrap" id="muscles" aria-labelledby="h-mus">
+  <header>
+    <h2 id="h-mus">Deux muscles antagonistes</h2>
+    <p class="lead">Les muscles sont le siège d'une activité électrique. On l'enregistre avec des électrodes et un système d'amplification : c'est l'électromyogramme. Ici, l'activité du soléaire (A) et du jambier (B) pendant les mouvements du pied.</p>
+  </header>
+  <div class="two flip">
+    <div class="panel">
+      <div class="scroll-x"><svg class="emg2" id="emg2" viewBox="0 0 640 300" role="img" aria-label="Électromyogrammes du soléaire et du jambier. Le soléaire est actif pendant l'extension du pied, le jambier pendant la flexion. Au repos, les deux sont peu actifs."></svg></div>
+    </div>
+    <div>
+      <ul class="phases" id="phases"></ul>
+      <p class="info" id="phInfo" aria-live="polite">Choisis un moment pour le repérer sur les enregistrements.</p>
+      <div class="box-key"><p>Le soléaire est le muscle <span class="key">extenseur</span> du pied, le jambier le muscle <span class="key">fléchisseur</span>. Ils agissent de façon opposée mais complémentaire : ce sont des <b>muscles antagonistes</b>.</p></div>
+      <p class="links">Pour revoir : <a href="https://www.viasvt.vivelessvt.com/reflexe-achileen/reflexe-achileen.html" target="_blank" rel="noopener">l'animation du réflexe achilléen</a>, <a href="https://youtu.be/Bz7IYgLX6DY" target="_blank" rel="noopener">vidéo 1</a>, <a href="https://youtu.be/vYW5OcdyWyo" target="_blank" rel="noopener">vidéo 2</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARACTERISTIQUES ============ -->
+<section class="sec wrap" id="caracteres" aria-labelledby="h-car">
+  <header>
+    <h2 id="h-car">Les caractéristiques du réflexe</h2>
+    <p class="lead">Une percussion sur le tendon d'Achille étire le muscle extenseur du pied. Il se contracte alors brutalement : le pied s'étend. Les médecins s'en servent pour vérifier le fonctionnement du système neuromusculaire (réflexe achilléen, réflexe rotulien).</p>
+  </header>
+  <div class="two">
+    <div class="panel">
+      <h3>Un temps de latence de 27 ms</h3>
+      <p>Dans l'expérience 1, la réponse du muscle commence environ <b>27 ms</b> après le choc. C'est le <span class="key">temps de latence</span> : le temps écoulé entre le stimulus et le début de la réponse du muscle.</p>
+      <p>Le message nerveux se propage à environ 50 m/s. La distance parcourue est donc :</p>
+      <p class="calc">d = v × t = 50 × 0,027 = 1,35 m</p>
+      <p class="note" style="margin:0">C'est bien plus que la longueur du muscle : le message ne reste pas dans le muscle. On peut se demander s'il fait un trajet par le système nerveux. La suite du TP le montre.</p>
+    </div>
+    <div>
+      <ul class="traits">
+        <li><b>Un réflexe d'étirement</b>C'est la contraction d'un muscle en réponse à son propre étirement.</li>
+        <li><b>Capteur et effecteur</b>Le muscle étiré est à la fois le capteur du stimulus et l'effecteur de la réponse.</li>
+        <li><b>Une réponse rapide</b>Elle se déclenche en quelques millisecondes.</li>
+        <li><b>D'intensité variable</b>Plus la percussion est forte (étirement plus grand), plus l'amplitude de la contraction est grande.</li>
+        <li><b>Une réponse stéréotypée</b>Une même intensité d'étirement entraîne toujours la même réponse.</li>
+        <li><b>Selon l'état du sujet</b>La réponse peut être exagérée, diminuée, voire absente dans certains cas pathologiques.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCHEMA SIMPLE ============ -->
+<section class="sec wrap" id="schema" aria-labelledby="h-sch">
+  <header>
+    <h2 id="h-sch">Le schéma simple d'un réflexe</h2>
+    <p class="lead">Tout réflexe suit la même chaîne. Passe du schéma général au cas du réflexe myotatique.</p>
+  </header>
+  <div class="flow-ctl">
+    <fieldset class="seg" id="flowSeg">
+      <legend class="sr">Schéma affiché</legend>
+      <label><input type="radio" name="flow" value="gen" checked><span>Schéma général</span></label>
+      <label><input type="radio" name="flow" value="myo"><span>Réflexe myotatique</span></label>
+    </fieldset>
+  </div>
+  <ol class="flow" id="flow" aria-live="polite"></ol>
+</section>
+
+<!-- ============ MOELLE ============ -->
+<section class="sec wrap" id="moelle" aria-labelledby="h-mo">
+  <header>
+    <h2 id="h-mo">La moelle épinière et le nerf rachidien</h2>
+    <p class="lead">Chaque nerf rachidien est relié à la moelle épinière par une racine dorsale et une racine ventrale. Les racines dorsales présentent un renflement : le ganglion rachidien.</p>
+  </header>
+  <div class="two flip">
+    <div class="panel">
+      <div class="scroll-x"><svg class="cord" id="cordSvg" viewBox="0 0 760 380" role="img" aria-label="Coupe transversale schématique de la moelle épinière: substance grise au centre en forme de papillon, substance blanche autour, racines dorsales avec ganglion rachidien, racines ventrales et nerfs rachidiens de chaque côté.">
+        <g data-p="ner">
+          <path class="ner-o" d="M124 191 L18 191"/><path class="ner" d="M124 191 L18 191"/>
+          <path class="ner-o" d="M636 191 L742 191"/><path class="ner" d="M636 191 L742 191"/>
+          <line class="ll" x1="70" y1="214" x2="70" y2="203"/><text x="70" y="232" text-anchor="middle">Nerf rachidien</text>
+        </g>
+        <g data-p="rd">
+          <path class="root-o" d="M296 101 C268 96 238 100 205 110 C175 120 150 160 124 186"/><path class="root" d="M296 101 C268 96 238 100 205 110 C175 120 150 160 124 186"/>
+          <path class="root-o" d="M464 101 C492 96 522 100 555 110 C585 120 610 160 636 186"/><path class="root" d="M464 101 C492 96 522 100 555 110 C585 120 610 160 636 186"/>
+          <line class="ll" x1="292" y1="60" x2="268" y2="94"/><text x="300" y="52" text-anchor="middle">Racine dorsale</text>
+        </g>
+        <g data-p="rv">
+          <path class="root-o" d="M296 275 C268 282 238 280 205 270 C175 260 150 214 124 196"/><path class="root" d="M296 275 C268 282 238 280 205 270 C175 260 150 214 124 196"/>
+          <path class="root-o" d="M464 275 C492 282 522 280 555 270 C585 260 610 214 636 196"/><path class="root" d="M464 275 C492 282 522 280 555 270 C585 260 610 214 636 196"/>
+          <line class="ll" x1="226" y1="320" x2="232" y2="284"/><text x="226" y="338" text-anchor="middle">Racine ventrale</text>
+        </g>
+        <g data-p="gang">
+          <ellipse class="gang" cx="208" cy="109" rx="30" ry="19"/><ellipse class="gang" cx="552" cy="109" rx="30" ry="19"/>
+          <line class="ll" x1="160" y1="68" x2="190" y2="95"/><text x="140" y="60" text-anchor="middle">Ganglion rachidien</text>
+        </g>
+        <g data-p="wm">
+          <ellipse class="wm" cx="380" cy="188" rx="137" ry="110"/>
+          <line class="ll" x1="532" y1="48" x2="476" y2="112"/><text x="566" y="40" text-anchor="middle">Substance blanche</text>
+        </g>
+        <g data-p="gm">
+          <path class="gm" transform="translate(380 192) scale(1.1)" d="M0 -26 C-15 -28 -22 -44 -30 -64 C-36 -78 -44 -88 -56 -90 C-64 -84 -60 -64 -54 -46 C-48 -28 -56 -18 -70 -8 C-84 4 -88 26 -80 48 C-72 68 -52 78 -34 72 C-20 66 -12 48 -8 32 L0 26 L8 32 C12 48 20 66 34 72 C52 78 72 68 80 48 C88 26 84 4 70 -8 C56 -18 48 -28 54 -46 C60 -64 64 -84 56 -90 C44 -88 36 -78 30 -64 C22 -44 15 -28 0 -26 Z"/>
+          <circle cx="380" cy="192" r="5" fill="var(--ink)"/>
+          <line class="ll" x1="384" y1="340" x2="412" y2="272"/><text x="380" y="358" text-anchor="middle">Substance grise</text>
+        </g>
+      </svg></div>
+    </div>
+    <div>
+      <ul class="phases" id="parts"></ul>
+      <p class="info" id="partInfo" aria-live="polite">Choisis une structure pour la repérer sur la coupe.</p>
+    </div>
+  </div>
+
+  <div class="cols2">
+    <div class="panel">
+      <h3>Dans la moelle : deux substances</h3>
+      <p><b>Substance grise :</b> on y voit des noyaux cellulaires. Elle contient les corps cellulaires des neurones.</p>
+      <p style="margin:0"><b>Substance blanche :</b> pas de noyaux. Elle contient les fibres nerveuses (prolongements des neurones).</p>
+    </div>
+    <div class="panel">
+      <h3>Dans un nerf : des fibres nerveuses</h3>
+      <svg class="nrf" viewBox="0 0 420 200" role="img" aria-label="Coupe transversale d'un nerf: des faisceaux de fibres nerveuses séparés par du tissu conjonctif. Agrandissement d'une fibre: un axone entouré d'une gaine de myéline.">
+        <defs><pattern id="fib" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.4" fill="var(--myel)" stroke="var(--ink)" stroke-width=".7"/></pattern></defs>
+        <ellipse cx="110" cy="100" rx="96" ry="84" fill="var(--muscle)" stroke="var(--ink)" stroke-width="2.5"/>
+        <g fill="url(#fib)" stroke="var(--ink)" stroke-width="1.6">
+          <circle cx="78" cy="62" r="28"/><circle cx="140" cy="60" r="24"/><circle cx="60" cy="122" r="24"/><circle cx="118" cy="118" r="30"/><circle cx="170" cy="118" r="17"/><circle cx="92" cy="166" r="14"/><circle cx="146" cy="162" r="14"/>
+        </g>
+        <rect x="108" y="108" width="20" height="20" fill="none" stroke="var(--elec)" stroke-width="2.5"/>
+        <line x1="128" y1="108" x2="268" y2="46" stroke="var(--elec)" stroke-width="1.5"/><line x1="128" y1="128" x2="268" y2="154" stroke="var(--elec)" stroke-width="1.5"/>
+        <circle cx="320" cy="100" r="68" fill="var(--panel)" stroke="var(--elec)" stroke-width="2.5"/>
+        <g stroke="var(--ink)" stroke-width="1.5"><circle cx="296" cy="78" r="20" fill="var(--myel)"/><circle cx="344" cy="80" r="17" fill="var(--myel)"/><circle cx="300" cy="126" r="17" fill="var(--myel)"/><circle cx="346" cy="126" r="20" fill="var(--myel)"/></g>
+        <g fill="var(--ink)"><circle cx="296" cy="78" r="7"/><circle cx="344" cy="80" r="6"/><circle cx="300" cy="126" r="6"/><circle cx="346" cy="126" r="7"/></g>
+        <text x="320" y="190" text-anchor="middle">Axone + gaine de myéline</text>
+      </svg>
+      <p style="margin:0">Un nerf est formé de <b>faisceaux de fibres nerveuses</b>, séparés par du tissu conjonctif vascularisé. Une fibre nerveuse, c'est un <b>axone</b> entouré d'une <b>gaine de myéline</b> (formée par les cellules de Schwann).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEURONES ============ -->
+<section class="sec wrap" id="neurones" aria-labelledby="h-neu">
+  <header>
+    <h2 id="h-neu">Deux types de neurones</h2>
+    <p class="lead">Une boucle réflexe compte au moins deux neurones : l'un amène l'information vers le centre nerveux, l'autre la renvoie vers l'effecteur.</p>
+  </header>
+  <div class="cols2" style="margin-top:0">
+    <div class="panel">
+      <h3><span class="s-col">Neurone sensitif</span> : afférent, dit « en T »</h3>
+      <div class="scroll-x"><svg class="neur" viewBox="0 0 560 196" role="img" aria-label="Schéma d'un neurone sensitif en T: une partie sensible à gauche, un long axone myélinisé, le corps cellulaire relié à l'axone par un prolongement, et une arborisation terminale à droite.">
+        <path class="ax" d="M66 122 L40 104 M40 104 L24 98 M40 104 L34 86 M66 122 L36 126 L18 120 M36 126 L26 142 M66 122 L44 146"/>
+        <path class="ax" d="M66 122 L472 122"/>
+        <g class="my"><rect x="82" y="113" width="44" height="18" rx="6"/><rect x="132" y="113" width="44" height="18" rx="6"/><rect x="182" y="113" width="44" height="18" rx="6"/><rect x="270" y="113" width="44" height="18" rx="6"/><rect x="320" y="113" width="44" height="18" rx="6"/><rect x="370" y="113" width="44" height="18" rx="6"/><rect x="420" y="113" width="40" height="18" rx="6"/></g>
+        <path class="ax" d="M248 122 L248 64"/>
+        <circle cx="248" cy="46" r="19" fill="color-mix(in srgb,var(--elec) 30%,var(--panel))" stroke="var(--ink)" stroke-width="2"/><circle cx="248" cy="46" r="6" fill="var(--ink2)"/>
+        <path class="ax" d="M472 122 L500 102 L522 96 M500 102 L510 84 M472 122 L506 124 L530 118 M506 124 L526 138 M472 122 L496 146"/>
+        <text x="18" y="74">Partie sensible (récepteur)</text>
+        <text x="276" y="40">Corps cellulaire</text><text x="276" y="57" style="font-weight:400">dans le ganglion rachidien</text>
+        <text x="548" y="168" text-anchor="end">Arborisation terminale</text>
+        <path class="arr" d="M40 184 L520 184"/><path class="arrh" d="M532 184 L516 176 L516 192 Z"/>
+        <text x="40" y="176" style="font-weight:400">sens de propagation du message</text>
+      </svg></div>
+      <dl class="facts">
+        <div><dt>Rôle</dt><dd>Il conduit le message du récepteur vers le centre nerveux.</dd></div>
+        <div><dt>Départ</dt><dd>Le fuseau neuromusculaire, dans le muscle.</dd></div>
+        <div><dt>Corps cellulaire</dt><dd>Dans le ganglion rachidien.</dd></div>
+        <div><dt>Trajet</dt><dd>Nerf rachidien, puis racine dorsale.</dd></div>
+        <div><dt>Arrivée</dt><dd>La substance grise de la moelle, où il fait synapse avec le motoneurone.</dd></div>
+      </dl>
+    </div>
+    <div class="panel">
+      <h3><span class="m-col">Neurone moteur</span> : efférent, le motoneurone</h3>
+      <div class="scroll-x"><svg class="neur" viewBox="0 0 560 196" role="img" aria-label="Schéma d'un neurone moteur: corps cellulaire et dendrites à gauche, long axone entouré d'une gaine de myéline interrompue par des nœuds de Ranvier, arborisation terminale à droite.">
+        <path class="ax" d="M54 108 L30 88 M30 88 L18 92 M30 88 L26 72 M60 96 L56 66 M56 66 L44 58 M56 66 L66 52 M52 122 L30 134 M30 134 L18 130 M30 134 L28 146 M72 130 L74 146"/>
+        <circle cx="70" cy="108" r="22" fill="color-mix(in srgb,var(--mot) 30%,var(--panel))" stroke="var(--ink)" stroke-width="2"/><circle cx="70" cy="108" r="7" fill="var(--ink2)"/>
+        <path class="ax" d="M92 108 L470 108"/>
+        <g class="my"><rect x="108" y="99" width="50" height="18" rx="6"/><rect x="166" y="99" width="50" height="18" rx="6"/><rect x="224" y="99" width="50" height="18" rx="6"/><rect x="282" y="99" width="50" height="18" rx="6"/><rect x="340" y="99" width="50" height="18" rx="6"/><rect x="398" y="99" width="50" height="18" rx="6"/></g>
+        <path class="ax" d="M470 108 L500 88 L522 82 M500 88 L512 70 M470 108 L506 110 L530 104 M506 110 L526 124 M470 108 L496 134"/>
+        <text x="20" y="40">Dendrites</text>
+        <text x="186" y="76">Gaine de myéline</text><line class="ln" x1="220" y1="82" x2="190" y2="98"/>
+        <text x="220" y="152" text-anchor="middle">Nœud de Ranvier</text><line class="ln" x1="220" y1="138" x2="220" y2="118"/>
+        <text x="70" y="170" text-anchor="middle">Corps cellulaire</text>
+        <text x="548" y="152" text-anchor="end">Arborisation terminale</text>
+        <path class="arr" d="M40 184 L520 184"/><path class="arrh" d="M532 184 L516 176 L516 192 Z"/>
+        <text x="300" y="176" style="font-weight:400">sens de propagation du message</text>
+      </svg></div>
+      <dl class="facts">
+        <div><dt>Rôle</dt><dd>Il renvoie le message du centre nerveux vers l'effecteur.</dd></div>
+        <div><dt>Corps cellulaire</dt><dd>Dans la substance grise de la moelle épinière.</dd></div>
+        <div><dt>Trajet</dt><dd>Racine ventrale, puis nerf rachidien.</dd></div>
+        <div><dt>Arrivée</dt><dd>La plaque motrice, sur les fibres musculaires.</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="box-key" style="max-width:none">
+    <p><b>Le message nerveux se propage toujours à sens unique :</b></p>
+    <ol class="chain"><li>Dendrites</li><li><span>Corps cellulaire</span></li><li><span>Axone</span></li><li><span>Arborisation terminale</span></li></ol>
+  </div>
+
+  <div class="cols2">
+    <div class="panel">
+      <h3>Au départ : le fuseau neuromusculaire</h3>
+      <p style="margin:0">C'est un récepteur sensoriel de type <b>mécanorécepteur</b>. Il contient des fibres musculaires modifiées autour desquelles s'enroulent les terminaisons de neurones <span class="s-col">sensitifs (afférents)</span>. Il perçoit l'étirement du muscle et le transforme en message nerveux, envoyé vers la moelle.</p>
+    </div>
+    <div class="panel">
+      <h3>À l'arrivée : la plaque motrice</h3>
+      <p style="margin:0">L'extrémité de l'axone d'un neurone <span class="m-col">moteur (efférent)</span> se termine sur une fibre musculaire : c'est une synapse neuromusculaire. L'arrivée du message nerveux provoque la contraction de la fibre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTIONS DE MAGENDIE ============ -->
+<section class="sec wrap" id="sections" aria-labelledby="h-sec">
+  <header>
+    <h2 id="h-sec">Les expériences de section de Magendie</h2>
+    <p class="lead">En 1822, Magendie sectionne chez la grenouille des racines dorsales ou ventrales de la moelle épinière, pour trouver la nature des messages et leur direction. Choisis où couper.</p>
+  </header>
+  <div class="mag-ctl" role="group" aria-label="Lieu de la section" id="magCtl">
+    <button type="button" data-e="nerf" aria-pressed="true">Le nerf rachidien</button>
+    <button type="button" data-e="rdc" aria-pressed="false">La racine dorsale, côté moelle</button>
+    <button type="button" data-e="rdn" aria-pressed="false">La racine dorsale, côté nerf</button>
+    <button type="button" data-e="rv" aria-pressed="false">La racine ventrale</button>
+  </div>
+  <div class="two flip">
+    <div class="panel">
+      <div class="scroll-x"><svg class="mag" id="magSvg" viewBox="0 0 640 296" role="img" aria-label="Moelle épinière avec sa racine dorsale, son ganglion rachidien, sa racine ventrale et le nerf rachidien. La section choisie est marquée d'un trait, les fibres qui dégénèrent sont en rouge pointillé."></svg></div>
+      <p class="note" style="margin:6px 0 0">En rouge pointillé : les fibres qui dégénèrent. Le nerf est dessiné en deux parties : fibres de la racine dorsale en haut, de la racine ventrale en bas.</p>
+    </div>
+    <div>
+      <div class="status" id="magStatus"></div>
+      <dl class="res3" id="magRes"></dl>
+    </div>
+  </div>
+  <div class="box-key" style="max-width:none">
+    <p>Lorsqu'une section coupe un neurone, la partie qui contient le noyau survit, l'autre dégénère. On en déduit où sont les corps cellulaires.</p>
+    <p><b>Loi de Bell-Magendie :</b> le message nerveux <span class="s-col">sensitif</span> va du muscle vers la moelle par la <b>racine dorsale</b>. Le message <span class="m-col">moteur</span> va de la moelle vers le muscle par la <b>racine ventrale</b>.</p>
+  </div>
+  <p class="links">Pour revoir : <a href="https://www.pedagogie.ac-nice.fr/svt/productions/flexion/" target="_blank" rel="noopener">le logiciel Flexion</a>.</p>
+</section>
+
+<!-- ============ ARC REFLEXE ============ -->
+<section class="sec wrap" id="arc" aria-labelledby="h-arc">
+  <header>
+    <h2 id="h-arc">L'arc réflexe myotatique, en 7 étapes</h2>
+    <p class="lead">Le schéma bilan, à connaître par cœur. Le neurone sensitif fait synapse directement avec le motoneurone dans la moelle : il n'y a qu'une seule synapse, le réflexe est <b>monosynaptique</b>.</p>
+  </header>
+  <div class="panel">
+    <div class="syn-ctl">
+      <button class="btn sm" id="arcPlay" type="button">Jouer les étapes</button>
+      <label class="chk"><input type="checkbox" id="arcLabels" checked> Légendes</label>
+    </div>
+    <div class="scroll-x" id="arcScene"></div>
+    <ol class="steps-l" id="arcSteps"></ol>
+  </div>
+</section>
+
+<!-- ============ EXERCICES ============ -->
+<section class="sec wrap" id="exercices" aria-labelledby="h-ex">
+  <header>
+    <h2 id="h-ex">À toi de jouer</h2>
+    <p class="lead">Cinq façons de t'entraîner. Tes réponses et ta progression restent enregistrées sur cet appareil.</p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Exercices" id="tabs">
+    <button class="tab" role="tab" id="t-fiches" aria-controls="p-fiches" aria-selected="true">Fiches</button>
+    <button class="tab" role="tab" id="t-trous1" aria-controls="p-trous" aria-selected="false">Textes à trous<span class="ok" aria-hidden="true">✓</span></button>
+    <button class="tab" role="tab" id="t-qcm" aria-controls="p-qcm" aria-selected="false">QCM<span class="ok" aria-hidden="true">✓</span></button>
+    <button class="tab" role="tab" id="t-schema" aria-controls="p-schema" aria-selected="false">Légender l'arc réflexe<span class="ok" aria-hidden="true">✓</span></button>
+    <button class="tab" role="tab" id="t-bilan" aria-controls="p-bilan" aria-selected="false">Rédiger<span class="ok" aria-hidden="true">✓</span></button>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-fiches" aria-labelledby="t-fiches">
+    <h3>Fiches de vocabulaire</h3>
+    <p class="note">Lis le terme, essaie de le définir, puis retourne la fiche.</p>
+    <div id="flash"></div>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-trous" aria-labelledby="t-trous1" hidden>
+    <h3>Les enregistrements et le bilan 1</h3>
+    <p class="note">Complète avec les mots proposés. Chaque mot sert une seule fois.</p>
+    <ul class="bank" id="bank1"></ul>
+    <div class="cloze" id="cloze1"></div>
+    <div class="row" id="ctl1" style="margin-top:12px"></div>
+    <p class="fb" id="fb1" aria-live="polite"></p>
+    <hr style="border:0;border-top:1.5px solid var(--ink);margin:30px 0">
+    <h3>Le bilan 2</h3>
+    <p class="note">Même principe, avec les structures de l'arc réflexe.</p>
+    <ul class="bank" id="bank2"></ul>
+    <div class="cloze" id="cloze2"></div>
+    <div class="row" id="ctl2" style="margin-top:12px"></div>
+    <p class="fb" id="fb2" aria-live="polite"></p>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-qcm" aria-labelledby="t-qcm" hidden>
+    <div id="qcm"></div>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-schema" aria-labelledby="t-schema" hidden>
+    <h3>Légende le schéma de l'arc réflexe</h3>
+    <p class="note">Choisis le bon nom pour chaque numéro.</p>
+    <div class="quiz-wrap">
+      <div class="scroll-x" id="quizScene"></div>
+      <div class="lg" id="lg"></div>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn pri" id="lgCheck" type="button">Vérifier</button>
+      <button class="btn" id="lgReset" type="button">Recommencer</button>
+    </div>
+    <p class="fb" id="lgFb" aria-live="polite"></p>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="p-bilan" aria-labelledby="t-bilan" hidden>
+    <h3>Rédige, puis compare</h3>
+    <p class="note">Écris ta réponse avec tes mots. Ensuite, affiche les éléments attendus et coche ceux que tu as donnés.</p>
+    <div class="bil" id="bil"></div>
+  </div>
+
+  <p class="next"><b>Suite du chapitre</b> <a href="../message-nerveux/index.html">TP 2 : le fonctionnement du neurone et le message nerveux</a></p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Révisions du TP 1 : le réflexe myotatique. Les valeurs et les schémas suivent la fiche d'activité et son corrigé. <a href="../../index.html">Retour à l'accueil de revise svt</a>.</div>
+</footer>
+
+<noscript><p class="wrap">Cette page de révision a besoin de JavaScript pour fonctionner.</p></noscript>
+
+<script>
+(()=>{
+'use strict';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={
+  get(k,d){try{const v=localStorage.getItem('svt-tp1:'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('svt-tp1:'+k,JSON.stringify(v))}catch(e){}}
+};
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+
+/* ---------- typographie française (espaces insécables, apostrophes) ---------- */
+window.frAll=function(root){
+  const w=document.createTreeWalker(root||document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{
+    const p=n.parentNode&&n.parentNode.nodeName; return (p==='SCRIPT'||p==='STYLE')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
+  const arr=[];while(w.nextNode())arr.push(w.currentNode);
+  arr.forEach(n=>{
+    const v=n.nodeValue.replace(/ ([:;?!»])/g,' $1').replace(/« /g,'« ').replace(/(\d) (ms|m\/s|m)\b/g,'$1 $2').replace(/(TP) (\d)/g,'$1 $2').replace(/'/g,'’');
+    if(v!==n.nodeValue)n.nodeValue=v;
+  });
+};
+
+/* ---------- progression ---------- */
+const KEYS=['trous1','trous2','qcm','schema','bilan'];
+let done=store.get('done',{});
+function renderProgress(){
+  const n=KEYS.filter(k=>done[k]).length;
+  $('#prog-text').textContent=n+' sur 5';
+  $('#prog-bar').style.setProperty('--p',n/5);
+  $('#t-trous1').classList.toggle('done',!!(done.trous1&&done.trous2));
+  $('#t-qcm').classList.toggle('done',!!done.qcm);
+  $('#t-schema').classList.toggle('done',!!done.schema);
+  $('#t-bilan').classList.toggle('done',!!done.bilan);
+}
+function mark(k){ if(!done[k]){done[k]=true;store.set('done',done);} renderProgress(); }
+
+/* ---------- scène de l'arc réflexe (jambe + moelle) ---------- */
+const GM='M0 -26 C-15 -28 -22 -44 -30 -64 C-36 -78 -44 -88 -56 -90 C-64 -84 -60 -64 -54 -46 C-48 -28 -56 -18 -70 -8 C-84 4 -88 26 -80 48 C-72 68 -52 78 -34 72 C-20 66 -12 48 -8 32 L0 26 L8 32 C12 48 20 66 34 72 C52 78 72 68 80 48 C88 26 84 4 70 -8 C56 -18 48 -28 54 -46 C60 -64 64 -84 56 -90 C44 -88 36 -78 30 -64 C22 -44 15 -28 0 -26 Z';
+const P_S='M258 196 C262 170 276 150 292 146 C332 140 372 172 432 190 C492 210 532 222 572 224 C602 214 630 176 656 164 L700 154 C716 151 732 150 742 152 C756 160 770 182 772 206 C774 232 772 256 770 272';
+const P_M='M766 290 C746 304 716 316 690 314 C652 310 620 258 578 240 C534 238 490 224 430 206 C370 188 332 156 296 160 C288 161 284 163 282 166';
+const P_NER='M290 150 C330 144 370 176 430 196 C490 216 532 230 575 230';
+const P_RD='M742 152 C716 150 690 152 660 162 C632 172 604 210 575 228';
+const P_RV='M740 310 C714 314 690 312 660 306 C632 300 604 252 575 234';
+const LABELS=[
+  ['Soléaire (extenseur)',205,114,'end',209,110,250,116],
+  ['Plaque motrice',205,162,'end',209,158,277,165],
+  ['Fuseau neuromusculaire',205,216,'end',209,212,251,212],
+  ["Tendon d'Achille",205,300,'end',209,298,272,332],
+  ['Neurone sensitif',452,166,'middle',null,0,0,0,'ts'],
+  ['Motoneurone',412,250,'middle',null,0,0,0,'tm'],
+  ['Nerf rachidien',522,276,'middle',522,262,522,236],
+  ['Ganglion rachidien',640,114,'middle',648,120,657,143],
+  ['Racine dorsale',770,86,'middle',760,92,718,148],
+  ['Substance blanche',902,124,'middle',898,130,886,168],
+  ['Substance grise',902,374,'middle',896,360,876,300],
+  ['Racine ventrale',650,372,'middle',656,358,688,316],
+  ['Synapse',790,410,'middle',788,396,772,282]
+];
+const PINS=[
+  ['Fuseau neuromusculaire',214,248,252,222],
+  ['Plaque motrice',226,146,276,164],
+  ['Neurone sensitif',372,132,372,166],
+  ['Nerf rachidien',522,268,522,234],
+  ['Ganglion rachidien',632,112,654,144],
+  ['Racine dorsale',724,108,716,148],
+  ['Substance blanche',910,150,888,174],
+  ['Substance grise',910,336,880,300],
+  ['Motoneurone',794,356,774,296],
+  ['Racine ventrale',672,360,688,318]
+];
+function arcSVG({labels=true,pins=false,steps=false}={}){
+  const lab=LABELS.map(l=>`${l[4]!==null?`<line x1="${l[4]}" y1="${l[5]}" x2="${l[6]}" y2="${l[7]}"/>`:''}<text x="${l[1]}" y="${l[2]}" text-anchor="${l[3]}"${l[8]?` class="${l[8]}"`:''}>${l[0]}</text>`).join('');
+  const pin=PINS.map((p,i)=>`<line x1="${p[1]}" y1="${p[2]}" x2="${p[3]}" y2="${p[4]}"/><circle cx="${p[1]}" cy="${p[2]}" r="14"/><text x="${p[1]}" y="${p[2]}">${i+1}</text>`).join('');
+  return `<svg class="arc${labels?'':' nolabels'}${steps?' steps':''}" viewBox="0 0 980 440" role="img" aria-label="Arc réflexe myotatique: la percussion du tendon d'Achille étire le muscle; le fuseau neuromusculaire crée un message nerveux sensitif qui remonte par le nerf rachidien et la racine dorsale jusqu'à la moelle épinière; le motoneurone renvoie un message moteur par la racine ventrale jusqu'à la plaque motrice; le muscle se contracte et le pied s'étend.">
+  <text class="title" x="820" y="40" text-anchor="middle">Moelle épinière</text>
+  <g class="foot"><path d="M260 352 C256 372 266 386 286 388 L428 392 C440 392 442 376 430 370 L346 344 L332 342 Z"/></g>
+  <path class="skin-f" d="M278 46 C238 90 218 160 226 220 C232 268 256 306 268 352 L336 352 C342 270 346 140 346 46 Z"/>
+  <path class="skin-o" d="M278 46 C238 90 218 160 226 220 C232 268 256 306 268 350"/><path class="skin-o" d="M336 348 C342 270 346 140 346 46"/>
+  <rect class="bone" x="310" y="56" width="16" height="286" rx="8"/>
+  <g class="mus"><path d="M260 92 C232 132 228 210 250 270 C260 295 270 312 276 320 C288 290 296 220 292 150 C290 120 280 102 260 92 Z"/>
+    <path class="stri" d="M250 130 C262 150 268 190 266 240 M272 118 C282 150 284 200 280 262"/></g>
+  <path class="ten-o" d="M274 314 C277 336 273 356 266 372"/><path class="ten" d="M274 314 C277 336 273 356 266 372"/>
+  <ellipse class="fus" cx="258" cy="214" rx="6" ry="22"/><path class="fus-c" d="M252 204 L264 208 M252 212 L264 216 M252 220 L264 224"/>
+  <circle class="glow g-fus pulse" cx="258" cy="214" r="30"/>
+  <g class="ham"><line x1="128" y1="358" x2="222" y2="358"/><rect x="220" y="336" width="24" height="44" rx="5"/></g>
+  <path class="root-o" d="${P_RD}"/><path class="root-o" d="${P_RV}"/>
+  <path class="root" d="${P_RD}"/><path class="root" d="${P_RV}"/>
+  <path class="root-o" d="M898 152 C922 150 946 152 984 164"/><path class="root" d="M898 152 C922 150 946 152 984 164"/>
+  <path class="root-o" d="M900 310 C926 314 950 312 984 304"/><path class="root" d="M900 310 C926 314 950 312 984 304"/>
+  <path class="ner-o" d="${P_NER}"/><path class="ner" d="${P_NER}"/>
+  <ellipse class="gang" cx="660" cy="160" rx="28" ry="18"/><ellipse class="gang" cx="972" cy="158" rx="22" ry="15"/>
+  <g transform="translate(820 234)"><ellipse class="wm" cx="0" cy="-4" rx="125" ry="100"/><path class="gm" d="${GM}"/><circle r="4" fill="var(--ink)"/><path d="M0 -104 L0 -88 M0 96 L0 84" stroke="var(--ink)" stroke-width="2"/></g>
+  <path class="neu base s" d="${P_S}"/><path class="neu base m" d="${P_M}"/>
+  <path class="neu sig s" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="${P_S}"/>
+  <path class="neu sig m" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="${P_M}"/>
+  <path d="M662 158 L660 164" stroke="var(--elec)" stroke-width="3"/><circle class="soma-s" cx="662" cy="151" r="7"/>
+  <path class="soma-m" d="M772 276 L777 283 L786 285 L779 291 L781 300 L772 295 L763 300 L765 291 L758 285 L767 283 Z"/>
+  <circle class="plq" cx="282" cy="166" r="5"/>
+  <circle class="glow g-plq pulse" cx="282" cy="166" r="16"/>
+  <circle class="glow g-syn pulse" cx="771" cy="276" r="14"/>
+  ${labels||!pins?`<g class="labels">${lab}</g>`:''}
+  ${pins?`<g class="pins">${pin}</g>`:''}
+  </svg>`;
+}
+
+/* ---------- simulateur du réflexe achilléen ---------- */
+(()=>{
+  const box=$('#heroScene');
+  box.innerHTML=arcSVG({labels:true});
+  const svg=$('svg',box);
+  const S=$('.s.sig',svg), M=$('.m.sig',svg), gSyn=$('.g-syn',svg), gPlq=$('.g-plq',svg), gFus=$('.g-fus',svg), mus=$('.mus',svg), foot=$('.foot',svg), ham=$('.ham',svg);
+  const lbl=$('#heroLabels');
+  if(matchMedia('(max-width:700px)').matches){lbl.checked=false;svg.classList.add('nolabels');}
+  lbl.addEventListener('change',()=>svg.classList.toggle('nolabels',!lbl.checked));
+
+  const emg=$('#emg'), NS='http://www.w3.org/2000/svg';
+  const X=t=>52+t*7.6, Y=v=>140-v*92;
+  let h='';
+  for(let t=0;t<=60;t+=10){h+=`<line class="gl" x1="${X(t)}" x2="${X(t)}" y1="30" y2="236"/><text class="ax" x="${X(t)}" y="254" text-anchor="middle">${t}</text>`;}
+  h+=`<line class="base0" x1="${X(0)}" x2="${X(60)}" y1="${Y(0)}" y2="${Y(0)}"/>`;
+  h+=`<line x1="${X(0)}" x2="${X(0)}" y1="24" y2="236" stroke="var(--ink)" stroke-width="2"/><line x1="${X(0)}" x2="${X(60)}" y1="236" y2="236" stroke="var(--ink)" stroke-width="2"/>`;
+  h+=`<text class="ax" x="${X(60)}" y="268" text-anchor="end">Temps (ms)</text>`;
+  h+=`<path d="M${X(0)} 18 L${X(0)-6} 30 L${X(0)+6} 30 Z" fill="var(--ink)"/><text x="${X(0)+10}" y="22">choc sur le tendon</text>`;
+  h+=`<g class="lat"><line x1="${X(0)}" x2="${X(27)}" y1="222" y2="222"/><line x1="${X(0)}" x2="${X(0)}" y1="216" y2="228"/><line x1="${X(27)}" x2="${X(27)}" y1="40" y2="228" stroke-dasharray="4 4"/><text x="${X(13.5)}" y="214" text-anchor="middle">latence ≈ 27 ms</text></g>`;
+  h+=`<g class="old"></g><path class="cur" d=""/>`;
+  emg.innerHTML=h;
+  const cur=$('.cur',emg), old=$('.old',emg), lat=$('.lat',emg);
+
+  const g=(t,m,s)=>Math.exp(-((t-m)*(t-m))/(2*s*s));
+  const amp=I=>0.05+0.95*Math.pow((I-10)/90,1.25);
+  const V=(t,a)=>0.012*Math.sin(t*7.3)+0.009*Math.sin(t*3.1+1)+a*(-0.24*g(t,28.4,.75)+1.0*g(t,33,1.5)-0.62*g(t,37.2,1.7)+0.07*g(t,43,2.6));
+  const trace=(a,tMax)=>{let d='';for(let t=0;t<=tMax;t+=.25){d+=(d?' L':'M')+X(t).toFixed(1)+' '+Y(V(t,a)).toFixed(1);}return d;};
+
+  const inp=$('#heroI'), out=$('#heroOut'), cap=$('#heroCap'), go=$('#heroGo');
+  const word=I=>I<35?'faible':I<70?'moyenne':'forte';
+  function ui(){inp.style.setProperty('--s',((inp.value-10)/90*100)+'%');out.textContent=word(+inp.value);}
+  inp.addEventListener('input',ui);ui();
+
+  let trials=[], raf=0;
+  function setState(tr,a){
+    S.style.strokeDashoffset=1-clamp(tr/12);
+    M.style.strokeDashoffset=1-clamp((tr-14)/12);
+    gFus.style.opacity=tr>=0&&tr<3?1:0;
+    gSyn.style.opacity=tr>=11.5&&tr<15?1:tr>=15?.5:0;
+    gPlq.style.opacity=tr>=25.5&&tr<30?1:0;
+    const c=RM?0:a*g(tr,37,4.5);
+    mus.style.transform=`scale(${1+.08*c},${1-.06*c})`;
+    foot.style.transform=`rotate(${16*c}deg)`;
+    lat.classList.toggle('on',tr>=27);
+  }
+  function phaseText(tr){
+    if(tr<12) return "Le muscle est étiré : le fuseau neuromusculaire crée un message nerveux sensitif, qui part vers la moelle épinière.";
+    if(tr<14) return "Dans la moelle épinière, le neurone sensitif transmet le message au motoneurone, au niveau d'une synapse.";
+    if(tr<26) return "Le message nerveux moteur repart vers le muscle par la racine ventrale et le nerf rachidien.";
+    return "Le message arrive à la plaque motrice : le soléaire se contracte et le pied s'étend.";
+  }
+  function finish(I,a){
+    const prev=trials.length>1?trials[trials.length-2]:null;
+    let t;
+    if(a<.12) t="Percussion très faible : la réponse du muscle est presque nulle.";
+    else t=`Temps de latence : environ 27 ms. Réponse d'amplitude ${a<.3?'faible':a<.65?'moyenne':'forte'}.`;
+    if(prev){
+      if(prev.I===I) t+=" Même intensité que l'essai précédent, même réponse : la réponse est stéréotypée.";
+      else if(I>prev.I) t+=" Percussion plus forte que l'essai précédent : la réponse est plus ample.";
+      else t+=" Percussion plus faible que l'essai précédent : la réponse est moins ample.";
+    }
+    cap.textContent=t;frAll(cap);go.disabled=false;
+  }
+  function fire(){
+    cancelAnimationFrame(raf);
+    const I=+inp.value, a=amp(I);
+    if(cur.getAttribute('d')){
+      const p=document.createElementNS(NS,'path');p.setAttribute('d',cur.getAttribute('d'));old.appendChild(p);
+      while(old.children.length>2)old.firstChild.remove();
+    }
+    trials.push({I});
+    cur.setAttribute('d','');
+    go.disabled=true;
+    if(RM){
+      ham.style.transform='';setState(60,a);cur.setAttribute('d',trace(a,60));
+      cap.textContent=phaseText(30);frAll(cap);
+      setTimeout(()=>finish(I,a),600);return;
+    }
+    const t0=performance.now(), PRE=180, SLOW=60;
+    let lastPh='';
+    (function loop(now){
+      const el=now-t0;
+      ham.style.transform=`translateX(${22*Math.sin(Math.PI*clamp(el/(2*PRE)))}px)`;
+      const tr=Math.max(0,(el-PRE)/SLOW);
+      setState(tr,a);
+      cur.setAttribute('d',trace(a,Math.min(tr,60)));
+      const ph=phaseText(tr);
+      if(ph!==lastPh){cap.textContent=ph;frAll(cap);lastPh=ph;}
+      if(tr<60) raf=requestAnimationFrame(loop);
+      else {ham.style.transform='';finish(I,a);}
+    })(t0);
+  }
+  go.addEventListener('click',fire);
+  $('#heroClear').addEventListener('click',()=>{
+    cancelAnimationFrame(raf);old.innerHTML='';cur.setAttribute('d','');trials=[];setState(-1,0);
+    gSyn.style.opacity=0;go.disabled=false;
+    cap.textContent="Règle l'intensité, puis percute le tendon d'Achille. Essaie deux fois de suite sans toucher au curseur.";frAll(cap);
+  });
+  setState(-1,0);
+})();
+
+/* ---------- muscles antagonistes ---------- */
+(()=>{
+  const svg=$('#emg2');
+  const B=[['repos',60,124],['ext',124,330],['repos',330,392],['flex',392,620]];
+  const names={repos:'repos',ext:'extension du pied',flex:'flexion du pied'};
+  let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
+  const env=(x,active)=>{
+    for(const [ph,a,b] of B){ if(x>=a&&x<b&&ph===active){const e=Math.min(x-a,b-x);return 3+40*clamp(e/18);} }
+    return 3;
+  };
+  const tr=(cy,active)=>{let d='';for(let x=62;x<=618;x+=1.6){const e=env(x,active);const y=cy+e*(rnd()*2-1)*(.35+.65*rnd());d+=(d?' L':'M')+x.toFixed(1)+' '+y.toFixed(1);}return d;};
+  let h='';
+  B.forEach(([ph,a,b],i)=>{h+=`<rect class="band" data-ph="${ph}" x="${a}" y="18" width="${b-a}" height="248"/>`;});
+  B.slice(1).forEach(([,a])=>{h+=`<line class="sep" x1="${a}" x2="${a}" y1="18" y2="266"/>`;});
+  h+=`<text x="62" y="34">A · Soléaire</text><text x="62" y="154">B · Jambier</text>`;
+  h+=`<path class="tr" d="${tr(88,'ext')}"/><path class="tr" d="${tr(208,'flex')}"/>`;
+  B.forEach(([ph,a,b])=>{h+=`<text class="ph-t" x="${(a+b)/2}" y="288">${names[ph]}</text>`;});
+  svg.innerHTML=h;
+  const P=[
+    {id:'repos',t:'Repos',d:"Au repos, les deux muscles sont décontractés : les deux enregistrements montrent très peu d'activité électrique."},
+    {id:'ext',t:'Extension du pied',d:"Pendant l'extension, l'activité électrique du soléaire (A) est intense : il se contracte. Le jambier (B) reste décontracté. Le soléaire est le muscle extenseur du pied."},
+    {id:'flex',t:'Flexion du pied',d:"Pendant la flexion, c'est le jambier (B) qui se contracte. Le soléaire (A) est décontracté. Le jambier est le muscle fléchisseur du pied."}
+  ];
+  const ul=$('#phases'), info=$('#phInfo');
+  P.forEach(p=>{
+    const li=document.createElement('li'),b=document.createElement('button');
+    b.type='button';b.className='phase';b.setAttribute('aria-pressed','false');b.dataset.ph=p.id;b.innerHTML=`<span>${p.t}</span>`;
+    b.addEventListener('click',()=>{
+      const on=b.getAttribute('aria-pressed')!=='true';
+      $$('.phase',ul).forEach(x=>x.setAttribute('aria-pressed',x===b&&on?'true':'false'));
+      $$('.band',svg).forEach(r=>r.classList.toggle('on',on&&r.dataset.ph===p.id));
+      info.textContent=on?p.d:'Choisis un moment pour le repérer sur les enregistrements.';frAll(info);
+    });
+    li.appendChild(b);ul.appendChild(li);
+  });
+})();
+
+/* ---------- schéma simple ---------- */
+(()=>{
+  const F={
+    gen:[['box dash','Stimulus','une perturbation'],['box','Récepteur','transduction'],['wire ws','Nerf sensitif','message nerveux'],['box','Centre nerveux','intégration'],['wire wmot','Nerf moteur','message nerveux'],['box','Effecteur','transduction'],['box dash','Réponse','correction de la perturbation']],
+    myo:[['box dash',"Étirement du muscle","percussion du tendon d'Achille"],['box','Fuseau neuromusculaire','dans le muscle étiré'],['wire ws','Neurone sensitif','nerf rachidien, racine dorsale'],['box','Moelle épinière','synapse avec le motoneurone'],['wire wmot','Motoneurone','racine ventrale, nerf rachidien'],['box','Muscle étiré (soléaire)','plaque motrice'],['box dash','Contraction','extension du pied']]
+  };
+  const ol=$('#flow');
+  function show(k){
+    ol.innerHTML=F[k].map(([c,b,s],i,arr)=>{
+      const isBox=c.startsWith('box'), nextBox=arr[i+1]&&arr[i+1][0].startsWith('box');
+      const cls=(isBox?c.replace('box','').trim():c)+(isBox&&nextBox?' to':'');
+      return `<li class="${cls.trim()}"><b>${b}</b><span>${s}</span></li>`;
+    }).join('');
+    frAll(ol);
+  }
+  $$('input[name=flow]').forEach(r=>r.addEventListener('change',()=>show(r.value)));
+  show('gen');
+})();
+
+/* ---------- moelle : structures ---------- */
+(()=>{
+  const svg=$('#cordSvg');
+  const P=[
+    {id:'gm',t:'Substance grise',d:"Au centre, en forme de papillon. On y voit des noyaux : elle contient les corps cellulaires des neurones, dont ceux des motoneurones. C'est là que le neurone sensitif fait synapse avec le motoneurone."},
+    {id:'wm',t:'Substance blanche',d:"Autour de la substance grise. Pas de noyaux : elle contient des fibres nerveuses, c'est-à-dire des prolongements de neurones."},
+    {id:'rd',t:'Racine dorsale',d:"Côté dos. Elle relie le nerf rachidien à la moelle. Le message nerveux sensitif y passe."},
+    {id:'gang',t:'Ganglion rachidien',d:"Renflement de la racine dorsale. Il contient les corps cellulaires des neurones sensitifs (neurones en T)."},
+    {id:'rv',t:'Racine ventrale',d:"Côté ventre. Elle relie la moelle au nerf rachidien. Le message nerveux moteur y passe."},
+    {id:'ner',t:'Nerf rachidien',d:"Relié à la moelle par une racine dorsale et une racine ventrale. Il contient des fibres sensitives et des fibres motrices : c'est un nerf mixte."}
+  ];
+  const ul=$('#parts'), info=$('#partInfo');
+  function pick(id){
+    const p=P.find(x=>x.id===id);
+    const on=!!p&&!($(`[data-p="${id}"]`,svg).classList.contains('on')&&svg.classList.contains('focus'));
+    svg.classList.toggle('focus',on);
+    $$('g[data-p]',svg).forEach(g=>g.classList.toggle('on',on&&g.dataset.p===id));
+    $$('.phase',ul).forEach(b=>b.setAttribute('aria-pressed',on&&b.dataset.p===id?'true':'false'));
+    info.textContent=on?p.d:'Choisis une structure pour la repérer sur la coupe.';frAll(info);
+  }
+  P.forEach(p=>{
+    const li=document.createElement('li'),b=document.createElement('button');
+    b.type='button';b.className='phase';b.dataset.p=p.id;b.setAttribute('aria-pressed','false');b.textContent=p.t;
+    b.addEventListener('click',()=>pick(p.id));
+    li.appendChild(b);ul.appendChild(li);
+  });
+  $$('g[data-p]',svg).forEach(g=>g.addEventListener('click',()=>pick(g.dataset.p)));
+})();
+
+/* ---------- expériences de section ---------- */
+(()=>{
+  const svg=$('#magSvg');
+  const SEG={
+    rd_c:['M207 73 C222 69 238 67 254 67',12], rd_g:['M264 67 C278 67 290 68 300 70',12],
+    rd_og:['M348 80 C358 86 366 92 374 100',12], rd_oj:['M382 108 C394 122 406 136 420 146',12],
+    rv_c:['M207 212 C232 220 262 222 292 216',12], rv_j:['M302 212 C346 200 386 170 420 154',12],
+    np_t:['M420 145.5 L496 145.5',9], np_b:['M420 154.5 L496 154.5',9],
+    nd_t:['M506 145.5 L630 145.5',9], nd_b:['M506 154.5 L630 154.5',9]
+  };
+  const CUT={nerf:[501,130,501,170],rdc:[259,54,259,80],rdn:[369,113,387,95],rv:[297,200,297,228]};
+  let h=`<g transform="translate(140 146) scale(.9)"><ellipse class="wm" cx="0" cy="-4" rx="125" ry="100"/><path class="gm" d="${GM}"/><circle r="4" fill="var(--ink)"/></g>`;
+  Object.values(SEG).forEach(([d,w])=>{h+=`<path class="o" d="${d}" stroke-width="${w+3.5}"/>`;});
+  // ponts continus entre les segments (sans couture visible)
+  h+=`<path class="o" d="M254 67 L264 67" stroke-width="15.5"/><path class="o" d="M374 100 L382 108" stroke-width="15.5"/><path class="o" d="M292 216 L302 212" stroke-width="15.5"/><path class="o" d="M496 150 L506 150" stroke-width="21.5"/><path class="o" d="M414 140 L426 160" stroke-width="16"/>`;
+  Object.entries(SEG).forEach(([k,[d,w]])=>{h+=`<path class="f" data-s="${k}" d="${d}" stroke-width="${w}"/>`;});
+  h+=`<path class="f" d="M254 67 L264 67" stroke-width="12"/><path class="f" d="M374 100 L382 108" stroke-width="12"/><path class="f" d="M292 216 L302 212" stroke-width="12"/><path class="f" data-s="nj_t" d="M496 145.5 L506 145.5" stroke-width="9"/><path class="f" data-s="nj_b" d="M496 154.5 L506 154.5" stroke-width="9"/>`;
+  h+=`<ellipse class="gang" cx="324" cy="74" rx="26" ry="16"/>`;
+  Object.entries(CUT).forEach(([k,c])=>{h+=`<line class="cut" data-c="${k}" x1="${c[0]}" y1="${c[1]}" x2="${c[2]}" y2="${c[3]}"/>`;});
+  h+=`<text x="140" y="270" text-anchor="middle">Moelle épinière</text>`;
+  h+=`<line class="ll" x1="222" y1="48" x2="236" y2="62"/><text x="200" y="40" text-anchor="middle">Racine dorsale</text>`;
+  h+=`<line class="ll" x1="344" y1="46" x2="332" y2="58"/><text x="370" y="38" text-anchor="middle">Ganglion rachidien</text>`;
+  h+=`<line class="ll" x1="320" y1="250" x2="330" y2="214"/><text x="320" y="268" text-anchor="middle">Racine ventrale</text>`;
+  h+=`<text x="560" y="186" text-anchor="middle">Nerf rachidien</text>`;
+  h+=`<line class="lg-deg" x1="470" y1="250" x2="500" y2="250"/><text x="508" y="255">dégénère</text>`;
+  svg.innerHTML=h;
+  const SENS_LOST="perdue", KEPT="conservée";
+  const E={
+    nerf:{deg:['nd_t','nd_b'],sens:false,mot:false,
+      imm:"La région du corps innervée par le nerf rachidien sectionné perd toute sensibilité et toute motricité.",
+      lt:"Toutes les fibres nerveuses de la portion du nerf séparée de la moelle épinière dégénèrent.",
+      int:"Les messages sensitif et moteur passent tous les deux par le nerf rachidien. Les corps cellulaires des neurones sensitifs et moteurs sont du côté de la moelle épinière, avant la section."},
+    rdc:{deg:['rd_c'],sens:false,mot:true,
+      imm:"La région du corps innervée par le nerf perd toute sensibilité. La motricité est maintenue.",
+      lt:"Les fibres dégénèrent entre la section et la moelle épinière. Le ganglion rachidien et les fibres du nerf restent intacts.",
+      int:"Le message sensitif passe par la racine dorsale, pas le message moteur. La partie reliée au ganglion survit : les corps cellulaires des neurones sensitifs sont dans le ganglion rachidien."},
+    rdn:{deg:['rd_oj','np_t','nj_t','nd_t'],sens:false,mot:true,
+      imm:"La région du corps innervée par le nerf perd toute sensibilité. La motricité est maintenue.",
+      lt:"Les fibres dégénèrent entre la section et le nerf, ainsi que dans la partie dorsale du nerf rachidien. Le ganglion rachidien reste intact.",
+      int:"Le message sensitif passe par la racine dorsale, pas le message moteur. Quel que soit le côté de la section, la partie reliée au ganglion survit : les corps cellulaires des neurones sensitifs sont dans le ganglion rachidien."},
+    rv:{deg:['rv_j','np_b','nj_b','nd_b'],sens:true,mot:false,
+      imm:"La région du corps innervée par le nerf perd sa motricité. La sensibilité est conservée.",
+      lt:"Les fibres dégénèrent dans la partie de la racine ventrale séparée de la moelle épinière, ainsi que dans la partie ventrale du nerf.",
+      int:"Le message moteur passe par la racine ventrale. Les corps cellulaires des neurones moteurs sont dans la moelle épinière."}
+  };
+  const st=$('#magStatus'), res=$('#magRes');
+  function show(k){
+    const e=E[k];
+    $$('#magCtl button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.e===k?'true':'false'));
+    $$('.f',svg).forEach(p=>p.classList.toggle('deg',e.deg.includes(p.dataset.s)));
+    $$('.cut',svg).forEach(c=>c.classList.toggle('on',c.dataset.c===k));
+    st.innerHTML=`<span class="${e.sens?'kept':'lost'}">Sensibilité ${e.sens?KEPT:SENS_LOST}</span><span class="${e.mot?'kept':'lost'}">Motricité ${e.mot?KEPT:SENS_LOST}</span>`;
+    res.innerHTML=`<div><dt>Conséquences immédiates</dt><dd>${e.imm}</dd></div><div><dt>Observations à plus long terme</dt><dd>${e.lt}</dd></div><div><dt>Interprétation</dt><dd>${e.int}</dd></div>`;
+    frAll(st);frAll(res);
+  }
+  $$('#magCtl button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.e)));
+  show('nerf');
+})();
+
+/* ---------- arc réflexe en 7 étapes ---------- */
+(()=>{
+  $('#arcScene').innerHTML=arcSVG({labels:true,steps:true});
+  const svg=$('#arcScene svg');
+  const T=[
+    "Stimulus : la percussion du tendon d'Achille.",
+    "Étirement du muscle et du fuseau neuromusculaire, qui crée un message nerveux.",
+    "Message nerveux sensitif (afférent) : il remonte le neurone sensitif par le nerf rachidien, puis la racine dorsale.",
+    "Synapse entre le neurone sensitif et le motoneurone, dans la substance grise de la moelle épinière.",
+    "Message nerveux moteur (efférent) : il repart par la racine ventrale, puis le nerf rachidien.",
+    "À la plaque motrice, création d'un potentiel d'action musculaire.",
+    "Contraction du muscle extenseur : extension du pied."
+  ];
+  const ol=$('#arcSteps');let step=0,timer=null;
+  function render(){
+    for(let k=1;k<=7;k++){svg.classList.toggle('a'+k,k<=step);svg.classList.toggle('c'+k,k===step);}
+    $$('button',ol).forEach((b,i)=>{if(i+1===step)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+  }
+  T.forEach((t,i)=>{
+    const li=document.createElement('li'),b=document.createElement('button');
+    b.type='button';b.textContent=t;
+    b.addEventListener('click',()=>{stop();step=i+1;render();});
+    li.appendChild(b);ol.appendChild(li);
+  });
+  function stop(){clearInterval(timer);timer=null;$('#arcPlay').textContent='Jouer les étapes';}
+  $('#arcPlay').addEventListener('click',()=>{
+    if(timer){stop();return;}
+    step=1;render();$('#arcPlay').textContent='Arrêter';
+    timer=setInterval(()=>{if(step>=7){stop();return;}step++;render();},RM?1400:1700);
+  });
+  const lb=$('#arcLabels');lb.addEventListener('change',()=>svg.classList.toggle('nolabels',!lb.checked));
+  render();
+})();
+
+/* ---------- onglets ---------- */
+(()=>{
+  const tabs=$$('.tab'), map={'t-fiches':'p-fiches','t-trous1':'p-trous','t-qcm':'p-qcm','t-schema':'p-schema','t-bilan':'p-bilan'};
+  function sel(t){
+    tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$('#'+map[x.id]).hidden=!on;});
+  }
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click',()=>sel(t));
+    t.addEventListener('keydown',e=>{
+      let j=null;
+      if(e.key==='ArrowRight')j=(i+1)%tabs.length; if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;
+      if(j!==null){e.preventDefault();sel(tabs[j]);tabs[j].focus();}
+    });
+  });
+  sel(tabs[0]);
+})();
+
+/* ---------- fiches ---------- */
+(()=>{
+  const CARDS=[
+    ["Réflexe myotatique","Contraction réflexe d'un muscle en réponse à son propre étirement. C'est un réflexe d'étirement, comme le réflexe achilléen ou le réflexe rotulien."],
+    ["Électromyogramme","Enregistrement de l'activité électrique d'un muscle, obtenu avec des électrodes et un système d'amplification."],
+    ["Temps de latence","Temps écoulé entre le stimulus et le début de la réponse du muscle. Pour le réflexe achilléen : environ 27 ms."],
+    ["Réponse stéréotypée","Une même intensité d'étirement entraîne toujours la même réponse."],
+    ["Muscles antagonistes","Muscles qui agissent de façon opposée mais complémentaire, comme le soléaire (extenseur du pied) et le jambier (fléchisseur du pied)."],
+    ["Arc réflexe","Trajet du message nerveux lors d'un réflexe : récepteur, neurone sensitif, centre nerveux, motoneurone, effecteur."],
+    ["Fuseau neuromusculaire","Récepteur sensoriel du muscle, de type mécanorécepteur. Il perçoit l'étirement et le transforme en message nerveux."],
+    ["Neurone sensitif","Neurone afférent, dit « en T ». Il conduit le message du récepteur vers le centre nerveux. Son corps cellulaire est dans le ganglion rachidien."],
+    ["Motoneurone","Neurone moteur, efférent. Il conduit le message du centre nerveux vers l'effecteur. Son corps cellulaire est dans la substance grise de la moelle épinière."],
+    ["Ganglion rachidien","Renflement de la racine dorsale. Il contient les corps cellulaires des neurones sensitifs."],
+    ["Racine dorsale","Relie le nerf rachidien à la moelle épinière, côté dos. Le message nerveux sensitif y passe."],
+    ["Racine ventrale","Relie la moelle épinière au nerf rachidien, côté ventre. Le message nerveux moteur y passe."],
+    ["Nerf rachidien","Nerf relié à la moelle par une racine dorsale et une racine ventrale. Il contient des fibres sensitives et motrices : c'est un nerf mixte."],
+    ["Substance grise","Partie centrale de la moelle épinière, en forme de papillon. Elle contient les corps cellulaires des neurones."],
+    ["Substance blanche","Partie périphérique de la moelle épinière. Elle contient des fibres nerveuses, sans noyaux."],
+    ["Plaque motrice","Synapse entre la terminaison d'un motoneurone et une fibre musculaire. L'arrivée du message nerveux y provoque la contraction."],
+    ["Réflexe monosynaptique","Réflexe qui ne met en jeu qu'une seule synapse dans le centre nerveux, entre le neurone sensitif et le motoneurone."],
+    ["Loi de Bell-Magendie","Le message sensitif va du muscle vers la moelle par la racine dorsale. Le message moteur va de la moelle vers le muscle par la racine ventrale."]
+  ];
+  const root=$('#flash');
+  let known=new Set(store.get('known',[])), queue=[], flipped=false;
+  function rebuild(){queue=CARDS.map((_,i)=>i).filter(i=>!known.has(i));}
+  function render(){
+    root.innerHTML='';
+    if(!queue.length){
+      root.innerHTML=`<p class="score" style="margin:.2em 0">${CARDS.length} sur ${CARDS.length}</p><p>Tu connais toutes les fiches. Reviens les relire avant le contrôle.</p><button class="btn" type="button" id="flReset">Tout revoir</button>`;
+      $('#flReset').addEventListener('click',()=>{known=new Set();store.set('known',[]);rebuild();flipped=false;render();});
+      frAll(root);return;
+    }
+    const i=queue[0], c=CARDS[i];
+    const b=document.createElement('button');
+    b.type='button';b.className='card'+(flipped?' back':'');
+    b.setAttribute('aria-label',flipped?'Définition. Retourner la fiche':'Terme. Retourner la fiche pour voir la définition');
+    b.innerHTML=flipped?`<span>${c[1]}</span><span class="hint">${c[0]}</span>`:`<p class="face-t">${c[0]}</p><span class="hint">Touche la fiche pour voir la définition</span>`;
+    b.addEventListener('click',()=>{flipped=!flipped;render();$('.card',root).focus();});
+    const meta=document.createElement('p');meta.className='fl-meta';
+    meta.textContent=`Fiches maîtrisées : ${known.size} sur ${CARDS.length}`;
+    const row=document.createElement('div');row.className='row';
+    row.innerHTML=`<button class="btn" type="button" id="flNo">À revoir</button><button class="btn pri" type="button" id="flYes">Je sais</button>`;
+    root.append(b,meta,row);
+    $('#flNo').disabled=$('#flYes').disabled=!flipped;
+    $('#flYes').addEventListener('click',()=>{known.add(i);store.set('known',[...known]);queue.shift();flipped=false;render();});
+    $('#flNo').addEventListener('click',()=>{queue.push(queue.shift());flipped=false;render();});
+    frAll(root);
+  }
+  rebuild();render();
+})();
+
+/* ---------- textes à trous ---------- */
+function cloze({root,bank,ctl,fb,segments,key}){
+  const words=[...new Set(segments.filter(s=>typeof s!=='string').map(s=>s.a))].sort((a,b)=>a.localeCompare(b,'fr'));
+  const sels=[];
+  segments.forEach(s=>{
+    if(typeof s==='string'){root.append(document.createTextNode(s));return;}
+    const sel=document.createElement('select');
+    sel.setAttribute('aria-label','Mot manquant '+(sels.length+1));
+    const o0=document.createElement('option');o0.value='';o0.textContent='…';sel.appendChild(o0);
+    words.forEach(w=>{const o=document.createElement('option');o.value=w;o.textContent=w;sel.appendChild(o);});
+    sel.dataset.a=s.a;sels.push(sel);root.appendChild(sel);
+    sel.addEventListener('change',()=>{sel.className='';updateBank();});
+  });
+  const chips=words.map(w=>{const li=document.createElement('li');li.textContent=w;li.dataset.w=w;bank.appendChild(li);return li;});
+  function updateBank(){const used=sels.map(s=>s.value);chips.forEach(c=>c.classList.toggle('used',used.includes(c.dataset.w)));}
+  const bCheck=document.createElement('button'),bShow=document.createElement('button'),bReset=document.createElement('button');
+  bCheck.className='btn pri';bCheck.textContent='Vérifier';
+  bShow.className='btn';bShow.textContent='Voir les réponses';
+  bReset.className='btn';bReset.textContent='Recommencer';
+  [bCheck,bShow,bReset].forEach(b=>{b.type='button';ctl.appendChild(b);});
+  bCheck.addEventListener('click',()=>{
+    let ok=0,empty=0;
+    sels.forEach(s=>{
+      if(!s.value){empty++;s.className='';return;}
+      if(s.value===s.dataset.a){s.className='ok';ok++;}else s.className='bad';
+    });
+    fb.className='fb';
+    if(ok===sels.length){fb.textContent='Tout est juste. Bravo !';fb.classList.add('ok');mark(key);}
+    else{fb.textContent=`${ok} réponse${ok>1?'s':''} juste${ok>1?'s':''} sur ${sels.length}. Corrige les mots en rouge${empty?' et complète les trous vides':''}, puis vérifie à nouveau.`;fb.classList.add('bad');}
+    frAll(fb);
+  });
+  bShow.addEventListener('click',()=>{sels.forEach(s=>{s.value=s.dataset.a;s.className='ok';});updateBank();fb.textContent="Voici la correction. Recommence sans l'aide pour valider l'exercice.";fb.className='fb';frAll(fb);});
+  bReset.addEventListener('click',()=>{sels.forEach(s=>{s.value='';s.className='';});updateBank();fb.textContent='';});
+}
+(()=>{
+  const G=a=>({a});
+  cloze({key:'trous1',root:$('#cloze1'),bank:$('#bank1'),ctl:$('#ctl1'),fb:$('#fb1'),segments:[
+    "D'après l'expérience 1, le temps de latence est de ",G('27 ms'),". Ce temps correspond au temps écoulé entre le ",G('stimulus')," et le début de la réponse du ",G('muscle'),
+    ". Avec une vitesse de propagation d'environ 50 m/s, le message nerveux parcourt d = v × t = 50 × 0,027 = ",G('1,35 m'),
+    ". L'expérience 2 montre que plus l'",G('intensité')," de la percussion augmente, plus l'",G('amplitude'),
+    " de la réponse du muscle augmente. Le réflexe myotatique est un réflexe d'",G('étirement'),
+    " : c'est la ",G('contraction')," d'un muscle en réponse à son propre étirement. Le muscle étiré est à la fois le ",G('capteur'),
+    " du stimulus et l'",G('effecteur')," de la réponse. Cette réponse réflexe est ",G('rapide'),
+    ". Une même intensité d'étirement entraîne toujours la même réponse : c'est une réponse ",G('stéréotypée'),"."
+  ]});
+  cloze({key:'trous2',root:$('#cloze2'),bank:$('#bank2'),ctl:$('#ctl2'),fb:$('#fb2'),segments:[
+    "Le message nerveux prend naissance au niveau du ",G('fuseau neuromusculaire'),". Il est ensuite véhiculé par un neurone ",G('sensitif'),
+    ", qui passe par la racine ",G('dorsale')," du nerf rachidien. Le message nerveux moteur est véhiculé par un neurone ",G('moteur'),
+    " qui passe par la racine ",G('ventrale')," du nerf rachidien. Le nerf rachidien est donc un nerf ",G('mixte'),
+    ", formé à la fois des prolongements des neurones sensitifs et des neurones moteurs. Le neurone sensitif transmet le message au motoneurone dans la ",G('moelle épinière'),
+    ", au niveau d'une ",G('synapse'),". Comme il n'y en a qu'une, le réflexe myotatique est ",G('monosynaptique'),
+    ". Le motoneurone transmet enfin le message aux fibres musculaires au niveau de la ",G('plaque motrice'),"."
+  ]});
+})();
+
+/* ---------- QCM ---------- */
+(()=>{
+  const Q=[
+    {q:"Pendant l'extension du pied, quel muscle présente une forte activité électrique ?",o:["Le soléaire","Le jambier","Les deux à la fois","Aucun des deux"],a:0,e:"L'électromyogramme A (soléaire) est intense pendant l'extension : le soléaire est le muscle extenseur du pied."},
+    {q:"Le soléaire et le jambier sont des muscles antagonistes. Cela veut dire qu'ils…",o:["agissent de façon opposée mais complémentaire","se contractent toujours en même temps","sont commandés par le même neurone","ne sont jamais décontractés"],a:0,e:"Le soléaire étend le pied, le jambier le fléchit : leurs actions sont opposées mais complémentaires."},
+    {q:"D'après l'expérience 1, quel est le temps de latence du réflexe achilléen ?",o:["Environ 27 ms","Environ 2,7 s","Environ 270 ms","Il n'y en a pas"],a:0,e:"La réponse du muscle commence environ 27 ms après le choc sur le tendon."},
+    {q:"Le message nerveux se propage à environ 50 m/s pendant 27 ms. Quelle distance parcourt-il ?",o:["1,35 m","13,5 m","0,135 m","135 m"],a:0,e:"d = v × t = 50 × 0,027 = 1,35 m. Attention à convertir les millisecondes en secondes."},
+    {q:"Que montre l'expérience 2, avec des percussions d'intensité croissante ?",o:["Plus la percussion est forte, plus l'amplitude de la réponse augmente","Plus la percussion est forte, plus le temps de latence augmente","L'intensité de la percussion ne change rien","Une percussion forte supprime la réponse"],a:0,e:"L'amplitude de la contraction dépend de l'intensité de l'étirement."},
+    {q:"Deux percussions de même intensité donnent deux réponses identiques. La réponse réflexe est donc…",o:["stéréotypée","volontaire","aléatoire","retardée"],a:0,e:"Une même intensité d'étirement entraîne toujours la même réponse : c'est une réponse stéréotypée."},
+    {q:"Dans le réflexe myotatique, quel est le récepteur sensoriel ?",o:["Le fuseau neuromusculaire","La plaque motrice","Le tendon d'Achille","Le ganglion rachidien"],a:0,e:"Le fuseau neuromusculaire, dans le muscle, perçoit l'étirement et le transforme en message nerveux."},
+    {q:"Où se trouvent les corps cellulaires des neurones sensitifs ?",o:["Dans le ganglion rachidien","Dans la substance blanche","Dans le muscle","Dans la racine ventrale"],a:0,e:"Après une section de la racine dorsale, la partie reliée au ganglion survit : c'est là que sont les corps cellulaires des neurones sensitifs."},
+    {q:"On sectionne la racine ventrale. Quelle est la conséquence ?",o:["Perte de la motricité, sensibilité conservée","Perte de la sensibilité, motricité conservée","Perte de la sensibilité et de la motricité","Aucune conséquence"],a:0,e:"Le message moteur passe par la racine ventrale. Le message sensitif, lui, passe par la racine dorsale."},
+    {q:"Pourquoi dit-on que le nerf rachidien est un nerf mixte ?",o:["Il contient des fibres sensitives et des fibres motrices","Il contient de la substance grise et de la substance blanche","Il est relié au cerveau et à la moelle","Il contient des fibres musculaires"],a:0,e:"Le nerf rachidien contient à la fois des prolongements des neurones sensitifs et des neurones moteurs."},
+    {q:"Que contient la substance grise de la moelle épinière ?",o:["Les corps cellulaires des neurones","Uniquement des fibres nerveuses myélinisées","Les fuseaux neuromusculaires","Les ganglions rachidiens"],a:0,e:"On y voit des noyaux : ce sont les corps cellulaires des neurones. La substance blanche contient les fibres."},
+    {q:"Combien de synapses le message traverse-t-il dans la moelle lors du réflexe myotatique ?",o:["Une seule","Deux","Aucune","Des centaines"],a:0,e:"Le neurone sensitif fait synapse directement avec le motoneurone : le réflexe myotatique est monosynaptique."},
+    {q:"Dans quel sens le message nerveux parcourt-il un neurone ?",o:["Dendrites → corps cellulaire → axone → arborisation terminale","Arborisation terminale → axone → corps cellulaire → dendrites","Axone → dendrites → corps cellulaire → arborisation terminale","Dans les deux sens"],a:0,e:"Le message nerveux se propage toujours à sens unique, des dendrites vers l'arborisation terminale."}
+  ];
+  const root=$('#qcm');
+  let i=0,score=0,missed=[];
+  const shuffle=a=>{a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;};
+  function show(){
+    if(i>=Q.length) return end();
+    const q=Q[i];
+    const opts=shuffle(q.o.map((t,k)=>({t,ok:k===q.a})));
+    root.innerHTML=`<div class="q-top"><span>Question ${i+1} sur ${Q.length}</span><span>${score} juste${score>1?'s':''}</span></div>
+      <div class="q-bar" aria-hidden="true"><i style="width:${i/Q.length*100}%"></i></div>
+      <h3 class="q-text" id="qq" tabindex="-1">${q.q}</h3>
+      <ul class="opts" role="list"></ul><div id="qfb"></div>`;
+    const ul=$('.opts',root);
+    opts.forEach(o=>{
+      const li=document.createElement('li'),b=document.createElement('button');
+      b.type='button';b.textContent=o.t;
+      b.addEventListener('click',()=>{
+        const all=$$('button',ul);
+        all.forEach((x,k)=>{x.disabled=true;if(opts[k].ok)x.classList.add('good');});
+        if(o.ok){score++;}else{b.classList.add('wrong');missed.push(i);}
+        $('#qfb').innerHTML=`<p class="expl"><b>${o.ok?'Juste.':'Pas tout à fait.'}</b> ${q.e}</p><button class="btn pri" type="button" id="qn">${i===Q.length-1?'Voir mon score':'Question suivante'}</button>`;
+        frAll($('#qfb'));
+        $('#qn').addEventListener('click',()=>{i++;show();$('#qq')&&$('#qq').focus();});
+        $('#qn').focus();
+      });
+      li.appendChild(b);ul.appendChild(li);
+    });
+    frAll(root);
+  }
+  function end(){
+    const good=score>=Math.ceil(Q.length*.8);
+    if(good) mark('qcm');
+    root.innerHTML=`<p class="score">${score} sur ${Q.length}</p>
+      <p>${score===Q.length?"Sans faute. Tu maîtrises les notions de ce TP.":good?"Très bien. Relis les explications des questions manquées.":"Repasse par les schémas et les fiches, puis recommence."}</p>
+      ${missed.length?`<p><b>À revoir :</b></p><ul class="miss">${missed.map(k=>`<li>${Q[k].q}</li>`).join('')}</ul>`:''}
+      <button class="btn pri" type="button" id="qr">Recommencer le QCM</button>`;
+    $('#qr').addEventListener('click',()=>{i=0;score=0;missed=[];show();});
+    frAll(root);
+  }
+  show();
+})();
+
+/* ---------- légender l'arc réflexe ---------- */
+(()=>{
+  $('#quizScene').innerHTML=arcSVG({labels:false,pins:true});
+  const ANS=PINS.map(p=>p[0]);
+  const OPT=[...ANS,"Tendon d'Achille","Muscle fléchisseur","Cellule de Schwann"].sort((a,b)=>a.localeCompare(b,'fr'));
+  const lg=$('#lg');
+  ANS.forEach((a,i)=>{
+    const l=document.createElement('label');
+    l.innerHTML=`<b>${i+1}</b><select aria-label="Légende du numéro ${i+1}"><option value="">Choisir…</option>${OPT.map(o=>`<option value="${o}">${o}</option>`).join('')}</select>`;
+    const s=$('select',l);s.addEventListener('change',()=>s.className='');
+    lg.appendChild(l);
+  });
+  $('#lgCheck').addEventListener('click',()=>{
+    let ok=0;
+    $$('select',lg).forEach((s,i)=>{
+      if(!s.value){s.className='';return;}
+      if(s.value===ANS[i]){s.className='ok';ok++;}else s.className='bad';
+    });
+    const fb=$('#lgFb');fb.className='fb';
+    if(ok===ANS.length){fb.textContent='Schéma entièrement juste. Bravo !';fb.classList.add('ok');mark('schema');}
+    else{fb.textContent=`${ok} légende${ok>1?'s':''} juste${ok>1?'s':''} sur ${ANS.length}. Corrige celles en rouge.`;fb.classList.add('bad');}
+    frAll(fb);
+  });
+  $('#lgReset').addEventListener('click',()=>{$$('select',lg).forEach(s=>{s.value='';s.className='';});$('#lgFb').textContent='';});
+})();
+
+/* ---------- rédiger ---------- */
+(()=>{
+  const P=[
+    {id:'carac',q:"À partir des expériences 1 et 2, montre que le réflexe myotatique est un réflexe d'étirement, rapide et stéréotypé.",a:[
+      "La percussion du tendon étire le muscle extenseur du pied, qui se contracte : l'électromyogramme du soléaire montre une réponse.",
+      "Le muscle étiré est à la fois le capteur du stimulus et l'effecteur de la réponse : c'est un réflexe d'étirement.",
+      "La réponse commence environ 27 ms après le choc (temps de latence) : elle est rapide.",
+      "Deux percussions de même intensité donnent la même réponse : elle est stéréotypée.",
+      "Plus l'intensité de la percussion augmente, plus l'amplitude de la réponse augmente."]},
+    {id:'magendie',q:"Explique ce que montrent les expériences de section de Magendie.",a:[
+      "Section du nerf rachidien : perte de sensibilité et de motricité, donc les deux messages passent par le nerf.",
+      "Section de la racine dorsale : perte de sensibilité seulement, donc le message sensitif passe par la racine dorsale.",
+      "La partie reliée au ganglion survit : les corps cellulaires des neurones sensitifs sont dans le ganglion rachidien.",
+      "Section de la racine ventrale : perte de motricité seulement, donc le message moteur passe par la racine ventrale. Les corps cellulaires des motoneurones sont dans la moelle.",
+      "Conclusion, la loi de Bell-Magendie : le message sensitif entre dans la moelle par la racine dorsale, le message moteur en sort par la racine ventrale."]},
+    {id:'trajet',q:"Décris le trajet du message nerveux lors du réflexe achilléen, du stimulus à la réponse.",a:[
+      "La percussion du tendon d'Achille étire le muscle et le fuseau neuromusculaire, qui crée un message nerveux.",
+      "Le message sensitif (afférent) est conduit par le neurone sensitif dans le nerf rachidien puis la racine dorsale.",
+      "Dans la substance grise de la moelle, le neurone sensitif fait synapse avec le motoneurone : une seule synapse, le réflexe est monosynaptique.",
+      "Le message moteur (efférent) repart par la racine ventrale puis le nerf rachidien jusqu'à la plaque motrice.",
+      "Le muscle extenseur se contracte : le pied s'étend."]}
+  ];
+  const root=$('#bil');
+  let checks=store.get('checks',{});
+  P.forEach(p=>{
+    const art=document.createElement('article');
+    art.innerHTML=`<h3>${p.q}</h3>
+      <label class="sr" for="ta-${p.id}">Ta réponse</label>
+      <textarea id="ta-${p.id}" placeholder="Écris ta réponse ici…"></textarea>
+      <button class="btn" type="button">Voir les éléments attendus</button>
+      <ul class="attendus" hidden></ul><p class="fb" aria-live="polite"></p>`;
+    const ta=$('textarea',art),ul=$('ul',art),fb=$('.fb',art),btn=$('button',art);
+    ta.value=store.get('ta-'+p.id,'');
+    ta.addEventListener('input',()=>store.set('ta-'+p.id,ta.value));
+    p.a.forEach((t,k)=>{
+      const li=document.createElement('li'),id=`ck-${p.id}-${k}`;
+      li.innerHTML=`<label><input type="checkbox" id="${id}"><span>${t}</span></label>`;
+      const cb=$('input',li);cb.checked=!!(checks[p.id]&&checks[p.id][k]);
+      cb.addEventListener('change',()=>{
+        checks[p.id]=checks[p.id]||{};checks[p.id][k]=cb.checked;store.set('checks',checks);upd();
+      });
+      ul.appendChild(li);
+    });
+    function upd(){
+      const n=$$('input',ul).filter(c=>c.checked).length;
+      fb.className='fb';
+      fb.textContent=`Tu as donné ${n} élément${n>1?'s':''} sur ${p.a.length}.`+(n===p.a.length?' Réponse complète.':n?' Complète ta réponse avec ce qui manque.':'');
+      if(n===p.a.length)fb.classList.add('ok');
+      frAll(fb);
+      if(P.every(x=>{const c=checks[x.id]||{};return x.a.every((_,k)=>c[k]);}))mark('bilan');
+    }
+    btn.addEventListener('click',()=>{
+      ul.hidden=!ul.hidden;btn.textContent=ul.hidden?'Voir les éléments attendus':'Masquer les éléments attendus';
+      if(!ul.hidden){upd();frAll(ul);}else fb.textContent='';
+    });
+    root.appendChild(art);
+  });
+})();
+
+/* ---------- navigation active ---------- */
+(()=>{
+  const nav=$('.nav'),links=$$('a',nav);
+  const secs=links.map(a=>$(a.getAttribute('href')));
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){
+      links.forEach(a=>a.removeAttribute('aria-current'));
+      const a=links.find(l=>l.getAttribute('href')==='#'+e.target.id);
+      if(a){a.setAttribute('aria-current','true');nav.scrollTo({left:a.offsetLeft-nav.offsetLeft-16,behavior:RM?'auto':'smooth'});}
+    } });
+  },{rootMargin:'-30% 0px -60% 0px'});
+  secs.forEach(s=>s&&io.observe(s));
+})();
+
+frAll();
+renderProgress();
+})();
+</script>
+</body>
+</html>

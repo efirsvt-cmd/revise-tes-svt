@@ -88,6 +88,8 @@ a{color:inherit}
 .chap p{color:var(--ink2);margin:0 0 .8em}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 .chips li{font-size:.92rem;font-weight:700;border:1.5px solid var(--ink);border-radius:20px;padding:.1em .8em;background:var(--paper)}
+.chap-name{font-weight:700;color:var(--ink2);margin:0 0 12px}
+.chaps{display:grid;gap:16px;max-width:760px}
 .soon-box{max-width:760px;border:1.5px dashed var(--ink2);border-radius:12px;padding:18px 22px;color:var(--ink2);margin:0}
 footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);padding:22px 0 40px;color:var(--ink2);background:var(--paper)}
 .brand{white-space:nowrap}
