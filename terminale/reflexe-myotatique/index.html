@@ -470,7 +470,7 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
       <ul class="traits">
         <li><b>Un réflexe d'étirement</b>C'est la contraction d'un muscle en réponse à son propre étirement.</li>
         <li><b>Capteur et effecteur</b>Le muscle étiré est à la fois le capteur du stimulus et l'effecteur de la réponse.</li>
-        <li><b>Une réponse rapide</b>Elle se déclenche en quelques millisecondes.</li>
+        <li><b>Une réponse rapide</b>Elle se déclenche en quelques dizaines de millisecondes (environ 27 ms).</li>
         <li><b>D'intensité variable</b>Plus la percussion est forte (étirement plus grand), plus l'amplitude de la contraction est grande.</li>
         <li><b>Une réponse stéréotypée</b>Une même intensité d'étirement entraîne toujours la même réponse.</li>
         <li><b>Selon l'état du sujet</b>La réponse peut être exagérée, diminuée, voire absente dans certains cas pathologiques.</li>
@@ -525,12 +525,12 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
         </g>
         <g data-p="wm">
           <ellipse class="wm" cx="380" cy="188" rx="137" ry="110"/>
-          <line class="ll" x1="532" y1="48" x2="476" y2="112"/><text x="566" y="40" text-anchor="middle">Substance blanche</text>
+          <line class="ll" x1="532" y1="48" x2="462" y2="140"/><text x="566" y="40" text-anchor="middle">Substance blanche</text>
         </g>
         <g data-p="gm">
           <path class="gm" transform="translate(380 192) scale(1.1)" d="M0 -26 C-15 -28 -22 -44 -30 -64 C-36 -78 -44 -88 -56 -90 C-64 -84 -60 -64 -54 -46 C-48 -28 -56 -18 -70 -8 C-84 4 -88 26 -80 48 C-72 68 -52 78 -34 72 C-20 66 -12 48 -8 32 L0 26 L8 32 C12 48 20 66 34 72 C52 78 72 68 80 48 C88 26 84 4 70 -8 C56 -18 48 -28 54 -46 C60 -64 64 -84 56 -90 C44 -88 36 -78 30 -64 C22 -44 15 -28 0 -26 Z"/>
           <circle cx="380" cy="192" r="5" fill="var(--ink)"/>
-          <line class="ll" x1="384" y1="340" x2="412" y2="272"/><text x="380" y="358" text-anchor="middle">Substance grise</text>
+          <line class="ll" x1="384" y1="340" x2="406" y2="262"/><text x="380" y="358" text-anchor="middle">Substance grise</text>
         </g>
       </svg></div>
     </div>
@@ -662,6 +662,7 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
   </div>
   <div class="box-key" style="max-width:none">
     <p>Lorsqu'une section coupe un neurone, la partie qui contient le noyau survit, l'autre dégénère. On en déduit où sont les corps cellulaires.</p>
+    <p>Dans le tableau du TP, les deux sections de la racine dorsale sont regroupées : les fibres dégénèrent de part et d'autre du ganglion isolé, ainsi que dans la partie dorsale du nerf rachidien.</p>
     <p><b>Loi de Bell-Magendie :</b> le message nerveux <span class="s-col">sensitif</span> va du muscle vers la moelle par la <b>racine dorsale</b>. Le message <span class="m-col">moteur</span> va de la moelle vers le muscle par la <b>racine ventrale</b>.</p>
   </div>
   <p class="links">Pour revoir : <a href="https://www.pedagogie.ac-nice.fr/svt/productions/flexion/" target="_blank" rel="noopener">le logiciel Flexion</a>.</p>
@@ -671,7 +672,7 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
 <section class="sec wrap" id="arc" aria-labelledby="h-arc">
   <header>
     <h2 id="h-arc">L'arc réflexe myotatique, en 7 étapes</h2>
-    <p class="lead">Le schéma bilan, à connaître par cœur. Le neurone sensitif fait synapse directement avec le motoneurone dans la moelle : il n'y a qu'une seule synapse, le réflexe est <b>monosynaptique</b>.</p>
+    <p class="lead">Le schéma bilan, à connaître par cœur. Le neurone sensitif fait synapse directement avec le motoneurone : il n'y a qu'une seule synapse dans la moelle, le réflexe est <b>monosynaptique</b>.</p>
   </header>
   <div class="panel">
     <div class="syn-ctl">
@@ -817,8 +818,8 @@ const LABELS=[
 const PINS=[
   ['Fuseau neuromusculaire',214,248,252,222],
   ['Plaque motrice',226,146,276,164],
-  ['Neurone sensitif',372,132,372,166],
-  ['Nerf rachidien',522,268,522,234],
+  ['Neurone sensitif',676,226,770,202],
+  ['Nerf rachidien',522,268,522,225],
   ['Ganglion rachidien',632,112,654,144],
   ['Racine dorsale',724,108,716,148],
   ['Substance blanche',910,150,888,174],
@@ -1258,7 +1259,7 @@ function cloze({root,bank,ctl,fb,segments,key}){
     ", qui passe par la racine ",G('dorsale')," du nerf rachidien. Le message nerveux moteur est véhiculé par un neurone ",G('moteur'),
     " qui passe par la racine ",G('ventrale')," du nerf rachidien. Le nerf rachidien est donc un nerf ",G('mixte'),
     ", formé à la fois des prolongements des neurones sensitifs et des neurones moteurs. Le neurone sensitif transmet le message au motoneurone dans la ",G('moelle épinière'),
-    ", au niveau d'une ",G('synapse'),". Comme il n'y en a qu'une, le réflexe myotatique est ",G('monosynaptique'),
+    ", au niveau d'une ",G('synapse'),". Comme il n'y a qu'une synapse dans la moelle, le réflexe myotatique est ",G('monosynaptique'),
     ". Le motoneurone transmet enfin le message aux fibres musculaires au niveau de la ",G('plaque motrice'),"."
   ]});
 })();
