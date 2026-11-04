@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les mutations et leurs conséquences – revise svt</title>
+<link rel="icon" href="../../assets/favicon.png">
+<meta name="description" content="Révisions de SVT (Première spécialité, thème 1, chapitre 2): origine des mutations, dimère de thymine, réparation de l'ADN, types de mutations, allèles et transmission.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light dark;
+  --paper:#F4F8F5; --panel:#FFFFFF; --grid:#E1EAE4; --grid2:#C5D8CD;
+  --ink:#16233B; --ink2:#43536E;
+  --elec:#0E7C66;                       /* couleur du site */
+  --mut:#C2185B; --mut-soft:#FBE4EC;    /* ce qui a muté */
+  --ok:#1B7F4F; --ok-soft:#DFF3E7; --bad:#C8342C; --bad-soft:#FBE5E3;
+  --base-a:#1E6FD0; --base-t:#B77900; --base-g:#23874B; --base-c:#C73E27;
+  --font-d:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-b:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-m:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#10171C; --panel:#18222A; --grid:#1A262D; --grid2:#27383F;
+    --ink:#E7EFF3; --ink2:#A2B4BF;
+    --elec:#4FD3A6;
+    --mut:#FF7BA9; --mut-soft:#3A1826;
+    --ok:#52C98F; --ok-soft:#12301F; --bad:#FF8279; --bad-soft:#3B1B18;
+    --base-a:#6DB6FF; --base-t:#FFC947; --base-g:#5FD08A; --base-c:#FF8A70;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:112px;-webkit-text-size-adjust:100%}
+@media (min-width:980px){html{scroll-padding-top:76px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--font-b)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(60% 55% at 6% 0%,rgba(14,124,102,.14),transparent 70%),radial-gradient(55% 50% at 100% 100%,rgba(217,169,63,.18),transparent 70%),url(../../assets/bg.svg) center/cover no-repeat}
+@media (prefers-color-scheme:dark){body::before{background:radial-gradient(60% 55% at 6% 0%,rgba(79,211,166,.12),transparent 70%),radial-gradient(55% 50% at 100% 100%,rgba(227,193,111,.10),transparent 70%),url(../../assets/bg-dark.svg) center/cover no-repeat}}
+h1,h2,h3{font-family:var(--font-d);line-height:1.1;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1{font-weight:800;font-size:clamp(2.3rem,6.5vw,4rem);letter-spacing:-.03em}
+h2{font-weight:700;font-size:clamp(1.45rem,3vw,1.9rem)}
+h3{font-weight:700;font-size:1.15rem}
+p{margin:0}
+a{color:inherit}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+@media (min-width:700px){.wrap{width:min(1100px,100% - 64px)}}
+.col{max-width:860px;display:flex;flex-direction:column;gap:22px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--paper);padding:.6em 1em;border-radius:8px;z-index:50}
+.skip:focus{top:8px}
+:focus-visible{outline:3px solid var(--elec);outline-offset:2px;border-radius:4px}
+
+/* barre du haut, comme les autres chapitres */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1.5px solid var(--ink)}
+.top .wrap{display:flex;align-items:center;gap:18px;min-height:56px;flex-wrap:wrap;padding-block:6px 0}
+.brand{font:700 1rem var(--font-d);white-space:nowrap;margin-right:auto;color:var(--ink);text-decoration:none}
+.nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;order:3;flex:1 1 100%}
+.nav::-webkit-scrollbar{display:none}
+.nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem;padding:.55em .8em;white-space:nowrap;border-radius:6px;background:linear-gradient(var(--elec),var(--elec)) no-repeat 0 100%/0 3px;transition:background-size .2s}
+.nav a:hover,.nav a[aria-current="true"]{background-size:100% 3px}
+.prog{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:700;white-space:nowrap;text-decoration:none;color:var(--ink)}
+.prog .bar{width:84px;height:10px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--panel)}
+.prog .bar i{display:block;height:100%;width:calc(var(--p,0)*100%);background:var(--ok);transition:width .4s}
+@media (min-width:980px){
+  .top .wrap{flex-wrap:nowrap;padding-block:0}
+  .nav{order:0;flex:0 1 auto}
+  .brand{margin-right:12px}
+  .prog{margin-left:auto}
+}
+
+/* en-tête du chapitre */
+.hero{padding-top:clamp(28px,6vw,64px);display:flex;flex-direction:column;gap:14px}
+.kicker{font-weight:700;color:var(--ink2)}
+.hero h1{max-width:16ch}
+.lead{color:var(--ink2);font-size:1.15rem;max-width:56ch}
+
+/* cartes de section */
+main .col{padding-top:clamp(28px,5vw,48px)}
+section.card{background:var(--panel);border:1.5px solid var(--ink);border-radius:12px;padding:clamp(18px,3vw,28px);display:flex;flex-direction:column;gap:16px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:640px){.grid2,.grid3{grid-template-columns:minmax(0,1fr)}}
+.box{background:var(--paper);border:1.5px solid var(--grid2);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.box.accent{background:color-mix(in srgb,var(--elec) 12%,var(--panel));border-color:color-mix(in srgb,var(--elec) 45%,var(--panel))}
+.box.mut{background:var(--mut-soft);border-color:color-mix(in srgb,var(--mut) 45%,var(--panel))}
+.tag{font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.key{background:color-mix(in srgb,var(--elec) 12%,var(--panel));border-left:4px solid var(--elec);border-radius:0 10px 10px 0;padding:12px 16px}
+.key b{color:var(--ink)}
+ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+dfn{font-style:normal;font-weight:700;border-bottom:2.5px solid var(--elec)}
+.note{color:var(--ink2)}
+
+/* le chapitre en cinq étapes */
+.chain{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.chain li{position:relative;background:var(--paper);border:1.5px solid var(--grid2);border-radius:10px;padding:12px;font-size:.92rem;line-height:1.45}
+.chain li b{display:block;font-family:var(--font-d);font-size:1rem;margin-bottom:4px}
+.chain li:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--elec);font-weight:700;z-index:1;background:var(--panel);border-radius:50%;width:18px;height:18px;line-height:18px;text-align:center;font-size:.85rem}
+.chain li.hl{background:var(--mut-soft);border-color:color-mix(in srgb,var(--mut) 45%,var(--panel))}
+@media(max-width:760px){
+  .chain{grid-template-columns:minmax(0,1fr)}
+  .chain li:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-15px;transform:translateX(-50%)}
+}
+
+/* séquences A/T/G/C */
+.seq{display:flex;flex-wrap:wrap;gap:3px;align-items:center}
+.seqrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.seqlabel{width:80px;font-size:.85rem;color:var(--ink2);font-weight:700;flex:none}
+.b{width:28px;height:32px;display:inline-grid;place-items:center;font:600 .95rem var(--font-m);border-radius:6px;border:1.5px solid var(--bc);background:color-mix(in srgb,var(--bc) 16%,var(--panel));color:var(--ink)}
+.b.A{--bc:var(--base-a)}.b.T{--bc:var(--base-t)}.b.G{--bc:var(--base-g)}.b.C{--bc:var(--base-c)}
+.b.gap{border-style:dashed;border-color:var(--grid2);background:transparent;color:var(--ink2)}
+.b.chg{box-shadow:0 0 0 3px var(--mut)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;font-size:.85rem;color:var(--ink2);align-items:center}
+.legend .b{width:22px;height:24px;font-size:.78rem}
+.seqwrap{overflow-x:auto;padding:6px 4px 8px;display:flex;flex-direction:column;gap:8px}
+
+/* boutons du type de mutation : contrôle segmenté du site */
+.seg{display:inline-flex;flex-wrap:wrap;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;align-self:flex-start}
+.seg button{font:700 1rem var(--font-b);color:var(--ink);background:var(--panel);border:0;padding:.55em 1em;min-height:44px;cursor:pointer}
+.seg button+button{border-left:1.5px solid var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg button:focus-visible{outline:3px solid var(--elec);outline-offset:-3px}
+
+/* dimère de thymine */
+.dimer{display:flex;align-items:center;flex-wrap:wrap;row-gap:8px;padding-top:18px}
+.dimer .link{width:34px;height:0;border-top:3px solid var(--mut);position:relative}
+.dimer .link::after{content:"liaison";position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:.75rem;color:var(--mut);font-weight:700;white-space:nowrap}
+.dimer .dim{margin-left:12px;font-size:.92rem;color:var(--ink2)}
+
+/* fréquence d'un allèle */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-r{display:grid;grid-template-columns:140px minmax(0,1fr) 62px;gap:10px;align-items:center;font-size:.95rem}
+.bar-r .track{height:18px;background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden}
+.bar-r .fill{height:100%;background:var(--elec)}
+.bar-r .v{font:600 .9rem var(--font-m);text-align:right}
+@media(max-width:480px){.bar-r{grid-template-columns:minmax(0,1fr) 58px}.bar-r .track{grid-column:1/-1;order:3}}
+
+/* échiquier de croisement */
+.scroll{overflow-x:auto}
+.punnett{border-collapse:separate;border-spacing:6px;margin:0 auto;font-size:.95rem}
+.punnett th{font:600 1rem var(--font-m);color:var(--ink2)}
+.punnett td{width:112px;height:66px;text-align:center;border-radius:8px;border:1.5px solid var(--grid2);background:var(--paper);padding:4px}
+.punnett td b{display:block;font:600 1.05rem var(--font-m)}
+.punnett td span{font-size:.8rem;color:var(--ink2)}
+.punnett td.sick{background:var(--mut-soft);border-color:var(--mut)}
+.punnett td.sick span{color:var(--mut);font-weight:700}
+
+/* quiz */
+#quizbox{display:flex;flex-direction:column;gap:18px}
+.q{display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1.5px solid var(--grid2)}
+.q:first-of-type{border-top:0;padding-top:0}
+.q .stem{font-weight:700}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;font:400 1rem/1.4 var(--font-b);padding:10px 14px;min-height:44px;border:1.5px solid var(--grid2);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok);font-weight:700}
+.opt.bad{background:var(--bad-soft);border-color:var(--bad)}
+.fb{font-size:.95rem;color:var(--ink2);padding:10px 14px;border-radius:8px;background:var(--paper);border:1.5px solid var(--grid2)}
+.score{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font:700 1.15rem var(--font-d);padding-top:14px;border-top:1.5px solid var(--ink)}
+.btn{font:700 1rem var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.6em 1.05em;cursor:pointer;min-height:44px;transition:background .15s,color .15s}
+.btn:hover{background:var(--ink);color:var(--paper)}
+
+/* objectifs */
+.checks{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+.checks label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--grid2);border-radius:10px;background:var(--paper);cursor:pointer}
+.checks label:hover{border-color:var(--ink)}
+.checks input{margin-top:4px;width:20px;height:20px;accent-color:var(--ok);flex:none}
+.checks input:checked+span{color:var(--ink2);text-decoration:line-through}
+.progress{font-size:.95rem;color:var(--ink2);font-weight:700}
+
+footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);padding:22px 0 40px;color:var(--ink2);background:var(--paper)}
+@media(prefers-reduced-motion:no-preference){.fill{transition:width .6s ease}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span aria-hidden="true">←</span> Première</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#bref">En bref</a>
+      <a href="#uv">UV et ADN</a>
+      <a href="#replic">Réplication</a>
+      <a href="#repar">Réparation</a>
+      <a href="#types">Types</a>
+      <a href="#alleles">Allèles</a>
+      <a href="#transm">Transmission</a>
+      <a href="#induites">Induites</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#savoir">Je dois savoir</a>
+    </nav>
+    <a class="prog" href="#savoir" title="Objectifs maîtrisés">
+      <span id="prog-text">0 sur 7</span>
+      <span class="bar" aria-hidden="true"><i id="prog-bar"></i></span>
+      <span class="sr">objectifs maîtrisés</span>
+    </a>
+  </div>
+</header>
+
+<main id="contenu">
+<div class="wrap">
+
+<div class="hero">
+  <p class="kicker">Thème 1 · La Terre, la vie et l'organisation du vivant · Chapitre 2</p>
+  <h1>Les mutations et leurs conséquences</h1>
+  <p class="lead">Ce qu'il faut savoir pour expliquer d'où vient une mutation, ce qu'elle change et ce qu'elle devient. Lis, teste-toi avec le quiz, puis coche ce que tu maîtrises.</p>
+</div>
+
+<div class="col">
+
+<section class="card" id="bref" aria-labelledby="h-bref">
+  <h2 id="h-bref">Le chapitre en cinq étapes</h2>
+  <p>Une <dfn>mutation</dfn> est une modification de la séquence d'ADN. Elle change l'information génétique de l'individu.</p>
+  <ol class="chain">
+    <li><b>Une cause</b>Agent mutagène (UV, rayons X, produits chimiques) ou erreur de l'ADN polymérase.</li>
+    <li><b>Une réparation</b>Des enzymes corrigent la plupart des erreurs. Certaines leur échappent.</li>
+    <li class="hl"><b>Une mutation</b>La séquence d'ADN est modifiée : substitution, délétion ou addition.</li>
+    <li><b>Un effet</b>Protéine modifiée, donc phénotype plus ou moins touché (parfois un cancer).</li>
+    <li><b>Un devenir</b>Cellule germinale : transmission possible et nouvel allèle dans la population.</li>
+  </ol>
+  <p class="key"><b>À retenir :</b> la mutation est peu fréquente pour un nucléotide donné, mais comme une cellule en contient énormément et que les cellules se divisent sans cesse, c'est un phénomène banal auquel aucun être vivant n'échappe.</p>
+</section>
+
+<section class="card" id="uv" aria-labelledby="h-uv">
+  <h2 id="h-uv">Les UV augmentent la fréquence des mutations</h2>
+  <p>Expérience sur la levure <i>Saccharomyces cerevisiae</i>, un champignon unicellulaire, avec deux souches Ade2.</p>
+  <div class="grid2">
+    <div class="box"><span class="tag">Souche sauvage Ade2+</span><p>Synthétise l'adénine. Ses colonies sont de couleur <b>crème</b>.</p></div>
+    <div class="box mut"><span class="tag">Souche mutante Ade2−</span><p>Ne synthétise pas l'adénine : le produit intermédiaire AIR n'est pas transformé en CAIR. Il s'accumule, s'oxyde et donne un pigment : colonies <b>rouges</b>.</p></div>
+  </div>
+  <div class="grid2">
+    <div class="box"><span class="tag">Effet létal</span><p>Plus l'irradiation dure, plus le nombre total de colonies diminue.</p></div>
+    <div class="box"><span class="tag">Effet mutagène</span><p>Plus l'irradiation dure, plus le nombre de colonies mutantes augmente.</p></div>
+  </div>
+  <h3>Au niveau moléculaire : le dimère de thymine</h3>
+  <p>Sous l'action des UV, des liaisons se forment entre nucléotides adjacents, par exemple T-T (aussi C-C ou T-C). La double hélice se déforme.</p>
+  <div class="seqwrap"><div class="dimer" role="img" aria-label="Deux thymines adjacentes reliées par une liaison anormale">
+    <span class="b A">A</span><span class="b T">T</span><span class="link"></span><span class="b T">T</span><span class="b G">G</span>
+    <span class="dim">dimère de thymine : distorsion de la double hélice</span></div></div>
+  <ul>
+    <li><b>Rayons X :</b> cassures de la molécule d'ADN.</li>
+    <li><b>Agents chimiques :</b> modifient les nucléotides, qui n'arrivent plus à s'apparier avec leurs complémentaires.</li>
+  </ul>
+  <p class="note">Au soleil, les cellules de la couche superficielle de la peau subissent plus de mutations : le risque de cancérisation augmente (mélanome).</p>
+</section>
+
+<section class="card" id="replic" aria-labelledby="h-replic">
+  <h2 id="h-replic">Des erreurs de réplication</h2>
+  <p>Les mutations apparaissent lors de la réplication de l'ADN, pendant la division cellulaire. L'ADN polymérase ouvre la double hélice et copie les deux brins en ajoutant des nucléotides : A en face de T, G en face de C, et inversement.</p>
+  <div class="grid3">
+    <div class="box"><span class="tag">1 · Blocage</span><p>Un dimère de thymine peut arrêter la progression de l'ADN polymérase.</p></div>
+    <div class="box"><span class="tag">2 · Le plus souvent</span><p>La réplication s'arrête et la cellule meurt.</p></div>
+    <div class="box mut"><span class="tag">3 · Parfois</span><p>La polymérase continue mais se trompe, par exemple une cytosine en face d'une thymine : c'est une mutation.</p></div>
+  </div>
+</section>
+
+<section class="card" id="repar" aria-labelledby="h-repar">
+  <h2 id="h-repar">Un système de réparation</h2>
+  <p>La plupart des erreurs de réplication sont réparées par des <dfn>systèmes enzymatiques</dfn>. Certaines erreurs y échappent et deviennent des mutations.</p>
+  <div class="box accent"><span class="tag">Exemple : Xeroderma pigmentosum</span><p>Maladie génétique dans laquelle l'une des <b>8 enzymes</b> qui reconnaissent ou réparent l'ADN abîmé est elle-même mutée. Les dégâts causés par les UV ne sont plus réparés.</p></div>
+</section>
+
+<section class="card" id="types" aria-labelledby="h-types">
+  <h2 id="h-types">Les trois types de mutations ponctuelles</h2>
+  <p>Choisis un type : la séquence mutée s'affiche sous la séquence d'origine. L'encadré rose marque ce qui a changé.</p>
+  <div class="seg" role="group" aria-label="Type de mutation">
+    <button type="button" data-k="sub" aria-pressed="true">Substitution</button>
+    <button type="button" data-k="del" aria-pressed="false">Délétion</button>
+    <button type="button" data-k="add" aria-pressed="false">Addition</button>
+  </div>
+  <div class="seqwrap" id="seqdemo" aria-live="polite"></div>
+  <p id="seqtxt" class="key"></p>
+  <div class="legend"><span>Bases :</span><span class="b A">A</span><span class="b T">T</span><span class="b G">G</span><span class="b C">C</span></div>
+  <h3>Des conséquences variables</h3>
+  <p>Les effets sur le phénotype dépendent de la <b>nature</b> de la mutation, de sa <b>localisation</b> et du <b>rôle du gène</b> concerné. Si la séquence d'acides aminés d'une protéine change, sa fonction peut être altérée : le phénotype cellulaire puis macroscopique est plus ou moins touché. Certaines mutations sont à l'origine de cancers. Les mutations peuvent aussi être plus étendues qu'un seul nucléotide.</p>
+</section>
+
+<section class="card" id="alleles" aria-labelledby="h-alleles">
+  <h2 id="h-alleles">L'origine de la diversité allélique</h2>
+  <p>Un gène existe sous plusieurs versions, les <dfn>allèles</dfn>. Ils ne diffèrent que par quelques nucléotides et se sont formés par mutation, au hasard : leur apparition ne répond à aucune nécessité.</p>
+  <div class="grid2">
+    <div class="box"><span class="tag">Gène ABO</span><p><b>3 allèles</b> : A, B et O.</p></div>
+    <div class="box"><span class="tag">Gène HLA-B (groupe tissulaire, rejet de greffe)</span><p><b>563 allèles.</b></p></div>
+  </div>
+  <p>La diversité existe à plusieurs échelles. Dans une population, les individus n'ont pas tous les mêmes allèles. D'une population à l'autre, la fréquence d'un allèle change :</p>
+  <div class="bars" role="img" aria-label="Fréquence de l'allèle A : 26,4 % en France, 0 % chez les Indiens du Pérou">
+    <div class="bar-r"><span>France</span><div class="track"><div class="fill" style="width:88%"></div></div><span class="v">26,4 %</span></div>
+    <div class="bar-r"><span>Indiens du Pérou</span><div class="track"><div class="fill" style="width:0%"></div></div><span class="v">0 %</span></div>
+  </div>
+  <p class="note">Fréquence de l'allèle A du gène ABO. Échelle de 0 à 30 %.</p>
+  <p>Certaines mutations peuvent contribuer à l'apparition de nouvelles espèces.</p>
+</section>
+
+<section class="card" id="transm" aria-labelledby="h-transm">
+  <h2 id="h-transm">La transmission des mutations</h2>
+  <div class="grid2">
+    <div class="box"><span class="tag">Cellule somatique</span><p>Toutes les cellules du corps sauf les cellules germinales. La mutation reste dans le <b>clone</b> issu de la cellule mutée (par exemple des cellules de peau). Elle n'est pas transmise à la descendance.</p></div>
+    <div class="box mut"><span class="tag">Cellule germinale</span><p>Cellule à l'origine des gamètes (ovocytes, spermatozoïdes). La mutation est <b>potentiellement héréditaire</b> et peut causer une maladie génétique (ex. Xeroderma pigmentosum).</p></div>
+  </div>
+  <h3>Calculer un risque : la médecine prédictive</h3>
+  <p>Elle prend en compte trois choses :</p>
+  <ul>
+    <li><b>Le nombre de gènes :</b> beaucoup de maladies sont <dfn>monogéniques</dfn> (un seul gène muté).</li>
+    <li><b>Le chromosome porteur :</b> un autosome (autre que la paire de chromosomes sexuels, ou gonosomes).</li>
+    <li><b>Le mode de transmission :</b> récessif ou dominant.</li>
+  </ul>
+  <div class="grid2">
+    <div class="box"><span class="tag">Mode récessif (le plus courant)</span><p>Seuls les <b>homozygotes</b> pour l'allèle muté sont atteints. Les hétérozygotes sont des <b>porteurs sains</b>. Ex. : mucoviscidose, Xeroderma pigmentosum.</p></div>
+    <div class="box"><span class="tag">Mode dominant</span><p>Un seul exemplaire de l'allèle muté suffit pour avoir la maladie.</p></div>
+  </div>
+  <h3>Exemple : deux parents porteurs sains</h3>
+  <p>Allèle normal <b>N</b>, allèle muté <b>m</b> (récessif). Chaque parent est <b>Nm</b>.</p>
+  <div class="scroll"><table class="punnett" aria-label="Échiquier de croisement Nm par Nm">
+    <tr><th></th><th>N</th><th>m</th></tr>
+    <tr><th>N</th><td><b>NN</b><span>sain</span></td><td><b>Nm</b><span>porteur sain</span></td></tr>
+    <tr><th>m</th><td><b>mN</b><span>porteur sain</span></td><td class="sick"><b>mm</b><span>atteint</span></td></tr>
+  </table></div>
+  <p class="key"><b>Risque d'avoir un enfant atteint : 1 sur 4, soit 25 %.</b> Chaque enfant a 1 chance sur 2 d'être porteur sain.</p>
+</section>
+
+<section class="card" id="induites" aria-labelledby="h-induites">
+  <h2 id="h-induites">Les mutations induites : créer des mutants</h2>
+  <p>Par génie génétique, on mute volontairement le génome de souris de laboratoire pour comprendre le rôle de gènes dans le développement et la physiologie. Ces modèles servent à étudier le cancer, les maladies cardiovasculaires, les problèmes neurologiques, le diabète et l'obésité.</p>
+  <div class="box accent"><span class="tag">Exemple</span><p>Des souris mutantes pour un gène présentent la même résistance à l'insuline et le même défaut de sécrétion d'insuline que les personnes atteintes de diabète de type 2.</p></div>
+</section>
+
+<section class="card" id="quiz" aria-labelledby="h-quiz">
+  <h2 id="h-quiz">Quiz : teste-toi</h2>
+  <div id="quizbox"></div>
+  <div class="score"><span id="score" aria-live="polite">Score : 0 / 8</span><button class="btn" id="reset" type="button">Recommencer</button></div>
+</section>
+
+<section class="card" id="savoir" aria-labelledby="h-savoir">
+  <h2 id="h-savoir">Ce que je dois savoir</h2>
+  <p class="progress" id="prog"></p>
+  <ul class="checks" id="checks"></ul>
+</section>
+
+</div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">Révisions de Première, thème 1, chapitre 2 : les mutations et leurs conséquences. Page rédigée d'après le bilan du chapitre et la fiche mémo « mutation ». <a href="../../index.html">Retour à l'accueil de revise svt</a>.</div>
+</footer>
+
+<noscript><p class="wrap">Les séquences animées, le quiz et la liste d'objectifs ont besoin de JavaScript.</p></noscript>
+
+<script>
+/* --- types de mutation --- */
+(function(){
+  var ORIG="ATGCCATTGCAG".split("");
+  var el=document.getElementById("seqdemo"), txt=document.getElementById("seqtxt");
+  var btns=document.querySelectorAll("#types .seg button");
+  function chip(c,chg){var s=document.createElement("span");
+    s.className="b "+(c==="-"?"gap":c)+(chg?" chg":"");s.textContent=c==="-"?"·":c;return s;}
+  function row(label,cells,flags){var r=document.createElement("div");r.className="seqrow";
+    var l=document.createElement("span");l.className="seqlabel";l.textContent=label;r.appendChild(l);
+    var q=document.createElement("div");q.className="seq";
+    cells.forEach(function(c,i){q.appendChild(chip(c,flags[i]));});r.appendChild(q);return r;}
+  var T={
+    sub:{o:ORIG.slice(),m:ORIG.map(function(c,i){return i===4?"G":c;}),f:4,
+      t:"<b>Substitution :</b> un nucléotide est remplacé par un autre (ici C devient G). La longueur de la séquence ne change pas."},
+    del:{o:ORIG.slice(),m:ORIG.map(function(c,i){return i===4?"-":c;}),f:4,
+      t:"<b>Délétion :</b> un nucléotide est perdu (ici un C disparaît). La séquence est plus courte."},
+    add:{o:ORIG.slice(0,5).concat(["-"],ORIG.slice(5)),m:ORIG.slice(0,5).concat(["C"],ORIG.slice(5)),f:5,
+      t:"<b>Addition :</b> un nucléotide est ajouté (ici un C en plus). La séquence est plus longue."}
+  };
+  function show(k){
+    var d=T[k];el.textContent="";
+    el.appendChild(row("Origine",d.o,d.o.map(function(){return false;})));
+    el.appendChild(row("Mutée",d.m,d.m.map(function(_,i){return i===d.f;})));
+    txt.innerHTML=d.t;
+    btns.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.k===k?"true":"false");});
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){show(b.dataset.k);});});
+  show("sub");
+})();
+
+/* --- quiz --- */
+(function(){
+  var Q=[
+    {q:"Chez la levure, plus la durée d'irradiation aux UV augmente, plus…",o:["le nombre de colonies mutantes augmente","le nombre total de colonies augmente","les colonies deviennent toutes crème","la réplication devient plus fidèle"],a:0,e:"Les UV ont un effet mutagène (plus de colonies mutantes) et un effet létal (moins de colonies au total)."},
+    {q:"Qu'est-ce qu'un dimère de thymine ?",o:["Une thymine remplacée par une cytosine","Une liaison anormale entre deux nucléotides adjacents T-T, qui déforme la double hélice","Une enzyme de réparation de l'ADN","Deux molécules d'ADN identiques"],a:1,e:"Il se forme sous l'action des UV et modifie la forme de la double hélice."},
+    {q:"Quand un dimère de thymine bloque l'ADN polymérase, que se passe-t-il le plus souvent ?",o:["La réplication continue sans erreur","La réplication s'arrête et la cellule meurt","Une nouvelle espèce apparaît","L'ADN est immédiatement détruit par les rayons X"],a:1,e:"Dans certains cas seulement, la polymérase continue en commettant des erreurs d'appariement."},
+    {q:"Dans le Xeroderma pigmentosum…",o:["un agent chimique remplace l'ADN polymérase","une des 8 enzymes de reconnaissance ou de réparation est mutée","la maladie est toujours dominante","les cellules ne se divisent plus"],a:1,e:"Les erreurs ne sont plus réparées correctement."},
+    {q:"Séquence d'origine : ATGCCA. Séquence mutée : ATGCA. Quel type de mutation ?",o:["Substitution","Addition","Délétion","Aucune mutation"],a:2,e:"Un C a disparu : la séquence est plus courte, c'est une délétion."},
+    {q:"Une mutation survient dans une cellule de peau. Elle sera…",o:["transmise à tous les enfants","présente seulement dans le clone issu de cette cellule","transmise par les spermatozoïdes","réparée automatiquement à 100 %"],a:1,e:"Seule une mutation dans une cellule germinale est potentiellement héréditaire."},
+    {q:"Comment les 563 allèles du gène HLA-B se sont-ils formés ?",o:["Par mutation, de manière aléatoire","Pour répondre à un besoin des greffés","Par réparation de l'ADN","Par transmission des cellules somatiques"],a:0,e:"Les allèles ne diffèrent que par quelques nucléotides et leur apparition ne répond à aucune nécessité."},
+    {q:"Deux parents hétérozygotes (porteurs sains) d'une maladie récessive ont un enfant. Quel est le risque qu'il soit atteint ?",o:["0 %","1 sur 4 (25 %)","1 sur 2 (50 %)","100 %"],a:1,e:"Seul le génotype homozygote muté (mm) est atteint : 1 case sur 4 de l'échiquier."}
+  ];
+  var box=document.getElementById("quizbox"),scoreEl=document.getElementById("score"),score=0,done=0;
+  function build(){
+    box.textContent="";score=0;done=0;scoreEl.textContent="Score : 0 / "+Q.length;
+    Q.forEach(function(it,qi){
+      var d=document.createElement("div");d.className="q";
+      var p=document.createElement("p");p.className="stem";p.textContent=(qi+1)+". "+it.q;d.appendChild(p);
+      var ow=document.createElement("div");ow.className="opts";
+      var fb=document.createElement("p");fb.className="fb";fb.hidden=true;
+      it.o.forEach(function(t,oi){
+        var b=document.createElement("button");b.type="button";b.className="opt";b.textContent=t;
+        b.addEventListener("click",function(){
+          ow.querySelectorAll("button").forEach(function(x,xi){x.disabled=true;if(xi===it.a)x.classList.add("ok");});
+          var good=oi===it.a;if(!good)b.classList.add("bad");
+          if(good)score++;done++;
+          fb.textContent=(good?"Bonne réponse. ":"Pas tout à fait. ")+it.e;fb.hidden=false;
+          scoreEl.textContent="Score : "+score+" / "+Q.length+(done===Q.length?" · terminé":"");
+        });
+        ow.appendChild(b);
+      });
+      d.appendChild(ow);d.appendChild(fb);box.appendChild(d);
+    });
+  }
+  document.getElementById("reset").addEventListener("click",build);
+  build();
+})();
+
+/* --- objectifs (mémorisés dans le navigateur) --- */
+(function(){
+  var items=["Expliquer l'origine d'une mutation et la définir",
+    "Faire la différence entre une mutation induite et une mutation spontanée",
+    "Connaître les trois types de mutation (substitution, délétion, addition)",
+    "Expliquer la formation d'un dimère de thymine et ses conséquences",
+    "Expliquer le système de réparation de l'ADN",
+    "Expliquer l'origine de la variabilité allélique",
+    "Expliquer le devenir d'une mutation (somatique ou germinale)"];
+  var KEY="svt-1-mutations:objectifs",state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){state={};}
+  var ul=document.getElementById("checks"),prog=document.getElementById("prog");
+  var topTxt=document.getElementById("prog-text"),topBar=document.getElementById("prog-bar");
+  function upd(){
+    var n=items.filter(function(_,i){return state[i];}).length;
+    prog.textContent=n+" objectif"+(n>1?"s":"")+" sur "+items.length+" maîtrisé"+(n>1?"s":"");
+    topTxt.textContent=n+" sur "+items.length;
+    topBar.style.setProperty("--p",n/items.length);
+  }
+  items.forEach(function(t,i){
+    var li=document.createElement("li"),lab=document.createElement("label"),cb=document.createElement("input"),sp=document.createElement("span");
+    cb.type="checkbox";cb.checked=!!state[i];sp.textContent=t;
+    cb.addEventListener("change",function(){state[i]=cb.checked;try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}upd();});
+    lab.appendChild(cb);lab.appendChild(sp);li.appendChild(lab);ul.appendChild(li);
+  });
+  upd();
+})();
+
+/* --- section en cours dans la barre du haut --- */
+(function(){
+  if(!("IntersectionObserver" in window))return;
+  var nav=document.querySelector(".nav"),links=[].slice.call(nav.querySelectorAll("a"));
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      links.forEach(function(a){a.removeAttribute("aria-current");});
+      var a=links.find(function(l){return l.getAttribute("href")==="#"+e.target.id;});
+      if(a){a.setAttribute("aria-current","true");nav.scrollTo({left:a.offsetLeft-nav.offsetLeft-16,behavior:"smooth"});}
+    });
+  },{rootMargin:"-35% 0px -60% 0px"});
+  document.querySelectorAll("section.card").forEach(function(s){io.observe(s);});
+})();
+</script>
+</body>
+</html>
