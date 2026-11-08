@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiche élève – Le cerveau et le mouvement volontaire</title>
+<link rel="icon" href="../../assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="schemas.css">
+<style>
+@page{size:A4;margin:10mm 11mm}
+:root{color-scheme:light;--red:#C1121F}
+*{box-sizing:border-box}
+body{margin:0;background:#E7ECEA;color:#111;font:10.5pt/1.42 "Atkinson Hyperlegible",system-ui,sans-serif}
+.bar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:center;padding:10px 16px;background:#16233B;color:#fff}
+.bar button{font:700 1rem "Atkinson Hyperlegible",sans-serif;background:#fff;color:#16233B;border:0;border-radius:8px;padding:.5em 1em;cursor:pointer}
+.bar a{color:#fff}
+.bar .st{font-size:.95rem}
+.page{width:210mm;min-height:297mm;margin:14px auto;background:#fff;padding:10mm 11mm;box-shadow:0 2px 14px rgba(0,0,0,.18);position:relative}
+@media (max-width:820px){.page{width:auto;min-height:0;margin:10px}}
+@media print{
+  body{background:#fff}
+  .bar{display:none}
+  .page{width:auto;min-height:0;margin:0;padding:0;box-shadow:none;break-after:page}
+  .page:last-child{break-after:auto}
+}
+h1,h2,h3{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;margin:0;line-height:1.15}
+h1{font-size:19pt;font-weight:800}
+h2{font-size:14pt;font-weight:800;margin:0 0 2mm;padding-bottom:1mm;border-bottom:2px solid #111}
+.who{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4mm;margin:3mm 0 4mm;font-weight:700}
+.who span{border-bottom:1px solid #111;padding-bottom:1mm}
+.pb{border:1.4px solid #111;border-radius:6px;padding:2mm 3mm;margin:0 0 3mm;font-weight:700}
+.it{border:1.3px solid #111;border-radius:7px;padding:2.4mm 3mm;margin:0 0 3mm;break-inside:avoid}
+.it>h3{display:flex;gap:2.4mm;align-items:center;font-size:11.5pt;font-weight:700;margin-bottom:1.6mm}
+.n{flex:none;width:7.4mm;height:7.4mm;border-radius:50%;border:1.6px solid #111;display:grid;place-items:center;font:800 10.5pt "Bricolage Grotesque",sans-serif}
+.cols{display:grid;gap:4mm;align-items:start}
+.c2{grid-template-columns:1.1fr 1fr}.c2b{grid-template-columns:1fr 1.25fr}.c3{grid-template-columns:repeat(3,1fr)}
+p{margin:0 0 1.6mm}
+.blank{display:inline-block;min-width:var(--w,34mm);border-bottom:1px dotted #222;line-height:1.25;vertical-align:baseline;padding:0 1mm}
+.blank i,.ansb,.ansc{display:none}
+.corr .blank i{display:inline;color:var(--red);font-weight:700}
+.lines{position:relative;height:calc(var(--n,3) * 7.4mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(7.4mm - 1px),#9aa3a0 calc(7.4mm - 1px),#9aa3a0 7.4mm)}
+.corr .ansb{display:block;position:absolute;inset:0;color:var(--red);font-weight:700;font-style:italic;line-height:7.4mm;font-size:9.8pt;padding-top:.3mm}
+.corr .ansc{display:inline;color:var(--red);font-weight:700}
+table{width:100%;border-collapse:collapse}
+td,th{border:1.2px solid #111;padding:1.6mm 2mm;vertical-align:top;text-align:left}
+th{background:#F1F3F2;font-weight:700}
+.tg td{height:15mm}
+.tg td.h{height:9mm}
+.corr td .ansc{display:block;font-size:9.5pt;line-height:1.3}
+.opts{display:flex;flex-wrap:wrap;gap:.6mm 5mm;margin:0 0 2mm 4mm}
+.opts span{display:inline-block;padding:.2mm 1.6mm;border-radius:10px;border:1.4px solid transparent}
+.corr .opts span.ok{border-color:var(--red);color:var(--red);font-weight:700}
+img.sl{display:block;width:100%;height:auto;border-radius:3px}
+.th6{display:grid;grid-template-columns:repeat(3,46mm);gap:2mm 8mm;justify-content:center}
+.th6 figure{margin:0}
+.th6 figcaption{display:flex;gap:1.6mm;align-items:baseline;font-weight:700;margin-top:1mm}
+.th6 .blank{--w:26mm}
+.tpl{display:grid;grid-template-columns:24mm repeat(3,44mm);gap:1.6mm 6mm;align-items:center;justify-content:center}
+.tpl .h{font-weight:700;font-size:9.5pt}
+.tpl figure{margin:0;position:relative}
+.tpl figcaption{font-size:8.5pt;text-align:center;margin-top:.6mm}
+.tpl svg.mark{position:absolute;inset:0;width:100%;height:auto;aspect-ratio:1;display:none}
+.corr .tpl svg.mark{display:block}
+.mark circle{fill:none;stroke:var(--red);stroke-width:3}
+.small{font-size:9pt;color:#333}
+.sch{max-height:100%}
+.foot{position:absolute;bottom:5mm;right:11mm;font-size:8pt;color:#666}
+@media print{.foot{display:none}}
+.loading{font-style:italic;color:#666}
+</style>
+</head>
+<body>
+<div class="bar"><button type="button" onclick="print()">Imprimer la fiche</button><span class="st" id="st">Préparation des images…</span><a href="index.html">Retour à l'activité</a></div>
+
+<!-- ================= PAGE 1 ================= -->
+<section class="page">
+  <h1 id="titre">Le cerveau et le mouvement volontaire · Fiche élève</h1>
+  <div class="who"><span>Nom, prénom :</span><span>Classe :</span><span>Date :</span></div>
+  <h2>Activité 1 · Les cellules du cerveau</h2>
+  <p class="pb">Problématique : quelles cellules constituent le cerveau et quels sont leurs rôles ?</p>
+
+  <div class="it"><h3><span class="n">1</span>L'encéphale dans la boîte crânienne</h3>
+    <div class="cols" style="grid-template-columns:76mm 1fr">
+      <div id="f-tete"></div>
+      <div>
+        <p><b>Document 1.</b> Légende le schéma (cases 1 à 5).</p>
+        <p style="margin-top:6mm">L'encéphale est formé :</p>
+        <p>du <span class="blank" style="--w:44mm"></span>,</p>
+        <p>du <span class="blank" style="--w:44mm"></span></p>
+        <p>et du <span class="blank" style="--w:40mm"></span>.</p>
+        <p style="margin-top:4mm">Il est prolongé par la <span class="blank" style="--w:34mm"></span>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="it"><h3><span class="n">2</span>Une coupe coronale du cerveau</h3>
+    <p><b>Document 2.</b> Légende la coupe (cases 1 à 5). Sur la page de l'activité, touche chaque repère numéroté.</p>
+    <div id="f-coro" class="loading" style="max-width:150mm;margin:0 auto">Image en préparation…</div>
+    <p style="margin-top:2mm">La substance grise se trouve <span class="blank" style="--w:58mm"></span> et <span class="blank" style="--w:62mm"></span>.</p>
+    <p>La substance blanche se trouve <span class="blank" style="--w:120mm"></span>.</p>
+  </div>
+  <span class="foot">1/6</span>
+</section>
+
+<!-- ================= PAGE 2 ================= -->
+<section class="page">
+  <div class="it"><h3><span class="n">3</span>Au microscope : le cortex et ses neurones</h3>
+    <div class="cols" style="grid-template-columns:52mm 1fr">
+      <div id="f-neur"></div>
+      <div>
+        <p><b>Document 3.</b> Légende le neurone pyramidal (cases 1 à 4).</p>
+        <p style="margin-top:5mm">Au microscope, le cortex est organisé en plusieurs <span class="blank" style="--w:28mm"></span> de neurones dits <span class="blank" style="--w:28mm"></span>.</p>
+        <p>Le cerveau contient environ <span class="blank" style="--w:36mm"></span> de neurones.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="it"><h3><span class="n">4</span>Les cellules gliales</h3>
+    <p>D'après la vidéo et le schéma interactif, complète le tableau.</p>
+    <table class="tg">
+      <tr><th style="width:24mm">Types de cellules</th><td class="h"></td><td class="h"></td><td class="h"></td></tr>
+      <tr><th>Caractéristiques</th><td></td><td></td><td></td></tr>
+      <tr><th>Rôle</th><td></td><td></td><td></td></tr>
+    </table>
+    <div class="cols" style="grid-template-columns:72mm 1fr;margin-top:2mm">
+      <div id="f-gli"></div>
+      <p style="margin-top:6mm"><b>Document 4.</b> Légende les trois cellules gliales (cases 1 à 3).</p>
+    </div>
+  </div>
+
+  <div class="it"><h3><span class="n">5</span>Bilan de l'activité 1</h3>
+    <p>Réponds à la problématique : quelles cellules constituent le cerveau et quels sont leurs rôles ?</p>
+    <div class="lines" style="--n:5"></div>
+  </div>
+  <span class="foot">2/6</span>
+</section>
+
+<!-- ================= PAGE 3 ================= -->
+<section class="page">
+  <h2>Activité 2 · Le cortex moteur et la voie motrice</h2>
+  <p class="pb">Problématique : comment l'exploration du cortex permet-elle de situer les territoires du cerveau à l'origine de la motricité volontaire ?</p>
+
+  <div class="it"><h3><span class="n">6</span>Schéma 1 · Les lobes du cerveau <span class="n" style="margin-left:2mm">12</span></h3>
+    <div class="cols" style="grid-template-columns:112mm 1fr">
+      <div id="f-lat"></div>
+      <div>
+        <p><b>Étape 6.</b> Nomme les quatre lobes et les deux sillons (cases 1 à 6).</p>
+        <p style="margin-top:4mm"><b>Étape 12</b> (après l'IRM). Colorie l'aire motrice primaire. Marque d'une croix le territoire de la main.</p>
+        <p class="small" style="margin-top:4mm">Vue latérale de l'hémisphère gauche.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="it"><h3><span class="n">7</span>L'aire motrice primaire et l'homoncule moteur</h3>
+    <p>Une stimulation électrique d'une zone précise de l'aire motrice primaire provoque <span class="blank" style="--w:70mm"></span>.</p>
+    <p>Une lésion de cette zone provoque <span class="blank" style="--w:80mm"></span>.</p>
+    <p>La carte du corps dessinée sur l'aire motrice primaire s'appelle <span class="blank" style="--w:46mm"></span>.</p>
+    <p>Pourquoi la main occupe-t-elle un si grand territoire ?</p>
+    <div class="lines" style="--n:3"></div>
+  </div>
+
+  <div class="it"><h3><span class="n">8</span>L'IRM : entoure la bonne réponse</h3>
+    <p><b>1.</b> L'IRM est un examen qui :</p>
+    <div class="opts"><span>a) est invasif et irradie le patient</span><span>b) n'est pas invasif et irradie le patient</span><span>c) n'est pas invasif et n'irradie pas le patient</span></div>
+    <p><b>2.</b> L'IRM permet l'exploration du corps en :</p>
+    <div class="opts"><span>a) deux dimensions, comme pour une radiographie</span><span>b) trois dimensions</span></div>
+    <p><b>3.</b> Les images obtenues permettent de faire :</p>
+    <div class="opts"><span>a) des coupes frontales et sagittales uniquement</span><span>b) des coupes frontales, coronales et axiales</span><span>c) des coupes frontales, sagittales et axiales</span></div>
+  </div>
+  <span class="foot">3/6</span>
+</section>
+
+<!-- ================= PAGE 4 ================= -->
+<section class="page">
+  <div class="it"><h3><span class="n">9</span>Les trois plans de coupe</h3>
+    <table>
+      <tr><th style="width:62mm">Plans de coupe</th><th>Type de coupe</th><th>Sens d'exploration : du… vers le…</th></tr>
+      <tr><td rowspan="3" style="padding:1mm"><div id="f-p3"></div></td><td style="height:16mm"><b>1</b> </td><td></td></tr>
+      <tr><td style="height:16mm"><b>2</b> </td><td></td></tr>
+      <tr><td style="height:16mm"><b>3</b> </td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="it"><h3><span class="n">10</span>Reconnaître une coupe</h3>
+    <p>Écris le type de coupe de chaque image : axiale, coronale ou sagittale.</p>
+    <div class="th6" id="f-th6"></div>
+    <div class="cols" style="grid-template-columns:34mm 1fr 1fr;margin-top:3mm;gap:4mm">
+      <img class="sl" id="f-q7" alt="Coupe IRM avec des zones colorées">
+      <div><p><b>6.</b> Cette image est obtenue par :</p><div class="opts"><span>a) IRMd, ou IRM dimensionnelle</span><span>b) IRMf, ou IRM fonctionnelle</span><span>c) IRMfc, ou IRM fausse couleur</span></div></div>
+      <div><p><b>7.</b> Il s'agit d'une coupe :</p><div class="opts"><span>a) axiale (ou transversale)</span><span>b) sagittale</span><span>c) frontale (ou coronale)</span></div></div>
+    </div>
+  </div>
+  <span class="foot">4/6</span>
+</section>
+
+<!-- ================= PAGE 5 ================= -->
+<section class="page">
+  <div class="it"><h3><span class="n">11</span>Localiser l'aire qui commande la main (IRMf, sujet A)</h3>
+    <p>Sur la page de l'activité, affiche chaque coupe (même numéro), puis <b>dessine la zone activée</b> sur les coupes ci-dessous. La gauche du sujet est à gauche de l'image.</p>
+    <div class="tpl" id="f-tpl"></div>
+    <table style="margin-top:3mm">
+      <tr><th style="width:30mm"></th><th>Hémisphère activé</th><th>Lobe activé</th></tr>
+      <tr><th>Main droite</th><td style="height:9mm"></td><td></td></tr>
+      <tr><th>Main gauche</th><td style="height:9mm"></td><td></td></tr>
+    </table>
+    <p style="margin-top:3mm"><b>Sujet B.</b> La zone activée est-elle au même endroit que chez le sujet A ?</p>
+    <div class="lines" style="--n:2"></div>
+    <p style="margin-top:2mm"><b>Interprétation.</b> Mets en relation la région activée et la main qui fait le mouvement.</p>
+    <div class="lines" style="--n:5"></div>
+    <p style="margin-top:2mm"><b>Bonus : la langue.</b> Combien d'hémisphères sont activés ? Où ?</p>
+    <div class="lines" style="--n:2"></div>
+  </div>
+  <span class="foot">5/6</span>
+</section>
+
+<!-- ================= PAGE 6 ================= -->
+<section class="page">
+  <div class="it"><h3><span class="n">13</span>Schéma 2 · La voie de la motricité volontaire</h3>
+    <div class="cols" style="grid-template-columns:1.05fr 1fr;gap:5mm">
+      <div id="f-voie"></div>
+      <div>
+        <p>1. <b>Complète</b> la voie nerveuse qui commande une fibre musculaire d'un muscle de l'<b>hémicorps gauche</b>.</p>
+        <p>2. <b>Représente en entier</b> la voie qui commande une fibre musculaire de l'<b>hémicorps droit</b>.</p>
+        <p class="small">Le faisceau de neurones qui commande les muscles des membres croise la ligne médiane juste en dessous du bulbe rachidien.</p>
+        <p style="margin-top:3mm">3. Pourquoi la commande des mouvements est-elle controlatérale ?</p>
+        <div class="lines" style="--n:5"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="it"><h3><span class="n">14</span>Bilan de l'activité 2</h3>
+    <p>Réponds à la problématique de l'activité 2.</p>
+    <div class="lines" style="--n:6"></div>
+  </div>
+
+  <div class="it"><h3><span class="n">15</span>Devoir : de vraies IRM avec EduAnat2 (sujet 13112)</h3>
+    <table>
+      <tr><th style="width:42mm">Mouvement</th><th>Hémisphère activé</th><th>Comparaison avec le sujet A</th></tr>
+      <tr><td>Main droite</td><td style="height:9mm"></td><td rowspan="2"></td></tr>
+      <tr><td>Main gauche</td><td style="height:9mm"></td></tr>
+    </table>
+  </div>
+  <span class="foot">6/6</span>
+</section>
+
+<script src="cerveau.js"></script>
+<script src="schemas.js"></script>
+<script>
+(()=>{
+'use strict';
+const corr=false;
+if(corr){document.body.classList.add('corr');document.getElementById('titre').textContent='Le cerveau et le mouvement volontaire · Corrigé';document.title='Corrigé – Le cerveau et le mouvement volontaire';}
+const S=Schemas,C=Cerveau,H=C.createHead('A');
+const $=s=>document.querySelector(s);
+$('#f-tete').innerHTML=S.tete({print:true,corr});
+$('#f-neur').innerHTML=S.neuroneFiche({corr});
+$('#f-gli').innerHTML=S.gliales({print:true,corr});
+$('#f-lat').innerHTML=S.cerveauLateral({print:true,corr,motorFill:corr,hand:corr});
+$('#f-p3').innerHTML=S.plans3D({x:0,y:0,z:30,num:true});
+$('#f-voie').innerHTML=S.voieMotrice({mode:'fiche',corr});
+
+function shot(plane,pos,size,opt){
+  const c=document.createElement('canvas');c.width=size;c.height=size;
+  c.getContext('2d').putImageData(C.renderSlice(H,plane,pos,size,size,opt||{}),0,0);
+  return c.toDataURL('image/png');
+}
+const steps=[];
+// document 2 : coupe coronale à légender
+steps.push(()=>{
+  const FOV=170,ZC=8,Y=2,src=shot('co',Y,560,{mode:'print',fov:FOV,zc:ZC});
+  const P=[[1,44,62,'','r'],[2,0,48,'','r'],[3,4,21.5,'','r'],[4,-24,30,'','l'],[5,-62,24,'','l'],[6,24,2,'Centres nerveux profonds','r']];
+  const X0=172,SZ=340,W=740,Hh=350;
+  let s=`<svg class="sch pr" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Coupe coronale de cerveau à légender"><image href="${src}" x="${X0}" y="5" width="${SZ}" height="${SZ}"/>`;
+  const L=P.filter(p=>p[4]==='l'),R=P.filter(p=>p[4]==='r');
+  const place=(arr,side)=>arr.forEach((p,i)=>{
+    const [u,v]=C.xyzToPlane('co',p[1],Y,p[2],FOV,ZC);const px=X0+u*SZ,py=5+v*SZ;
+    const by=side==='l'?110+i*90:30+i*82, bx=side==='l'?4:X0+SZ+14, bw=side==='l'?156:208;
+    const given=p[0]===6;
+    s+=`<line class="lead" x1="${side==='l'?bx+bw:bx}" y1="${by+14}" x2="${px.toFixed(1)}" y2="${py.toFixed(1)}"/><circle class="dot" cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="3"/>`;
+    s+=`<g class="lbox"><rect x="${bx}" y="${by}" width="${bw}" height="28" rx="4"/><text class="lnum" x="${bx-3}" y="${by-3}" text-anchor="${side==='l'?'start':'end'}">${given?'':p[0]}</text>`;
+    if(given) s+=`<text class="given" x="${bx+8}" y="${by+19}">${p[3]}</text>`;
+    else if(corr) s+=`<text class="ans" x="${bx+6}" y="${by+19}" style="font-size:12px">${p[3]}</text>`;
+    s+='</g>';
+  });
+  place(L,'l');place(R,'r');
+  $('#f-coro').classList.remove('loading');$('#f-coro').innerHTML=s+'</svg>';
+});
+// étape 10 : six coupes à reconnaître
+steps.push(()=>{
+  const IM=[['ax',12],['sa',-4],['co',-14],['co',34],['ax',48],['sa',-42]];
+  $('#f-th6').innerHTML=IM.map(([p,pos],i)=>`<figure><img class="sl" src="${shot(p,pos,300)}" alt="Image ${'ABCDEF'[i]}"><figcaption>${'ABCDEF'[i]}. <span class="blank"></span></figcaption></figure>`).join('');
+  $('#f-q7').src=shot('ax',24,300,{task:'tg',thr:.3});
+});
+// étape 11 : coupes à compléter
+steps.push(()=>{
+  const rh=H.ACT.rh[0],lh=H.ACT.lh[0];
+  const rows=[['Main droite',[['ax',57,'Axiale n° 167'],['co',-11,'Coronale n° 99'],['sa',-39,'Sagittale n° 71']],rh],['Main gauche',[['ax',57,'Axiale n° 167'],['co',-11,'Coronale n° 99'],['sa',38,'Sagittale n° 148']],lh]];
+  let h='';
+  rows.forEach(([t,views,a])=>{
+    h+=`<div class="h">${t}</div>`;
+    views.forEach(([p,pos,cap])=>{
+      const [u,v]=C.xyzToPlane(p,a[0],a[1],a[2]);
+      h+=`<figure><img class="sl" src="${shot(p,pos,360,{mode:'print'})}" alt="Coupe ${cap}"><svg class="mark" viewBox="0 0 1 1"><circle cx="${u.toFixed(3)}" cy="${v.toFixed(3)}" r=".045" style="stroke-width:.012"/></svg><figcaption>${cap}</figcaption></figure>`;
+    });
+  });
+  $('#f-tpl').innerHTML=h;
+});
+let i=0;
+(function run(){ if(i<steps.length){steps[i++]();setTimeout(run,20);} else $('#st').textContent=corr?'Corrigé prêt à imprimer':'Fiche prête à imprimer (A4)'; })();
+// typographie : espaces insécables
+const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);const a=[];while(w.nextNode())a.push(w.currentNode);
+a.forEach(n=>{const p=n.parentNode&&n.parentNode.nodeName;if(p==='SCRIPT'||p==='STYLE')return;const v=n.nodeValue.replace(/ ([:;?!»])/g,' $1').replace(/« /g,'« ').replace(/'/g,'’');if(v!==n.nodeValue)n.nodeValue=v;});
+})();
+</script>
+</body>
+</html>
