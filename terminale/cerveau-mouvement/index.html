@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le cerveau et le mouvement volontaire – revise svt</title>
+<link rel="icon" href="../../assets/favicon.png">
+<meta name="description" content="Activités de SVT (Terminale spécialité) : les cellules du cerveau, le cortex moteur et la voie motrice. Photos et IRM à explorer, avec une fiche élève à compléter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light dark;
+  --paper:#F4F8F5; --panel:#FFFFFF; --grid2:#C5D8CD;
+  --ink:#16233B; --ink2:#43536E;
+  --elec:#0E7C66; --pin:#C1121F; --ok:#1B7F4F; --bad:#C8342C;
+  --s-col:#1D55E0; --m-col:#D9480F;
+  --font-d:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-b:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#10171C; --panel:#18222A; --grid2:#27383F; --ink:#E7EFF3; --ink2:#A2B4BF; --elec:#4FD3A6; --pin:#FF5C66; --ok:#52C98F; --bad:#FF8279; --s-col:#7BA2FF; --m-col:#FF8A5C}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px;-webkit-text-size-adjust:100%}
+@media (max-width:1099px){html{scroll-padding-top:112px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--font-b)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(60% 55% at 6% 0%,rgba(14,124,102,.14),transparent 70%),radial-gradient(55% 50% at 100% 100%,rgba(217,169,63,.18),transparent 70%),url(../../assets/bg.svg) center/cover no-repeat}
+@media (prefers-color-scheme:dark){body::before{background:radial-gradient(60% 55% at 6% 0%,rgba(79,211,166,.12),transparent 70%),radial-gradient(55% 50% at 100% 100%,rgba(227,193,111,.10),transparent 70%),url(../../assets/bg-dark.svg) center/cover no-repeat}}
+h1,h2,h3{font-family:var(--font-d);line-height:1.1;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1{font-weight:800;font-size:clamp(2.3rem,6.6vw,4.2rem);letter-spacing:-.03em}
+h2{font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem)}
+h3{font-weight:700;font-size:clamp(1.3rem,2.6vw,1.65rem)}
+p{margin:0 0 .9em}
+a{color:inherit}
+.wrap{width:min(1140px,100% - 32px);margin-inline:auto}
+@media (min-width:700px){.wrap{width:min(1140px,100% - 64px)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--paper);padding:.6em 1em;border-radius:8px;z-index:50}
+.skip:focus{top:8px}
+:focus-visible{outline:3px solid var(--elec);outline-offset:2px;border-radius:4px}
+
+/* barre du haut */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1.5px solid var(--ink)}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:56px;flex-wrap:wrap;padding-block:6px 0}
+.brand{font:700 1rem var(--font-d);white-space:nowrap;margin-right:auto;color:var(--ink);text-decoration:none}
+.nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;order:3;flex:1 1 100%}
+.nav::-webkit-scrollbar{display:none}
+.nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.93rem;padding:.55em .75em;white-space:nowrap;border-radius:6px;background:linear-gradient(var(--elec),var(--elec)) no-repeat 0 100%/0 3px;transition:background-size .2s}
+.nav a:hover,.nav a[aria-current="true"]{background-size:100% 3px}
+.nav .sep{align-self:center;color:var(--ink2);font-weight:700;padding:0 4px}
+.prog{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:700;white-space:nowrap}
+.prog .bar{width:84px;height:10px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--panel)}
+.prog .bar i{display:block;height:100%;width:calc(var(--p,0)*100%);background:var(--ok);transition:width .4s}
+.fiche-link{font:700 .92rem var(--font-b);color:var(--paper);background:var(--ink);text-decoration:none;padding:.45em .85em;border-radius:8px;white-space:nowrap}
+@media (min-width:1100px){.top .wrap{flex-wrap:nowrap;padding-block:0}.nav{order:0;flex:0 1 auto}.brand{margin-right:8px}.prog{margin-left:auto}}
+
+/* éléments communs */
+.panel{background:var(--panel);border:1.5px solid var(--ink);border-radius:10px;padding:clamp(12px,2.2vw,22px);min-width:0}
+.btn{font:700 1rem var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.55em 1em;cursor:pointer;min-height:44px;transition:background .15s,color .15s}
+.btn:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+.btn.pri{background:var(--ink);color:var(--paper)}
+.btn.pri:hover:not(:disabled){background:var(--elec);border-color:var(--elec);color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;flex-wrap:wrap;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;margin:0;padding:0;min-width:0}
+.seg button{font:700 .98rem var(--font-b);color:var(--ink);background:var(--panel);border:0;padding:.5em .95em;min-height:42px;cursor:pointer}
+.seg button+button{border-left:1.5px solid var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+@media (max-width:520px){#fSet{display:grid;grid-template-columns:1fr 1fr;width:100%}#fSet button{border-left:0;border-top:1.5px solid var(--ink)}#fSet button:nth-child(-n+2){border-top:0}#fSet button:nth-child(even){border-left:1.5px solid var(--ink)}}
+.note{color:var(--ink2);font-size:.95rem}
+.two{display:grid;gap:clamp(18px,3.5vw,40px);align-items:start}
+@media (min-width:900px){.two{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}.two.flip{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:0;list-style:none}
+.tags button{font:700 .95rem var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:20px;padding:.35em .9em;cursor:pointer;min-height:40px}
+.tags button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.info{min-height:5.2em;border-left:5px solid var(--elec);padding:.2em 0 .2em 14px;margin:0}
+.info b{font-family:var(--font-d);font-size:1.1rem}
+.src{font-size:.82rem;color:var(--ink2);margin:6px 0 0}
+figure{margin:0}
+figcaption{font-size:.92rem;color:var(--ink2);margin-top:6px}
+.credit{display:block;font-size:.8rem;font-style:italic;color:var(--ink2);margin-top:3px;font-weight:400}
+figcaption b{color:var(--ink)}
+
+/* image à repères */
+.pi{position:relative;line-height:0;border-radius:6px;overflow:hidden;background:#fff}
+.pi img{display:block;width:100%;height:auto}
+.pi .pin{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;border:2.5px solid #fff;background:var(--pin);color:#fff;font:700 .9rem/1 var(--font-b);display:grid;place-items:center;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.45);padding:0;transition:transform .15s}
+.pi .pin:hover{transform:translate(-50%,-50%) scale(1.12)}
+.pi .pin[aria-pressed="true"]{background:#fff;color:var(--pin);border-color:var(--pin);transform:translate(-50%,-50%) scale(1.18)}
+.pi.rings .pin{background:transparent;border:2.5px solid transparent;box-shadow:none;border-radius:999px;color:transparent;transform:translate(-50%,-50%) rotate(var(--r,0deg))}
+.pi.rings .pin:hover{transform:translate(-50%,-50%) rotate(var(--r,0deg));border-color:rgba(193,18,31,.35)}
+.pi.rings .pin.on,.pi.rings .pin[aria-pressed="true"]{background:rgba(255,214,10,.38);border-color:#C1121F;transform:translate(-50%,-50%) rotate(var(--r,0deg))}
+@media (max-width:520px){.pi.rings .pin{border-width:2px}}
+.pi svg.ov{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+@media (max-width:520px){.pi .pin{width:26px;height:26px;font-size:.8rem}}
+.zoom{cursor:zoom-in}
+
+/* hero */
+.hero{padding-top:clamp(28px,6vw,60px)}
+.kicker{font-weight:700;color:var(--ink2);margin:0 0 .6em}
+.hero h1{max-width:15ch}
+.lead{color:var(--ink2);font-size:1.15rem;max-width:60ch}
+.how{display:grid;gap:12px;margin:26px 0 0;padding:0;list-style:none;counter-reset:h}
+@media (min-width:860px){.how{grid-template-columns:repeat(3,1fr)}}
+.how li{counter-increment:h;background:var(--panel);border:1.5px solid var(--ink);border-radius:10px;padding:14px 16px 14px 58px;position:relative}
+.how li::before{content:counter(h);position:absolute;left:14px;top:14px;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-weight:700}
+.how b{display:block;font-family:var(--font-d);font-size:1.08rem}
+
+/* activités et étapes */
+.act{padding-top:clamp(56px,9vw,104px)}
+.act>header{display:grid;gap:10px;max-width:70ch;margin-bottom:8px}
+.act-n{font:700 1rem var(--font-b);color:var(--elec);text-transform:uppercase;letter-spacing:.08em}
+.pb{border:1.5px solid var(--ink);border-radius:10px;background:var(--panel);padding:12px 16px;margin:6px 0 0;font-weight:700;max-width:70ch}
+.step{padding-top:clamp(40px,6vw,64px)}
+.step>header{display:flex;gap:14px;align-items:baseline;margin-bottom:12px;max-width:72ch}
+.step-n{flex:none;font:800 1rem var(--font-d);background:var(--elec);color:#fff;border-radius:8px;padding:.15em .6em}
+@media (prefers-color-scheme:dark){.step-n{color:#0b1a14}}
+.step>p.lead{margin-bottom:18px}
+
+/* « sur ta fiche » */
+.fiche{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;margin-top:18px;border:2px dashed var(--ink);border-radius:12px;padding:14px 16px;background:color-mix(in srgb,var(--panel) 85%,transparent);max-width:880px}
+.fiche .num{width:42px;height:42px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font:800 1.15rem var(--font-d);background:var(--panel)}
+.fiche b.t{font-family:var(--font-d);font-size:1.08rem;display:block;margin-bottom:2px}
+.fiche p{margin:0 0 .4em}
+.fiche ul{margin:.2em 0 .5em;padding-left:1.2em}
+.fiche .done{display:inline-flex;gap:.5em;align-items:center;font-weight:700;cursor:pointer;margin-top:4px;min-height:40px}
+.fiche .done input{width:22px;height:22px;accent-color:var(--ok)}
+.fiche.ok{border-style:solid;border-color:var(--ok)}
+.fiche.ok .num{background:var(--ok);border-color:var(--ok);color:#fff}
+
+/* vidéo */
+.video{position:relative;aspect-ratio:16/9;background:#000;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;max-width:640px}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video button{position:absolute;inset:0;width:100%;border:0;background:radial-gradient(circle at 50% 45%,#2b3b46,#0d1418);color:#fff;font:700 1.1rem var(--font-b);cursor:pointer;display:grid;place-content:center;gap:10px;text-align:center}
+.video span.play{width:66px;height:66px;margin:0 auto;border-radius:50%;background:#C1121F;display:grid;place-items:center;font-size:1.6rem}
+.video small{font-weight:400;opacity:.8}
+
+/* reconnaître les coupes */
+.quiz6{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:760px){.quiz6{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.quiz6 figure{display:grid;gap:6px;align-content:start}
+.quiz6 .im{background:#000;border-radius:6px;display:grid;place-items:center;aspect-ratio:4/3;overflow:hidden}
+.quiz6 .im img{max-width:100%;max-height:100%;display:block}
+.quiz6 figcaption{font-weight:700;color:var(--ink);margin:0}
+.quiz6 select{font:700 1rem var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.35em .5em;min-height:42px;width:100%}
+.quiz6 select.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--panel))}
+.quiz6 select.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--panel));color:var(--bad)}
+.fb{min-height:1.6em;font-weight:700;margin:10px 0 0}
+.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}
+
+/* QCM */
+.qcm{display:grid;gap:18px}
+.qcm fieldset{border:0;margin:0;padding:0;min-width:0}
+.qcm legend{font-weight:700;margin-bottom:8px;padding:0}
+.qcm .opts{display:grid;gap:8px;max-width:680px}
+.qcm .opts button{text-align:left;font:400 1rem/1.4 var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:.6em .9em;cursor:pointer;min-height:46px}
+.qcm .opts button.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--panel));font-weight:700}
+.qcm .opts button.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--panel));color:var(--bad)}
+.qcm .ex{margin:8px 0 0;font-size:.95rem;color:var(--ink2)}
+
+/* IRMf */
+.irmf-img{background:#000;border-radius:8px;overflow:hidden}
+.irmf-img img{display:block;width:100%;height:auto}
+.irmf-q{display:grid;gap:14px;align-content:start}
+
+/* plans */
+.plans{display:grid;gap:18px;align-items:start}
+@media (min-width:800px){.plans{grid-template-columns:minmax(0,260px) minmax(0,1fr)}}
+
+/* voie motrice */
+.voie-wrap{max-width:560px}
+.voie-steps{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:v}
+.voie-steps li{counter-increment:v;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;opacity:.35;transition:opacity .3s}
+.voie-steps li::before{content:counter(v);width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-weight:700;font-size:.9rem;background:var(--panel)}
+.voie-steps li.on{opacity:1}
+.ov .ax{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.ov .g .ax{stroke:#1D55E0}.ov .d .ax{stroke:#D9480F}
+.ov .g .pt{fill:#1D55E0}.ov .d .pt{fill:#D9480F}
+.ov .route{opacity:0;transition:opacity .3s}.ov .route.on{opacity:1}
+.ov .route .ax{stroke-dasharray:1;stroke-dashoffset:1}
+.ov .fibre{fill:#fff;stroke:#111;stroke-width:1.6}
+.ov .fibre-l{stroke:#888;stroke-width:1}
+.ov .tag{opacity:0;transition:opacity .4s}.ov .tag.on{opacity:1}
+.ov .tag rect{fill:#fff;stroke:#111;stroke-width:1.2}.ov .tag text{font:700 15px var(--font-b);fill:#111}
+.ov .tag line{stroke:#111;stroke-width:1.4}
+.ov .aire{fill:rgba(193,18,31,.38);stroke:#C1121F;stroke-width:2;opacity:0;transition:opacity .3s}
+.ov .aire.on{opacity:1}
+.ov .croix{stroke:#C1121F;stroke-width:4;stroke-linecap:round;opacity:0;transition:opacity .3s}.ov .croix.on{opacity:1}
+.ov text.lab{font:700 15px var(--font-b);fill:#C1121F;paint-order:stroke;stroke:#fff;stroke-width:4px;opacity:0;transition:opacity .3s}.ov text.lab.on{opacity:1}
+.devoir ol{padding-left:1.3em;margin:0;display:grid;gap:8px}
+
+/* agrandissement */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(5,10,14,.9);display:grid;place-items:center;padding:16px}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:calc(100vh - 90px);border-radius:6px;background:#fff}
+.lb button{position:absolute;top:12px;right:12px;font:700 1rem var(--font-b);border:0;border-radius:8px;padding:.6em 1em;background:#fff;color:#111;cursor:pointer}
+footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);padding:22px 0 40px;color:var(--ink2);background:var(--paper)}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span aria-hidden="true">←</span> Terminale</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#a1">Activité 1</a>
+      <a href="#e2">Coupe du cerveau</a>
+      <a href="#e4">Cellules gliales</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href="#a2">Activité 2</a>
+      <a href="#e7">Homoncule</a>
+      <a href="#e9">IRM et coupes</a>
+      <a href="#e11">IRM fonctionnelle</a>
+      <a href="#e13">Voie motrice</a>
+    </nav>
+    <div class="prog" title="Étapes faites sur ta fiche">
+      <span id="prog-text">0 sur 15</span>
+      <span class="bar" aria-hidden="true"><i id="prog-bar"></i></span>
+      <span class="sr">étapes faites sur la fiche</span>
+    </div>
+    <a class="fiche-link" href="fiche.html" target="_blank" rel="noopener">Fiche à imprimer</a>
+  </div>
+</header>
+
+<main id="contenu">
+
+<section class="hero wrap" aria-labelledby="h-top">
+  <p class="kicker">Thème 3 · Chapitre 2 · Activités 1 et 2</p>
+  <h1 id="h-top">Le cerveau et le mouvement volontaire</h1>
+  <p class="lead">Deux activités pour découvrir de quelles cellules est fait le cerveau, puis pour localiser la région du cortex qui commande nos mouvements volontaires. Tu observes ici les documents, et tu écris sur ta fiche papier au fur et à mesure.</p>
+  <ol class="how">
+    <li><b>Prends ta fiche</b>Ton professeur te la donne, ou imprime-la : <a href="fiche.html" target="_blank" rel="noopener">fiche élève</a>.</li>
+    <li><b>Observe les documents</b>Touche les repères rouges sur les photos pour savoir ce que tu vois. Touche une image pour l'agrandir.</li>
+    <li><b>Complète la fiche</b>Quand tu vois l'encadré « Sur ta fiche », réponds sur papier, puis coche « C'est fait ».</li>
+  </ol>
+</section>
+
+<!-- ===================== ACTIVITÉ 1 ===================== -->
+<section class="act wrap" id="a1" aria-labelledby="h-a1">
+  <header>
+    <span class="act-n">Activité 1</span>
+    <h2 id="h-a1">Les cellules du cerveau</h2>
+    <p class="lead" style="margin:0">Le cerveau est un organe très complexe. Après plus d'un siècle de recherches, on commence à comprendre son organisation, notamment à l'échelle des cellules.</p>
+    <p class="pb">Problématique : quelles cellules constituent le cerveau et quels sont leurs rôles ?</p>
+  </header>
+
+  <section class="step" id="e1" aria-labelledby="h-e1">
+    <header><span class="step-n">1</span><h3 id="h-e1">Le cerveau dans la boîte crânienne</h3></header>
+    <p class="lead">Situé dans la boîte crânienne, l'encéphale est formé du cerveau, du cervelet et du tronc cérébral. Le cerveau est formé de deux hémisphères dont la surface présente de nombreux replis, les circonvolutions.</p>
+    <div class="two">
+      <figure class="panel"><div class="pi" id="pi-tete"></div><figcaption><b>Situation du cerveau dans la boîte crânienne.</b> Le cadre rouge montre le plan de la coupe de l'étape 2.<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption></figure>
+      <div><ul class="tags" id="tg-tete"></ul><p class="info" id="in-tete" aria-live="polite">Touche un repère rouge sur la photo, ou un nom dans la liste.</p></div>
+    </div>
+    <aside class="fiche" data-step="1"><span class="num">1</span><div><b class="t">Sur ta fiche</b><p>Document A : complète les trois légendes.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e2" aria-labelledby="h-e2">
+    <header><span class="step-n">2</span><h3 id="h-e2">Une coupe coronale de cerveau humain</h3></header>
+    <p class="lead">En coupe, le cerveau montre deux grands types de tissus : la <b>substance grise</b> (le cortex en périphérie, et les centres nerveux profonds) et la <b>substance blanche</b>. Touche chaque repère.</p>
+    <div class="two">
+      <figure class="panel"><div class="pi" id="pi-coro"></div><figcaption><b>Coupe coronale de cerveau humain</b> (photographie). Le petit carré rouge montre la zone observée au microscope à l'étape 3.<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption></figure>
+      <div><ul class="tags" id="tg-coro"></ul><p class="info" id="in-coro" aria-live="polite">Touche un repère rouge sur la coupe.</p></div>
+    </div>
+    <aside class="fiche" data-step="2"><span class="num">2</span><div><b class="t">Sur ta fiche</b><p>Document B : complète les cinq légendes, puis indique où se trouvent la substance grise et la substance blanche.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e3" aria-labelledby="h-e3">
+    <header><span class="step-n">3</span><h3 id="h-e3">Au microscope : le cortex et ses neurones</h3></header>
+    <p class="lead">L'observation microscopique du cortex montre une organisation en plusieurs couches de <b>neurones</b>, dits pyramidaux. Le nombre total de neurones du cerveau est estimé entre <b>86 et 100 milliards</b>.</p>
+    <div class="two flip">
+      <figure class="panel"><img class="zoom" src="img/bordas-histo.jpg" alt="Cortex cérébral au microscope optique : de nombreux noyaux violets, disposés en couches." style="width:100%;height:auto;display:block;border-radius:6px"><figcaption><b>C · Cortex cérébral</b> (microscope optique). Le cadre rouge montre la zone agrandie en D.<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption></figure>
+      <figure class="panel"><div class="pi" id="pi-pyr"></div><figcaption><b>D · Neurones pyramidaux du cortex cérébral.</b> Touche les repères.<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption>
+        <ul class="tags" id="tg-pyr" style="margin-top:12px"></ul><p class="info" id="in-pyr" aria-live="polite">Touche un repère rouge.</p></figure>
+    </div>
+    <aside class="fiche" data-step="3"><span class="num">3</span><div><b class="t">Sur ta fiche</b><p>Document D : complète les quatre légendes et la phrase sur l'organisation du cortex.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e4" aria-labelledby="h-e4">
+    <header><span class="step-n">4</span><h3 id="h-e4">Les cellules gliales</h3></header>
+    <p class="lead">Les neurones ne sont qu'une partie des cellules du cerveau. Les autres sont les <b>cellules gliales</b> (leur nom vient de leur aspect « gluant »). On sait depuis peu qu'elles sont essentielles à la survie et au bon fonctionnement des neurones. Regarde la vidéo, puis explore le document.</p>
+    <div class="two flip">
+      <div>
+        <div class="video"><button type="button" data-yt="4ZByXLzoVk8"><span class="play" aria-hidden="true">▶</span>Regarder la vidéo<small>Lecture sur YouTube</small></button></div>
+        <ul class="tags" id="tg-glie" style="margin-top:16px"></ul>
+        <p class="info" id="in-glie" aria-live="polite">Touche une cellule pour connaître ses caractéristiques et son rôle.</p>
+        <figure style="margin-top:16px;max-width:340px"><img class="zoom" src="img/bordas-astro.jpg" alt="Astrocyte en culture, marquage fluorescent : une cellule étoilée aux nombreux prolongements." style="width:100%;height:auto;display:block;border-radius:6px"><figcaption><b>Astrocyte en culture</b> (marquage fluorescent).<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption></figure>
+      </div>
+      <figure class="panel"><div class="pi" id="pi-glie"></div><figcaption><b>Les cellules nerveuses :</b> neurones et cellules gliales.<span class="credit">Document de l'activité.</span></figcaption></figure>
+    </div>
+    <aside class="fiche" data-step="4"><span class="num">4</span><div><b class="t">Sur ta fiche</b><p>Complète le tableau des trois types de cellules gliales (caractéristiques et rôle), puis les trois légendes du document.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e5" aria-labelledby="h-e5">
+    <header><span class="step-n">5</span><h3 id="h-e5">Bilan de l'activité 1</h3></header>
+    <p class="lead">Relis tes réponses des étapes 1 à 4, puis réponds à la problématique en quelques lignes : quelles cellules constituent le cerveau et quels sont leurs rôles ? Dis aussi comment ces cellules coopèrent.</p>
+    <aside class="fiche" data-step="5"><span class="num">5</span><div><b class="t">Sur ta fiche</b><p>Rédige ta réponse à la problématique de l'activité 1.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+</section>
+
+<!-- ===================== ACTIVITÉ 2 ===================== -->
+<section class="act wrap" id="a2" aria-labelledby="h-a2">
+  <header>
+    <span class="act-n">Activité 2</span>
+    <h2 id="h-a2">Le cortex moteur et la voie motrice</h2>
+    <p class="lead" style="margin:0">Contrairement aux mouvements réflexes, la commande des mouvements volontaires fait nécessairement intervenir le cerveau : c'est au niveau du cortex cérébral que se manifestent la conscience des perceptions et la volonté de commander des mouvements.</p>
+    <p class="pb">Problématique : comment l'exploration du cortex permet-elle de situer les territoires du cerveau à l'origine de la motricité volontaire ?</p>
+  </header>
+
+  <section class="step" id="e6" aria-labelledby="h-e6">
+    <header><span class="step-n">6</span><h3 id="h-e6">Le cortex : des lobes et des aires</h3></header>
+    <p class="lead">Le <b>cortex</b> est la substance grise périphérique, « l'écorce » du cerveau. Épais de 1 à 5 mm, il est formé de plusieurs couches de neurones interconnectés ; dessous, la substance blanche est formée de leurs axones. Sa surface atteint environ 0,26 m² : il est plissé, divisé en <b>lobes</b> par des sillons profonds, et en zones fonctionnelles, les <b>aires</b>.</p>
+    <div class="two">
+      <figure class="panel"><div class="pi" id="pi-lobes"></div><figcaption><b>Schéma 1 · Les lobes</b> de l'hémisphère cérébral gauche, vue latérale.<span class="credit">Document de l'activité.</span></figcaption></figure>
+      <div>
+        <ul class="tags" id="tg-lobes"></ul>
+        <p class="info" id="in-lobes" aria-live="polite">Touche un repère : lobe, sillon ou autre partie de l'encéphale.</p>
+        <figure style="margin-top:16px"><img class="zoom" src="img/aires-fonctions.jpg" alt="Les aires du cortex et leurs fonctions : aire préfrontale, aire motrice, aires somesthésiques, aire visuelle, aire auditive, aire de Wernicke, aire de la mémoire à court terme." style="width:100%;height:auto;display:block;border-radius:6px;background:#fff"><figcaption><b>Les aires corticales et leurs fonctions.</b> Les expériences de stimulation électrique et d'ablation du cortex ont permis de les localiser.<span class="credit">Document de l'activité.</span></figcaption></figure>
+      </div>
+    </div>
+    <aside class="fiche" data-step="6"><span class="num">6</span><div><b class="t">Sur ta fiche</b><p>Schéma 1 : nomme les quatre lobes (cases 1 à 4).</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e7" aria-labelledby="h-e7">
+    <header><span class="step-n">7</span><h3 id="h-e7">L'aire motrice primaire et l'homoncule moteur</h3></header>
+    <p class="lead">Dès 1870, Eduard Hitzig et Gustav Fritsch montrent que la stimulation électrique de zones précises du cortex d'un animal provoque des contractions musculaires de régions précises. Toute stimulation d'une zone de l'<b>aire motrice primaire</b> se traduit par le mouvement d'une partie du corps ; une lésion de cette zone entraîne la paralysie de cette partie. Cette carte s'appelle l'<b>homoncule moteur</b>, ou homunculus de Penfield.</p>
+    <div class="two flip">
+      <div>
+        <ul class="tags" id="tg-carte"></ul>
+        <p class="info" id="in-carte" aria-live="polite">Choisis une partie du corps pour voir où est son territoire sur l'aire motrice primaire.</p>
+        <figure style="margin-top:16px"><img class="zoom" src="img/homunculus.jpg" alt="Deux sculptures d'homunculus, sensoriel et moteur : un corps humain aux mains, aux lèvres et à la langue énormes." style="width:100%;height:auto;display:block;border-radius:6px"><figcaption><b>Homunculus sensoriel et moteur.</b> Chaque partie du corps est sculptée à la taille de son territoire sur le cortex.<span class="credit">Photo : Natural History Museum, Londres.</span></figcaption></figure>
+      </div>
+      <figure class="panel"><div class="pi rings" id="pi-carte"></div><figcaption><b>Une carte motrice à la surface du cerveau.</b> Coupe passant par l'aire motrice primaire.<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption></figure>
+    </div>
+    <figure style="margin-top:18px;max-width:480px"><img class="zoom" src="img/bordas-hitzig.jpg" alt="Portraits d'Eduard Hitzig et de Gustav Fritsch." style="width:100%;height:auto;display:block;border-radius:6px"><figcaption><b>Eduard Hitzig</b> (médecin) et <b>Gustav Fritsch</b> (anatomiste).<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption></figure>
+    <aside class="fiche" data-step="7"><span class="num">7</span><div><b class="t">Sur ta fiche</b><p>Complète les phrases sur l'aire motrice primaire, puis explique pourquoi la main occupe un si grand territoire.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e8" aria-labelledby="h-e8">
+    <header><span class="step-n">8</span><h3 id="h-e8">L'IRM, pour explorer le cerveau</h3></header>
+    <p class="lead">Depuis les années 1990, l'IRM fonctionnelle permet de voir les parties du cerveau en fonctionnement. Regarde la vidéo, puis réponds aux trois questions.</p>
+    <div class="two flip">
+      <div>
+        <div class="video"><button type="button" data-yt="ZPyttkTIrmU"><span class="play" aria-hidden="true">▶</span>Regarder la vidéo<small>Lecture sur YouTube</small></button></div>
+        <figure style="margin-top:16px;max-width:420px"><img class="zoom" src="img/bordas-irm.jpg" alt="Une manipulatrice devant les écrans d'un appareil d'IRM." style="width:100%;height:auto;display:block;border-radius:6px"><figcaption><b>L'IRM</b> : une révolution pour l'exploration du cerveau.<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption></figure>
+      </div>
+      <div class="qcm" id="qcm"></div>
+    </div>
+    <aside class="fiche" data-step="8"><span class="num">8</span><div><b class="t">Sur ta fiche</b><p>Entoure la bonne réponse aux questions 1 à 3.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e9" aria-labelledby="h-e9">
+    <header><span class="step-n">9</span><h3 id="h-e9">Les trois plans de coupe</h3></header>
+    <p class="lead">L'IRM explore le corps en trois dimensions : on peut le « découper » selon trois plans. Touche chaque repère : quel est le nom de la coupe, et dans quel sens explore-t-on la tête en la déplaçant ?</p>
+    <div class="plans">
+      <figure class="panel"><div class="pi" id="pi-plans"></div><figcaption><b>Les trois plans de coupe.</b><span class="credit">Document de l'activité.</span></figcaption></figure>
+      <div>
+        <ul class="tags" id="tg-plans"></ul>
+        <p class="info" id="in-plans" aria-live="polite">Touche un repère 1, 2 ou 3.</p>
+        <p class="note">Le plan coronal est aussi appelé plan <b>frontal</b>, et le plan axial, plan <b>transversal</b>.</p>
+      </div>
+    </div>
+    <aside class="fiche" data-step="9"><span class="num">9</span><div><b class="t">Sur ta fiche</b><p>Complète le tableau : pour chaque plan numéroté, le type de coupe et le sens d'exploration.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e10" aria-labelledby="h-e10">
+    <header><span class="step-n">10</span><h3 id="h-e10">Reconnaître une coupe</h3></header>
+    <p class="lead">Voici six images obtenues par IRM. Pour chacune, indique le type de coupe. Aide-toi des repères : on voit le visage de profil ? les deux hémisphères côte à côte ? le dessus de la tête ?</p>
+    <div class="panel">
+      <div class="quiz6" id="quiz6"></div>
+      <div class="row" style="margin-top:14px"><button class="btn pri" id="q6Check" type="button">Vérifier</button><button class="btn" id="q6Reset" type="button">Recommencer</button></div>
+      <p class="fb" id="q6Fb" aria-live="polite"></p>
+      <p class="credit">Images A à F : document de l'activité.</p>
+    </div>
+    <div class="two" style="margin-top:20px">
+      <figure class="panel" style="max-width:320px"><img class="zoom" src="img/irm-Q6.jpg" alt="Coupe IRM avec des zones colorées en rouge et jaune sur le cortex des deux hémisphères." style="width:100%;height:auto;display:block;border-radius:6px;background:#000"><figcaption><span class="credit">Document de l'activité.</span></figcaption></figure>
+      <div class="qcm" id="qcm2"></div>
+    </div>
+    <aside class="fiche" data-step="10"><span class="num">10</span><div><b class="t">Sur ta fiche</b><p>Écris le type de chaque coupe A à F, puis réponds aux questions 6 et 7.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e11" aria-labelledby="h-e11">
+    <header><span class="step-n">11</span><h3 id="h-e11">Localiser l'aire qui commande un mouvement</h3></header>
+    <p class="lead">Sur ces IRM fonctionnelles, les zones en couleur sont les régions du cortex dont l'activité augmente pendant le mouvement. Sur les captures d'EduAnat2, <b>Ga</b> indique la gauche du sujet et <b>Dr</b> sa droite ; <b>Av</b> l'avant et <b>Ar</b> l'arrière. Touche une image pour l'agrandir.</p>
+    <div class="row" style="margin-bottom:14px"><div class="seg" role="group" aria-label="Enregistrement" id="fSet"></div></div>
+    <div class="two">
+      <figure class="panel"><div class="irmf-img"><img id="fImg" class="zoom" src="img/bordas-irmf-main.jpg" alt=""></div><figcaption id="fCap"></figcaption></figure>
+      <div class="irmf-q" id="fQ"></div>
+    </div>
+    <aside class="fiche" data-step="11"><span class="num">11</span><div><b class="t">Sur ta fiche</b><p>Pour chacun des quatre enregistrements, note l'hémisphère activé, le lobe activé et le côté du corps qui bouge. Puis rédige l'interprétation.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e12" aria-labelledby="h-e12">
+    <header><span class="step-n">12</span><h3 id="h-e12">Placer l'aire motrice primaire</h3></header>
+    <p class="lead">D'après tes observations, où se trouve l'aire motrice primaire ? Colorie-la d'abord sur le schéma 1 de ta fiche et marque d'une croix le territoire de la main. Ensuite seulement, vérifie ici.</p>
+    <div class="two">
+      <figure class="panel"><div class="pi" id="pi-motrice"></div><figcaption><b>Schéma 1</b> · hémisphère gauche, vue latérale.<span class="credit">Document de l'activité.</span></figcaption></figure>
+      <div>
+        <button class="btn pri" id="motorShow" type="button" aria-pressed="false">Afficher l'aire motrice primaire</button>
+        <p class="info" id="motorInfo" style="margin-top:14px" aria-live="polite"></p>
+        <figure id="motorFig" hidden style="margin-top:12px"><img class="zoom" src="img/bordas-aires.jpg" alt="Cerveau vu de profil : cortex préfrontal, aire prémotrice et aire motrice primaire, en avant du sillon central." style="width:100%;height:auto;display:block;border-radius:6px;background:#fff"><figcaption><b>Les aires motrices</b> : aire motrice primaire, aire prémotrice et cortex préfrontal.<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption></figure>
+      </div>
+    </div>
+    <aside class="fiche" data-step="12"><span class="num">12</span><div><b class="t">Sur ta fiche</b><p>Schéma 1 : colorie l'aire motrice primaire et marque d'une croix le territoire de la main.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e13" aria-labelledby="h-e13">
+    <header><span class="step-n">13</span><h3 id="h-e13">La voie de la motricité volontaire</h3></header>
+    <p class="lead">Des messages nerveux moteurs partent du cortex moteur en direction des motoneurones de la moelle épinière. Pour la voie qui commande les muscles des membres, le faisceau de neurones <b>croise la ligne médiane juste en dessous du bulbe rachidien</b>.</p>
+    <div class="two flip">
+      <div>
+        <div class="row" style="margin-bottom:14px"><button class="btn pri" id="vG" type="button">Voir la voie vers l'hémicorps gauche</button></div>
+        <ol class="voie-steps" id="vSteps">
+          <li><span>Le corps cellulaire d'un neurone pyramidal du cortex moteur de l'<b>hémisphère droit</b> émet un message nerveux.</span></li>
+          <li><span>Son axone descend dans la substance blanche, puis dans le tronc cérébral.</span></li>
+          <li><span>Juste sous le bulbe rachidien, il <b>croise la ligne médiane</b> : c'est la décussation.</span></li>
+          <li><span>Dans la moelle épinière, du côté gauche, il fait <b>synapse</b> avec un motoneurone.</span></li>
+          <li><span>Le motoneurone commande une fibre musculaire de l'<b>hémicorps gauche</b>.</span></li>
+        </ol>
+        <p class="note" style="margin-top:16px">À toi : sur ta fiche, représente la voie qui commande un muscle de l'hémicorps <b>droit</b>. Ensuite, vérifie.</p>
+        <button class="btn" id="vD" type="button">Vérifier : voie vers l'hémicorps droit</button>
+      </div>
+      <figure class="panel voie-wrap"><div class="pi" id="pi-voie"></div><figcaption><b>Schéma 2 · La voie de la motricité volontaire.</b><span class="credit">Document de l'activité.</span></figcaption></figure>
+    </div>
+    <aside class="fiche" data-step="13"><span class="num">13</span><div><b class="t">Sur ta fiche</b><p>Schéma 2 : complète la voie qui commande une fibre musculaire de l'hémicorps gauche, puis représente en entier celle de l'hémicorps droit. Explique en une phrase pourquoi la commande est controlatérale.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step" id="e14" aria-labelledby="h-e14">
+    <header><span class="step-n">14</span><h3 id="h-e14">Bilan de l'activité 2</h3></header>
+    <p class="lead">Réponds à la problématique : comment l'exploration du cortex permet-elle de situer les territoires à l'origine de la motricité volontaire ? Utilise les mots : stimulation, lésion, IRM fonctionnelle, aire motrice primaire, lobe frontal, sillon central, homoncule, controlatéral, décussation, motoneurone.</p>
+    <aside class="fiche" data-step="14"><span class="num">14</span><div><b class="t">Sur ta fiche</b><p>Rédige ta réponse à la problématique de l'activité 2.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+
+  <section class="step devoir" id="e15" aria-labelledby="h-e15">
+    <header><span class="step-n">15</span><h3 id="h-e15">Devoir : explorer de vraies IRM avec EduAnat2</h3></header>
+    <p class="lead">Tu disposes des IRM anatomiques et fonctionnelles d'un sujet sain, le sujet 13112, qui reçoit l'instruction « cliquez trois fois sur le bouton droit » ou « cliquez trois fois sur le bouton gauche ».</p>
+    <div class="panel">
+      <ol>
+        <li>Ouvre le logiciel en ligne : <a href="http://acces.ens-lyon.fr/logiciels/EduAnat2Online/" target="_blank" rel="noopener">EduAnat2 Online</a>. Il permet de superposer une IRM fonctionnelle à l'IRM anatomique d'un individu.</li>
+        <li>Regarde la <a href="https://www.youtube.com/watch?v=t4gZxTna7wM&amp;t=118s" target="_blank" rel="noopener">vidéo qui présente le logiciel</a>.</li>
+        <li>Ouvre l'IRM anatomique du sujet 13112, puis les calques fonctionnels « main droite versus main gauche » et « main gauche versus main droite ».</li>
+        <li>Sur les trois vues, localise l'aire activée pour les mouvements de la main droite, puis de la main gauche.</li>
+        <li>Fais des captures des trois coupes pour chaque main, sur une feuille à part, puis complète la case 15 de ta fiche.</li>
+      </ol>
+    </div>
+    <aside class="fiche" data-step="15"><span class="num">15</span><div><b class="t">Sur ta fiche</b><p>Pour le sujet 13112, indique l'hémisphère activé pour chaque main et compare avec le sujet 13111.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+  </section>
+</section>
+
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image agrandie"><img id="lbImg" alt=""><button type="button" id="lbClose">Fermer</button></div>
+
+<footer>
+  <div class="wrap">Documents : manuel de SVT Terminale (Bordas), Natural History Museum de Londres (homunculus), documents de l'activité, captures du logiciel EduAnat2 (ENS de Lyon). <a href="../../index.html">Retour à l'accueil de revise svt</a>.</div>
+</footer>
+
+<noscript><p class="wrap">Les repères, le quiz et les animations ont besoin de JavaScript.</p></noscript>
+
+<script>
+(()=>{
+'use strict';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={
+  get(k,d){try{const v=localStorage.getItem('svt-cerveau:'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('svt-cerveau:'+k,JSON.stringify(v))}catch(e){}}
+};
+function frAll(root){
+  const w=document.createTreeWalker(root||document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const p=n.parentNode&&n.parentNode.nodeName;return(p==='SCRIPT'||p==='STYLE'||p==='text')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}});
+  const a=[];while(w.nextNode())a.push(w.currentNode);
+  a.forEach(n=>{const v=n.nodeValue.replace(/ ([:;?!»])/g,' $1').replace(/« /g,'« ').replace(/(\d) (mm|µm|m²|milliards)/g,'$1 $2').replace(/'/g,'’');if(v!==n.nodeValue)n.nodeValue=v;});
+}
+
+/* progression */
+let done=store.get('done',{});
+function renderProg(){const n=Object.values(done).filter(Boolean).length;$('#prog-text').textContent=n+' sur 15';$('#prog-bar').style.setProperty('--p',n/15);}
+$$('.fiche').forEach(f=>{const k=f.dataset.step,cb=$('input',f);cb.checked=!!done[k];f.classList.toggle('ok',cb.checked);
+  cb.addEventListener('change',()=>{done[k]=cb.checked;store.set('done',done);f.classList.toggle('ok',cb.checked);renderProg();});});
+renderProg();
+
+/* vidéos */
+$$('.video button').forEach(b=>b.addEventListener('click',()=>{
+  const f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.yt+'?autoplay=1&rel=0';
+  f.title='Vidéo';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);
+}));
+
+/* agrandissement des images */
+const lb=$('#lb'),lbImg=$('#lbImg');
+function openLb(src,alt){lbImg.src=src;lbImg.alt=alt||'';lb.hidden=false;$('#lbClose').focus();}
+$('#lbClose').addEventListener('click',()=>lb.hidden=true);
+lb.addEventListener('click',e=>{if(e.target===lb)lb.hidden=true;});
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.hidden=true;});
+document.addEventListener('click',e=>{const im=e.target.closest('img.zoom');if(im)openLb(im.currentSrc||im.src,im.alt);});
+
+/* image à repères */
+function pins({id,src,w,h,alt,items,tags,info,numbered=true,hint}){
+  const box=$('#pi-'+id);
+  box.innerHTML=`<img src="${src}" alt="${alt}" width="${w}" height="${h}">`;
+  const btns=[], tbtn={};
+  items.forEach((it,i)=>{
+    (it.at||[]).forEach(p=>{
+      const b=document.createElement('button');b.type='button';b.className='pin';b.dataset.k=it.k;
+      b.style.left=(p[0]/w*100)+'%';b.style.top=(p[1]/h*100)+'%';
+      if(p.length>2){b.style.width=((p[2]+12)/w*100)+'%';b.style.height=((p[3]+10)/h*100)+'%';b.style.setProperty('--r',p[4]+'deg');}
+      b.textContent=numbered?(it.n||i+1):'';b.setAttribute('aria-label',numbered?'Repère '+(it.n||i+1):it.nom);b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',()=>pick(it.k));box.appendChild(b);btns.push(b);
+    });
+    if(tags){const li=document.createElement('li'),b=document.createElement('button');b.type='button';b.textContent=(numbered&&!it.noNum?(it.n||i+1)+'. ':'')+it.nom;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>pick(it.k));li.appendChild(b);tags.appendChild(li);tbtn[it.k]=b;}
+  });
+  function pick(k){
+    const it=items.find(x=>x.k===k);
+    btns.forEach(b=>{const on=b.dataset.k===k;b.setAttribute('aria-pressed',on);b.classList.toggle('on',on);});
+    Object.entries(tbtn).forEach(([kk,b])=>b.setAttribute('aria-pressed',kk===k));
+    info.innerHTML=`<b>${it.nom}</b><br>${it.d}`;frAll(info);
+  }
+  return {box,pick};
+}
+function ov(box,w,h,html){const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('class','ov');s.setAttribute('viewBox',`0 0 ${w} ${h}`);s.setAttribute('preserveAspectRatio','none');s.innerHTML=html;box.appendChild(s);return s;}
+
+/* étape 1 */
+pins({id:'tete',src:'img/bordas-tete.jpg',w:414,h:401,alt:"Tête vue de trois quarts, rendue transparente : on voit le cerveau, le cervelet, le tronc cérébral et la moelle épinière dans la boîte crânienne.",tags:$('#tg-tete'),info:$('#in-tete'),items:[
+  {k:'cerveau',nom:'Cerveau',at:[[178,135]],d:"Le principal organe du système nerveux central. Il est formé de deux hémisphères dont la surface présente de nombreux replis, les circonvolutions."},
+  {k:'cervelet',nom:'Cervelet',at:[[222,266]],d:"Sous l'arrière du cerveau (en orange foncé sur la photo). Il intervient dans l'équilibre et la coordination des mouvements."},
+  {k:'tronc',nom:'Tronc cérébral',at:[[254,300]],d:"Il relie le cerveau et le cervelet à la moelle épinière."},
+  {k:'moelle',nom:'Moelle épinière',at:[[232,372]],d:"Elle prolonge le tronc cérébral, à l'intérieur de la colonne vertébrale du cou."},
+  {k:'crane',nom:'Boîte crânienne',at:[[208,42]],d:"Les os du crâne entourent et protègent l'encéphale."}
+]});
+
+/* étape 2 */
+pins({id:'coro',src:'img/bordas-coro.jpg',w:385,h:370,alt:"Photographie d'une coupe coronale de cerveau humain : cortex rose-brun en périphérie, substance blanche plus claire au centre, ventricules et centres nerveux profonds.",tags:$('#tg-coro'),info:$('#in-coro'),items:[
+  {k:'crane',nom:'Boîte crânienne',at:[[292,30]],d:"L'os du crâne, qui entoure et protège le cerveau."},
+  {k:'sillon',nom:'Sillon entre les deux hémisphères',at:[[198,74]],d:"Un sillon profond qui sépare l'hémisphère gauche de l'hémisphère droit."},
+  {k:'calleux',nom:'Corps calleux',at:[[192,157]],d:"Un épais faisceau de substance blanche qui relie les deux hémisphères."},
+  {k:'blanche',nom:'Substance blanche',at:[[118,135]],d:"La partie plus claire, sous le cortex. Elle est formée des fibres nerveuses (axones entourés de myéline) qui relient les régions du cerveau."},
+  {k:'cortex',nom:'Cortex (substance grise)',at:[[66,186]],d:"La couche de substance grise, plus foncée, à la périphérie du cerveau. Elle suit tous les replis. Elle contient les corps cellulaires des neurones."},
+  {k:'centres',nom:'Centres nerveux profonds',at:[[262,215]],d:"Des amas de substance grise situés au cœur de la substance blanche."}
+]});
+
+/* étape 3 */
+pins({id:'pyr',src:'img/bordas-pyr.jpg',w:484,h:366,alt:"Neurones pyramidaux du cortex, colorés en violet : des corps cellulaires triangulaires alignés, une longue dendrite vers le haut et des prolongements vers le bas.",tags:$('#tg-pyr'),info:$('#in-pyr'),items:[
+  {k:'dend',nom:'Dendrites',at:[[287,42]],d:"Les prolongements ramifiés du neurone. Chez le neurone pyramidal, une longue dendrite monte vers la surface du cortex. Elles reçoivent les messages des autres neurones."},
+  {k:'corps',nom:'Corps cellulaire',at:[[289,98]],d:"Il a la forme d'une pyramide, d'où le nom de neurone pyramidal. Il contient le noyau."},
+  {k:'axone',nom:'Axone',at:[[281,212]],d:"Un prolongement unique et fin qui part de la base du corps cellulaire et descend. Il conduit le message nerveux vers d'autres cellules, parfois très loin."},
+  {k:'ram',nom:"Ramifications de l'axone",at:[[272,300]],d:"Les terminaisons de l'axone se ramifient : chaque neurone communique ainsi avec de nombreuses autres cellules."}
+]});
+
+/* étape 4 */
+pins({id:'glie',src:'img/fiche-glie.png',w:535,h:467,alt:"Schéma des cellules nerveuses : un capillaire sanguin, un astrocyte étoilé, un oligodendrocyte qui forme la gaine de myéline, une cellule de la microglie près de bactéries, et des neurones reliés par des synapses.",tags:$('#tg-glie'),info:$('#in-glie'),numbered:false,items:[
+  {k:'astro',nom:'Astrocyte',at:[[137,150]],d:"Caractéristiques : une cellule en forme d'étoile, aux nombreux prolongements ; certains touchent les capillaires sanguins, d'autres les neurones.<br>Rôle : soutien, protection, nutrition et métabolisme énergétique des neurones. Il peut aussi réguler la transmission synaptique."},
+  {k:'oligo',nom:'Oligodendrocyte',at:[[313,160]],d:"Caractéristiques : ses prolongements s'enroulent autour des axones de plusieurs neurones.<br>Rôle : dans la substance blanche, il produit la gaine de myéline, qui accélère jusqu'à 100 fois la conduction du message nerveux. Dans la substance grise, il a un rôle métabolique."},
+  {k:'micro',nom:'Cellule de la microglie',at:[[62,312]],d:"Caractéristiques : une petite cellule ramifiée, capable de phagocytose.<br>Rôle : défense immunitaire du cerveau. Elle élimine les bactéries, libère des médiateurs chimiques et peut présenter des antigènes."},
+  {k:'neurone',nom:'Neurone',at:[[258,250]],d:"La cellule qui produit et conduit le message nerveux. Les neurones communiquent entre eux par des synapses."},
+  {k:'cap',nom:'Capillaire sanguin',at:[[62,112]],d:"Un petit vaisseau sanguin. Les astrocytes y prélèvent notamment le glucose qu'ils fournissent aux neurones."}
+]});
+
+/* étape 6 */
+pins({id:'lobes',src:'img/schema1-lobes.jpg',w:635,h:410,alt:"Schéma 1 : hémisphère cérébral gauche vu de profil, avec les lobes frontal, pariétal, temporal et occipital, le sillon central, le sillon latéral, le cervelet et le tronc cérébral.",tags:$('#tg-lobes'),info:$('#in-lobes'),numbered:false,items:[
+  {k:'frontal',nom:'Lobe frontal',at:[[125,205]],d:"À l'avant, devant le sillon central. Il contient les aires motrices, qui commandent les mouvements volontaires, et le cortex préfrontal."},
+  {k:'parietal',nom:'Lobe pariétal',at:[[410,160]],d:"En arrière du sillon central. Il reçoit les sensations du corps : toucher, température, douleur."},
+  {k:'temporal',nom:'Lobe temporal',at:[[300,305]],d:"Sous le sillon latéral. Il contient l'aire auditive et intervient dans le langage et la mémoire."},
+  {k:'occipital',nom:'Lobe occipital',at:[[560,255]],d:"À l'arrière du cerveau. Il contient l'aire visuelle."},
+  {k:'central',nom:'Sillon central',at:[[297,52]],d:"Il sépare le lobe frontal du lobe pariétal. L'aire motrice primaire se trouve juste devant lui."},
+  {k:'lateral',nom:'Sillon latéral',at:[[300,188]],d:"Il sépare le lobe temporal des lobes frontal et pariétal."},
+  {k:'cervelet',nom:'Cervelet',at:[[445,330]],d:"Sous l'arrière du cerveau. Il intervient dans l'équilibre et la coordination des mouvements."},
+  {k:'tronc',nom:'Tronc cérébral',at:[[322,348]],d:"Il relie le cerveau à la moelle épinière."}
+]});
+
+/* étape 7 : carte motrice */
+(()=>{
+  const P={genou:[394,47,44,13,88],hanche:[370,44,54,13,-90],tronc:[346,54,38,12,85],epaule:[320,50,51,17,82],bras:[296,58,30,13,76],coude:[279,58,45,13,71],avb:[250,52,82,13,67],poignet:[221,66,56,13,63],main:[198,90,37,14,54],doigts:[158,111,46,17,52],pouce:[119,144,44,13,43],cou:[110,169,25,10,40],sourcil:[83,183,51,13,35],oeil:[78,216,22,14,12],face:[61,264,30,13,8],levres:[55,332,46,13,1],machoire:[42,354,70,13,0],langue:[52,393,49,16,2]};
+  const G=[
+    {k:'main',nom:'Main et doigts',at:[P.main,P.doigts,P.pouce],d:"Territoire très grand : les mouvements de la main et des doigts, surtout du pouce, sont très fins et précis."},
+    {k:'bouche',nom:'Lèvres, mâchoire et langue',at:[P.levres,P.machoire,P.langue],d:"Territoire grand : les mouvements des lèvres et de la langue sont très précis. Ils servent notamment à parler."},
+    {k:'face',nom:'Visage et yeux',at:[P.face,P.oeil,P.sourcil],d:"Territoire moyen : les mouvements du visage servent aux expressions."},
+    {k:'bras',nom:'Bras',at:[P.epaule,P.bras,P.coude,P.avb,P.poignet],d:"Territoire moyen, plus petit que celui de la main."},
+    {k:'tronc',nom:'Tronc',at:[P.tronc],d:"Territoire petit : le tronc est grand, mais ses mouvements sont peu précis."},
+    {k:'jambe',nom:'Hanche et genou',at:[P.hanche,P.genou],d:"Territoire petit, tout en haut de l'aire motrice. Le pied et les orteils sont commandés sur la face interne de l'hémisphère."}
+  ];
+  pins({id:'carte',src:'img/bordas-carte.jpg',w:590,h:430,alt:"Coupe du cerveau passant par l'aire motrice primaire, avec le dessin d'un corps humain déformé le long du cortex : la main, les doigts, la face, les lèvres et la langue sont très grands.",tags:$('#tg-carte'),info:$('#in-carte'),numbered:false,items:G});
+})();
+
+/* QCM */
+function qcm(root,Q){
+  root.innerHTML='';
+  Q.forEach(q=>{
+    const fs=document.createElement('fieldset');
+    fs.innerHTML=`<legend>${q.n}. ${q.q}</legend><div class="opts"></div><p class="ex" hidden></p>`;
+    const opts=$('.opts',fs),ex=$('.ex',fs);
+    q.o.forEach((t,j)=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.addEventListener('click',()=>{
+      $$('button',opts).forEach(x=>x.classList.remove('good','wrong'));
+      if(j===q.a){b.classList.add('good');ex.textContent='Juste. '+q.e;}else{b.classList.add('wrong');ex.textContent='Pas tout à fait. Réessaie.';}
+      ex.hidden=false;frAll(fs);});opts.appendChild(b);});
+    root.appendChild(fs);
+  });
+  frAll(root);
+}
+qcm($('#qcm'),[
+  {n:1,q:"L'IRM (imagerie par résonance magnétique) est un examen qui :",o:["a) est invasif et irradie le patient","b) n'est pas invasif et irradie le patient","c) n'est pas invasif et n'irradie pas le patient"],a:2,e:"L'IRM utilise un champ magnétique et des ondes radio : aucun instrument n'est introduit dans le corps, et elle n'utilise pas de rayons X."},
+  {n:2,q:"L'IRM permet l'exploration du corps en :",o:["a) deux dimensions, comme une radiographie","b) trois dimensions"],a:1,e:"On obtient un volume en 3D, que l'on peut découper en coupes dans tous les plans."},
+  {n:3,q:"Les images obtenues permettent de faire :",o:["a) des coupes frontales et sagittales uniquement","b) des coupes frontales, coronales et axiales","c) des coupes frontales, sagittales et axiales"],a:2,e:"Attention : « frontale » et « coronale » désignent le même plan."}
+]);
+
+/* étape 9 */
+pins({id:'plans',src:'img/plans.png',w:204,h:263,alt:"Personnage traversé par trois plans de coupe : un plan vertical de face, un plan vertical de profil et un plan horizontal.",tags:$('#tg-plans'),info:$('#in-plans'),items:[
+  {k:'sa',nom:'Plan 1',at:[[80,14]],d:"Coupe <b>sagittale</b> : un plan vertical qui sépare la droite et la gauche. En déplaçant la coupe, on explore le corps <b>de droite à gauche</b> (ou de gauche à droite)."},
+  {k:'co',nom:'Plan 2',at:[[157,78]],d:"Coupe <b>coronale</b> (ou frontale) : un plan vertical, parallèle au front. En la déplaçant, on explore le corps <b>de l'avant vers l'arrière</b> (du ventre vers le dos)."},
+  {k:'ax',nom:'Plan 3',at:[[188,126]],d:"Coupe <b>axiale</b> (ou transversale) : un plan horizontal. En la déplaçant, on explore le corps <b>de haut en bas</b>."}
+]});
+
+/* étape 10 */
+(()=>{
+  const IM=[['A','Axiale'],['B','Sagittale'],['C','Coronale'],['D','Axiale'],['E','Coronale'],['F','Sagittale']];
+  const box=$('#quiz6');
+  IM.forEach(([l])=>{
+    const f=document.createElement('figure');
+    f.innerHTML=`<div class="im"><img class="zoom" src="img/irm-${l}.jpg" alt="Image IRM ${l}"></div><figcaption>Image ${l}</figcaption><select aria-label="Type de coupe de l'image ${l}"><option value="">Type de coupe…</option><option>Axiale</option><option>Coronale</option><option>Sagittale</option></select>`;
+    box.appendChild(f);$('select',f).addEventListener('change',e=>e.target.className='');
+  });
+  $('#q6Check').addEventListener('click',()=>{
+    let ok=0;$$('select',box).forEach((s,i)=>{if(!s.value){s.className='';return;}s.className=s.value===IM[i][1]?'ok':'bad';if(s.value===IM[i][1])ok++;});
+    const fb=$('#q6Fb');fb.className='fb '+(ok===6?'ok':'bad');
+    fb.textContent=ok===6?'Les six coupes sont justes. Bravo !':`${ok} réponse${ok>1?'s':''} juste${ok>1?'s':''} sur 6. Corrige celles en rouge.`;
+  });
+  $('#q6Reset').addEventListener('click',()=>{$$('select',box).forEach(s=>{s.value='';s.className='';});$('#q6Fb').textContent='';});
+  qcm($('#qcm2'),[
+    {n:6,q:"Cette image est obtenue par :",o:["a) IRMd, ou IRM dimensionnelle","b) IRMf, ou IRM fonctionnelle","c) IRMfc, ou IRM fausse couleur"],a:1,e:"Les zones colorées sont celles dont l'activité augmente pendant une tâche : c'est une IRM fonctionnelle superposée à l'IRM anatomique."},
+    {n:7,q:"Il s'agit d'une coupe :",o:["a) axiale (ou transversale)","b) sagittale","c) frontale (ou coronale)"],a:0,e:"On voit les deux hémisphères côte à côte, et l'avant de la tête en haut de l'image : c'est une coupe horizontale."}
+  ]);
+})();
+
+/* étape 11 : IRM fonctionnelles réelles */
+(()=>{
+  const SETS=[
+    {k:'bm',nom:'Manuel : main droite',src:'img/bordas-irmf-main.jpg',cap:"<b>IRM et calque fonctionnel</b> montrant la zone corticale impliquée dans la réponse motrice de la main droite (coupes axiale, sagittale et coronale, et position des plans en 3D).<span class='credit'>D'après le manuel de SVT Terminale, Bordas.</span>",h:'gauche',l:'frontal',
+      e:"La zone activée est du côté <b>Ga</b> : hémisphère <b>gauche</b>, dans le lobe frontal, juste en avant du sillon central. La main droite est commandée par l'hémisphère gauche."},
+    {k:'d',nom:'Sujet 13111 : main droite',src:'img/eduanat-13111-main-droite.jpg',cap:"<b>Sujet 13111</b>, calque « main droite versus main gauche ».<span class='credit'>Capture du logiciel EduAnat2 (ENS de Lyon).</span>",h:'gauche',l:'frontal',
+      e:"Les zones activées les plus nettes sont du côté <b>Ga</b> : hémisphère <b>gauche</b>, dans le lobe frontal. On retrouve la même région que dans le manuel, chez un autre individu."},
+    {k:'g',nom:'Sujet 13111 : main gauche',src:'img/eduanat-13111-main-gauche.jpg',cap:"<b>Sujet 13111</b>, calque « main gauche versus main droite ». Agrandis l'image : la zone activée est petite.<span class='credit'>Capture du logiciel EduAnat2 (ENS de Lyon).</span>",h:'droit',l:'frontal',
+      e:"La zone activée est du côté <b>Dr</b> : hémisphère <b>droit</b>, dans le lobe frontal. La main gauche est commandée par l'hémisphère droit : la commande est controlatérale."},
+    {k:'lg',nom:'Manuel : langue',src:'img/bordas-irmf-langue.jpg',cap:"<b>IRMf pendant un mouvement de la langue</b> (le sujet répète la syllabe « la ») : coupes axiale, coronale et sagittale gauche.<span class='credit'>D'après le manuel de SVT Terminale, Bordas.</span>",h:'deux',l:'frontal',
+      e:"Les <b>deux hémisphères</b> sont activés, dans la partie basse de l'aire motrice primaire (lobe frontal), près du sillon latéral : c'est le territoire de la langue sur l'homoncule."}
+  ];
+  const seg=$('#fSet'),img=$('#fImg'),cap=$('#fCap'),Q=$('#fQ');
+  function show(k){
+    const s=SETS.find(x=>x.k===k);
+    $$('button',seg).forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
+    img.src=s.src;img.alt=s.nom;cap.innerHTML=s.cap;
+    Q.innerHTML=`<fieldset style="border:0;margin:0;padding:0"><legend style="font-weight:700;margin-bottom:8px">Quel hémisphère est activé ?</legend><div class="seg" id="qh"><button type="button" data-v="gauche">Gauche</button><button type="button" data-v="droit">Droit</button><button type="button" data-v="deux">Les deux</button></div></fieldset>
+      <fieldset style="border:0;margin:0;padding:0"><legend style="font-weight:700;margin-bottom:8px">Dans quel lobe ?</legend><div class="seg" id="ql"><button type="button" data-v="frontal">Frontal</button><button type="button" data-v="parietal">Pariétal</button><button type="button" data-v="temporal">Temporal</button><button type="button" data-v="occipital">Occipital</button></div></fieldset>
+      <p class="fb" id="qfb" aria-live="polite"></p><p class="info" id="qex" hidden></p>`;
+    const ans={};
+    const check=()=>{
+      const fb=$('#qfb');
+      if(!ans.h||!ans.l){fb.textContent='';return;}
+      const ok=ans.h===s.h&&ans.l===s.l;
+      fb.className='fb '+(ok?'ok':'bad');
+      fb.textContent=ok?'Juste.':(ans.h!==s.h?"L'hémisphère n'est pas le bon. Regarde de quel côté (Ga ou Dr) est la tache colorée.":"Le lobe n'est pas le bon. Compare avec le schéma 1 : la zone est juste en avant du sillon central.");
+      const ex=$('#qex');ex.hidden=!ok;ex.innerHTML=s.e;frAll(Q);
+    };
+    ['h','l'].forEach(t=>$$('#q'+t+' button').forEach(b=>{b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{ans[t]=b.dataset.v;$$('#q'+t+' button').forEach(x=>x.setAttribute('aria-pressed',x===b));check();});}));
+    frAll(cap);frAll(Q);
+  }
+  SETS.forEach(s=>{const b=document.createElement('button');b.type='button';b.dataset.k=s.k;b.textContent=s.nom;b.addEventListener('click',()=>show(s.k));seg.appendChild(b);});
+  show('bm');
+})();
+
+/* étape 12 : aire motrice primaire sur le schéma 1 */
+const AIRE='M 336 18 C 334 30 312 38 303 46 C 296 54 300 72 299 82 C 296 96 288 112 283 128 C 279 144 272 162 262 180 L 240 178 C 250 160 257 144 261 128 C 266 112 272 96 276 82 C 278 70 274 54 282 44 C 292 34 306 28 312 16 Z';
+(()=>{
+  const p=pins({id:'motrice',src:'img/schema1-lobes.jpg',w:635,h:410,alt:"Schéma 1 : hémisphère cérébral gauche vu de profil.",items:[]});
+  const s=ov(p.box,635,410,`<path class="aire" d="${AIRE}"/>
+    <path class="croix" d="M 272 92 L 288 108 M 288 92 L 272 108"/><path class="croix" d="M 214 38 L 279 50"/><text class="lab" x="58" y="40">aire motrice primaire</text><text class="lab" x="226" y="105" text-anchor="end">main</text>`);
+  const btn=$('#motorShow'),info=$('#motorInfo'),fig=$('#motorFig');let on=false;
+  btn.addEventListener('click',()=>{on=!on;btn.setAttribute('aria-pressed',on);btn.textContent=on?"Masquer l'aire motrice primaire":"Afficher l'aire motrice primaire";
+    $$('.aire,.croix,.lab',s).forEach(e=>e.classList.toggle('on',on));fig.hidden=!on;
+    info.innerHTML=on?"L'aire motrice primaire est une bande du <b>lobe frontal</b>, juste en avant du <b>sillon central</b>. Le territoire de la main (croix) est dans sa partie moyenne, là où l'IRMf montre l'activité.":'';frAll(info);});
+})();
+
+/* étape 13 : voie motrice sur le schéma 2 */
+(()=>{
+  const p=pins({id:'voie',src:'img/schema2-voie.png',w:592,h:770,alt:"Schéma 2 : cerveau en coupe coronale, tronc cérébral avec le bulbe rachidien, moelle épinière, un motoneurone et une fibre musculaire. Le début de la voie est dessiné : le corps cellulaire d'un neurone pyramidal dans l'hémisphère droit et son axone.",items:[]});
+  const tri=(x,y,c)=>`<path class="pt" d="M ${x} ${y-12} L ${x+11} ${y+7} L ${x-11} ${y+7} Z"/>`;
+  const star=(x,y)=>`<path class="pt" d="M ${x} ${y-11} L ${x+4} ${y-3} L ${x+12} ${y-2} L ${x+6} ${y+4} L ${x+8} ${y+12} L ${x} ${y+7} L ${x-8} ${y+12} L ${x-6} ${y+4} L ${x-12} ${y-2} L ${x-4} ${y-3} Z"/>`;
+  const s=ov(p.box,592,770,`
+    <g class="fibre-d" style="opacity:0"><ellipse class="fibre" cx="525" cy="672" rx="12" ry="58"/><path class="fibre-l" d="M 516 640 L 534 640 M 515 660 L 535 660 M 515 680 L 535 680 M 516 700 L 534 700 M 525 616 L 525 728"/></g>
+    <g class="route g"><path class="ax a1" pathLength="1" d="M 430 88 C 380 100 330 140 325 272"/><path class="ax a2" pathLength="1" d="M 325 272 L 325 470 C 325 505 268 512 262 545 L 258 630"/><path class="ax a3" pathLength="1" d="M 252 645 C 200 672 130 680 78 672"/><circle class="pt" cx="256" cy="636" r="5"/></g>
+    <g class="route d"><path class="ax a1" pathLength="1" d="M 160 88 C 210 100 260 140 265 272"/><path class="ax a2" pathLength="1" d="M 265 272 L 265 470 C 265 505 322 512 328 545 L 332 630"/><path class="ax a3" pathLength="1" d="M 338 645 C 390 672 460 680 512 672"/>${tri(160,86)}${star(338,643)}<circle class="pt" cx="334" cy="636" r="5"/></g>
+    <g class="tag t-dec"><line x1="296" y1="520" x2="372" y2="560"/><rect x="372" y="546" width="128" height="28" rx="5"/><text x="382" y="566">décussation</text></g>
+    <g class="tag t-syn"><line x1="252" y1="632" x2="190" y2="600"/><rect x="104" y="582" width="86" height="28" rx="5"/><text x="114" y="602">synapse</text></g>`);
+  const steps=$$('#vSteps li');
+  const play=side=>{
+    const g=$('.route.'+side,s);$$('.route',s).forEach(r=>{if(r!==g&&side==='g')r.classList.remove('on');});
+    $$('.tag',s).forEach(t=>t.classList.remove('on'));
+    const ax=$$('.ax',g);ax.forEach(a=>{a.style.transition='none';a.style.strokeDashoffset=1;});
+    if(side==='d')$('.fibre-d',s).style.opacity=1;
+    if(side==='g')steps.forEach(li=>li.classList.remove('on'));
+    void g.getBoundingClientRect();g.classList.add('on');
+    const durs=[1.1,1.8,.9];let t=0;
+    ax.forEach((a,i)=>{a.style.transition=RM?'none':`stroke-dashoffset ${durs[i]}s linear ${t}s`;a.style.strokeDashoffset=0;t+=RM?0:durs[i];});
+    if(side==='g'){const at=[0,.6,2.0,2.9,3.4];steps.forEach((li,i)=>setTimeout(()=>li.classList.add('on'),RM?0:at[i]*1000));}
+    setTimeout(()=>$('.t-dec',s).classList.add('on'),RM?0:2000);
+    setTimeout(()=>$('.t-syn',s).classList.add('on'),RM?0:2900);
+  };
+  $('#vG').addEventListener('click',()=>play('g'));
+  $('#vD').addEventListener('click',()=>play('d'));
+})();
+
+/* navigation active */
+(()=>{
+  const nav=$('.nav'),links=$$('a',nav);
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;
+    const a=links.find(l=>l.getAttribute('href')==='#'+e.target.id);if(!a)return;
+    links.forEach(l=>l.removeAttribute('aria-current'));a.setAttribute('aria-current','true');
+    nav.scrollTo({left:a.offsetLeft-nav.offsetLeft-16,behavior:RM?'auto':'smooth'});});},{rootMargin:'-30% 0px -60% 0px'});
+  ['a1','e2','e4','a2','e7','e9','e11','e13'].forEach(id=>io.observe($('#'+id)));
+})();
+
+frAll();
+})();
+</script>
+</body>
+</html>
