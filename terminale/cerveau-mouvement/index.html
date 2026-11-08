@@ -190,6 +190,14 @@ figcaption b{color:var(--ink)}
 .ov .croix{stroke:#C1121F;stroke-width:4;stroke-linecap:round;opacity:0;transition:opacity .3s}.ov .croix.on{opacity:1}
 .ov text.lab{font:700 15px var(--font-b);fill:#C1121F;paint-order:stroke;stroke:#fff;stroke-width:4px;opacity:0;transition:opacity .3s}.ov text.lab.on{opacity:1}
 .devoir ol{padding-left:1.3em;margin:0;display:grid;gap:8px}
+.dv-t{font-weight:700;margin:0 0 8px}
+.dv-wrap{overflow-x:auto;margin-top:16px}
+table.dv{border-collapse:collapse;width:100%;min-width:520px;font-size:.9rem;line-height:1.35}
+table.dv th,table.dv td{border:1.5px solid var(--ink);padding:8px 10px;vertical-align:top;text-align:left}
+table.dv thead th{background:var(--grid2);font-weight:700}
+table.dv tbody th{font-weight:700;width:30%}
+table.dv td{height:56px;color:var(--ink2)}
+.dv-note{margin:14px 0 0}
 
 /* agrandissement */
 .lb{position:fixed;inset:0;z-index:60;background:rgba(5,10,14,.9);display:grid;place-items:center;padding:16px}
@@ -433,18 +441,30 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
   </section>
 
   <section class="step devoir" id="e15" aria-labelledby="h-e15">
-    <header><span class="step-n">15</span><h3 id="h-e15">Devoir : explorer de vraies IRM avec EduAnat2</h3></header>
-    <p class="lead">Tu disposes des IRM anatomiques et fonctionnelles d'un sujet sain, le sujet 13112, qui reçoit l'instruction « cliquez trois fois sur le bouton droit » ou « cliquez trois fois sur le bouton gauche ».</p>
+    <header><span class="step-n">15</span><h3 id="h-e15">Devoir : les IRM fonctionnelles du sujet 13112 avec EduAnat2</h3></header>
+    <p class="lead">Tu disposes des IRM anatomiques et fonctionnelles d'un sujet sain nommé <b>13112</b>, enregistrées lors d'un test visant à explorer le fonctionnement du cerveau pendant des tâches sensorimotrices courtes. Le sujet reçoit l'instruction visuelle ou auditive « cliquez trois fois sur le bouton droit » ou « cliquez trois fois sur le bouton gauche ».</p>
     <div class="panel">
-      <ol>
-        <li>Ouvre le logiciel en ligne : <a href="http://acces.ens-lyon.fr/logiciels/EduAnat2Online/" target="_blank" rel="noopener">EduAnat2 Online</a>. Il permet de superposer une IRM fonctionnelle à l'IRM anatomique d'un individu.</li>
-        <li>Regarde la <a href="https://www.youtube.com/watch?v=t4gZxTna7wM&amp;t=118s" target="_blank" rel="noopener">vidéo qui présente le logiciel</a>.</li>
-        <li>Ouvre l'IRM anatomique du sujet 13112, puis les calques fonctionnels « main droite versus main gauche » et « main gauche versus main droite ».</li>
-        <li>Sur les trois vues, localise l'aire activée pour les mouvements de la main droite, puis de la main gauche.</li>
-        <li>Fais des captures des trois coupes pour chaque main, sur une feuille à part, puis complète la case 15 de ta fiche.</li>
+      <p class="dv-t">Protocole</p>
+      <ol type="a">
+        <li>Ouvre le logiciel en ligne : <a href="http://acces.ens-lyon.fr/logiciels/EduAnat2Online/" target="_blank" rel="noopener">EduAnat2 Online</a>. Il permet de <b>superposer une IRM fonctionnelle sur l'IRM anatomique</b> d'un individu.</li>
+        <li>Regarde la <a href="https://www.youtube.com/watch?v=t4gZxTna7wM&amp;t=118s" target="_blank" rel="noopener">vidéo qui présente le fonctionnement du logiciel</a>.</li>
+        <li><b>Localise</b> précisément sur les trois vues, à l'aide des images fonctionnelles, l'aire corticale mobilisée pour effectuer des mouvements volontaires <b>de la main droite</b>, puis celle mobilisée pour les mouvements volontaires <b>de la main gauche</b>, chez le sujet 13112.</li>
+        <li><b>Remplis le tableau</b> de ta fiche en insérant des captures des différentes coupes.</li>
       </ol>
+      <div class="dv-wrap">
+        <table class="dv">
+          <thead><tr><th scope="col">Condition expérimentale</th><th scope="col">Mesure de la différence entre les acquisitions avec activation motrice de la main gauche versus celle de la main droite</th><th scope="col">Mesure de la différence entre les acquisitions avec activation motrice de la main droite versus celle de la main gauche</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" rowspan="3">Images fonctionnelles obtenues, après réglage du plan de coupe, mettant en valeur les zones corticales les plus actives</th><td>Coupe axiale</td><td>Coupe axiale</td></tr>
+            <tr><td>Coupe coronale</td><td>Coupe coronale</td></tr>
+            <tr><td>Coupe sagittale</td><td>Coupe sagittale</td></tr>
+            <tr><th scope="row">Interprétation</th><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="dv-note"><b>Pour interpréter :</b> mets en relation la région du cerveau activée et la main qui réalise le mouvement, puis compare les régions activées entre les individus pour une même tâche motrice (le sujet 13112 et le sujet 13111 de l'étape 11).</p>
     </div>
-    <aside class="fiche" data-step="15"><span class="num">15</span><div><b class="t">Sur ta fiche</b><p>Pour le sujet 13112, indique l'hémisphère activé pour chaque main et compare avec le sujet 13111.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="15"><span class="num">15</span><div><b class="t">Sur ta fiche</b><p>Remplis le tableau avec tes captures des coupes axiale, coronale et sagittale pour chaque main, puis rédige l'interprétation.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 </section>
 
