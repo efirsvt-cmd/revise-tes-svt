@@ -147,6 +147,16 @@ p.hint{margin:10px 0 0}
 .fb{min-height:1.6em;font-weight:700;margin:10px 0 0}
 .fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}
 .blanc{display:inline-block;min-width:5.5em;border-bottom:2px dotted var(--ink2);margin:0 .2em}
+.redac{display:grid;gap:12px;max-width:860px}
+.redac textarea{width:100%;font:400 1.02rem/1.55 var(--font-b);color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:10px;padding:.7em .9em;resize:vertical;min-height:11em}
+.crit{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.crit li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:2px 8px;align-items:start;background:var(--panel);border:1.5px solid var(--grid2);border-radius:10px;padding:8px 12px}
+.crit .ck{font-weight:800;font-size:1.05rem;color:var(--ink2);line-height:1.5}
+.crit .st{grid-column:2}
+.crit .st:empty{display:none}
+.crit li.good{border-color:var(--ok)}.crit li.good .ck{color:var(--ok)}
+.crit li.wrong{border-color:var(--bad)}.crit li.wrong .ck{color:var(--bad)}
+.ordre .pool button:disabled{opacity:.45;cursor:not-allowed}
 
 /* QCM, vrai ou faux, classer */
 .qcm{display:grid;gap:18px}
@@ -325,7 +335,7 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
   <ol class="how">
     <li><b>Prends ta fiche</b>Ton professeur te la donne en classe.</li>
     <li><b>Joue et cherche</b>Fais les jeux et les simulations, lis les documents, observe les graphiques (touche une image pour l'agrandir). Les réponses ne sont pas écrites : à toi de les trouver.</li>
-    <li><b>Vérifie, puis écris sur ta fiche</b>Touche « Vérifier » ou une réponse : la page te dit si c'est juste, sinon un indice te dit où chercher. Recopie ensuite sur ta fiche et coche « C'est fait ».</li>
+    <li><b>Vérifie, puis écris sur ta fiche</b>Touche « Vérifier » ou une réponse : la page te dit si c'est juste, sinon un indice te dit où chercher. Pour tes phrases et tes rédactions, elle vérifie que les idées attendues y sont. Recopie ensuite sur ta fiche et coche « C'est fait ».</li>
   </ol>
 </section>
 
@@ -372,8 +382,11 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
     </div>
 
     <h4 class="sub">Exploite le graphique</h4>
+    <p class="note" style="margin-top:-4px">Lis les valeurs des deux groupes du document 2 sur le graphique ci-dessus.</p>
+    <div class="idf" id="f1" style="max-width:760px"></div>
+    <h4 class="sub">Que permet d'affirmer ce test ?</h4>
     <div class="qcm" id="q1"></div>
-    <aside class="fiche" data-step="1"><span class="num">1</span><div><b class="t">Sur ta fiche</b><p>Note tes 5 temps moyens dans le tableau et trace ta courbe. Compare les deux groupes du document 2, puis formule une hypothèse pour expliquer la différence.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="1"><span class="num">1</span><div><b class="t">Sur ta fiche</b><p>Note tes 5 temps moyens et trace ta courbe. Relève les valeurs du document 2, explique ce que ce test permet d'affirmer et ce qu'il ne permet pas d'affirmer, puis formule une hypothèse.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e2" aria-labelledby="h-e2">
@@ -383,13 +396,13 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
       <figure class="panel"><div class="pi"><img class="zoom" src="img/doc3.jpg" width="623" height="511" alt="Document 3 : en haut, IRM de cerveaux avec des zones colorées là où le volume de matière grise est plus grand chez les musiciens ; en bas, diagramme en barres du volume de matière grise des aires motrices, auditives et associative pour les non-musiciens, les musiciens amateurs et les musiciens professionnels."></div>
         <figcaption><b>Document 3 · Volume de matière grise de trois aires cérébrales</b> chez des non-musiciens, des musiciens amateurs et des musiciens professionnels. Touche l'image pour l'agrandir.<span class="credit">D'après le manuel de SVT Terminale, Hachette.</span></figcaption></figure>
       <div>
-        <div class="docs" style="grid-template-columns:1fr"><article class="dcard"><p class="dl">Document 3 · texte</p><p>Le volume de matière grise (qui représente le nombre de neurones) a été comparé par IRM chez 20 musiciens professionnels, 20 musiciens amateurs et 40 non-musiciens. Les zones colorées sur les IRM sont les régions qui ont plus de matière grise chez les musiciens. 1 : aires motrices et sensorielles ; 2 : aires auditives ; 3 : aire associative, qui intègre les informations des sens (vue, ouïe, toucher) et oriente les mouvements.</p><p class="credit">D'après le manuel de SVT Terminale, Hachette.</p></article></div>
+        <div class="docs" style="grid-template-columns:1fr"><article class="dcard"><p class="dl">Document 3 · texte</p><p>Le volume de matière grise (qui représente le nombre de neurones) a été comparé par IRM chez 20 musiciens professionnels, 20 musiciens amateurs et 40 non-musiciens. Les zones colorées sur les IRM sont les régions qui ont plus de matière grise chez les musiciens. 1 : aires motrices et sensorielles ; 2 : aires auditives ; 3 : aire associative, qui intègre les informations des sens (vue, ouïe, toucher) et oriente les mouvements. Les traits verticaux sur les barres sont les barres d'erreur : ils montrent la dispersion des mesures dans chaque groupe.</p><p class="credit">D'après le manuel de SVT Terminale, Hachette.</p></article></div>
       </div>
     </div>
-    <h4 class="sub">Vrai ou faux ?</h4>
+    <h4 class="sub">Vrai ou faux ? Attention aux barres d'erreur</h4>
     <div class="vf" id="vf2"></div>
     <div class="idf" id="f2" style="margin-top:18px;max-width:760px"></div>
-    <aside class="fiche" data-step="2"><span class="num">2</span><div><b class="t">Sur ta fiche</b><p>Indique quelles aires sont plus développées chez les musiciens, ce que représente le volume de matière grise, et ce que l'on peut en conclure.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="2"><span class="num">2</span><div><b class="t">Sur ta fiche</b><p>Rédige ta phrase de conclusion sur le document 3, puis explique ce que l'on ne peut pas affirmer à partir de ce document, et pourquoi.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e3" aria-labelledby="h-e3">
@@ -398,13 +411,13 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
     <div class="two">
       <figure class="panel"><div class="pi"><img class="zoom" src="img/doc4.png" width="645" height="416" alt="Document 4 : à gauche, enregistrements de l'électromyogramme chez un non-musicien (petite déflexion rouge) et chez un musicien (grande déflexion bleue) ; à droite, diagramme de l'amplitude moyenne du potentiel, graduée de 1 à 2."></div>
         <figcaption><b>Document 4 · Efficacité de la voie motrice</b> chez des non-musiciens et des musiciens. Touche l'image pour l'agrandir.<span class="credit">D'après le manuel de SVT Terminale, Hachette.</span></figcaption></figure>
-      <div class="docs" style="grid-template-columns:1fr;margin:0"><article class="dcard"><p class="dl">Document 4 · texte</p><p>L'expérience porte sur 8 non-musiciens et 11 musiciens professionnels de 18 à 34 ans, qui ont commencé leur instrument (piano, guitare, trompette ou trombone) entre 4 et 12 ans et s'entraînent 3 à 5 heures par jour. On déclenche la contraction d'un muscle du pouce en stimulant l'aire motrice du cerveau qui le commande, et on mesure l'amplitude de l'activité électrique du muscle (électromyogramme). Une amplitude plus élevée traduit un renforcement de l'efficacité et du nombre de synapses dans l'aire du cortex qui commande le pouce.</p><p class="credit">D'après le manuel de SVT Terminale, Hachette.</p></article></div>
+      <div class="docs" style="grid-template-columns:1fr;margin:0"><article class="dcard"><p class="dl">Document 4 · texte</p><p>L'expérience porte sur 8 non-musiciens et 11 musiciens professionnels de 18 à 34 ans, qui ont commencé leur instrument (piano, guitare, trompette ou trombone) entre 4 et 12 ans et s'entraînent 3 à 5 heures par jour. On déclenche la contraction d'un muscle du pouce en stimulant l'aire motrice du cerveau qui le commande, ou en stimulant directement le nerf moteur du muscle, et on mesure l'amplitude de l'activité électrique du muscle (électromyogramme). Une amplitude plus élevée traduit un renforcement de l'efficacité et du nombre de synapses dans l'aire du cortex qui commande le pouce.</p><p class="credit">D'après le manuel de SVT Terminale, Hachette.</p></article></div>
     </div>
-    <h4 class="sub">Mesure sur le diagramme</h4>
+    <h4 class="sub">Mesure, calcule, conclus</h4>
     <div class="idf" id="f3" style="max-width:760px"></div>
-    <h4 class="sub">Interprète</h4>
+    <h4 class="sub">Le rôle d'une seconde stimulation</h4>
     <div class="qcm" id="q3"></div>
-    <aside class="fiche" data-step="3"><span class="num">3</span><div><b class="t">Sur ta fiche</b><p>Note les deux amplitudes mesurées, puis explique ce qu'elles montrent sur la voie motrice des musiciens.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="3"><span class="num">3</span><div><b class="t">Sur ta fiche</b><p>Note tes deux mesures et ton calcul, rédige ta conclusion, puis explique l'intérêt de stimuler aussi le nerf moteur.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e4" aria-labelledby="h-e4">
@@ -414,10 +427,10 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
     <figure class="panel"><div class="pi"><img class="zoom" src="img/doc5.png" width="1029" height="663" alt="Document 5 : cerveaux de singe vus de profil et carte du cortex moteur. À gauche, singe témoin : territoires du tronc, du coude, du poignet, des doigts, de l'épaule, du visage et de la langue. À droite, singe amputé : territoires de l'épaule, du tronc, du moignon, du visage et de la langue."></div>
       <figcaption><b>Document 5 · Carte du cortex moteur</b> d'un singe témoin (à gauche) et d'un singe amputé (à droite). Touche l'image pour l'agrandir. Le titre de droite a été corrigé : le manuel indique par erreur « Singes témoins ».<span class="credit">D'après le manuel de SVT Terminale, Hachette.</span></figcaption></figure>
     <h4 class="sub">Compare les deux cartes</h4>
-    <p class="note" style="margin-top:-4px">Pour chaque territoire, choisis ce que tu observes.</p>
-    <div class="cls" id="cls4"></div>
-    <div class="idf" id="f4" style="margin-top:18px;max-width:760px"></div>
-    <aside class="fiche" data-step="4"><span class="num">4</span><div><b class="t">Sur ta fiche</b><p>Complète le tableau de comparaison des deux cartes, puis explique ce qu'est devenu le territoire de la main.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <div class="idf" id="f4" style="max-width:760px"></div>
+    <h4 class="sub">Un document plus convaincant ?</h4>
+    <div class="qcm" id="q4"></div>
+    <aside class="fiche" data-step="4"><span class="num">4</span><div><b class="t">Sur ta fiche</b><p>Indique les territoires disparus, le territoire nouveau et le territoire agrandi chez le singe amputé, puis explique pourquoi ce document est plus convaincant que les documents 3 et 4.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e5" aria-labelledby="h-e5">
@@ -440,14 +453,14 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
     <h4 class="sub">Nomme ce que tu as observé</h4>
     <div class="idf" id="f5" style="max-width:760px"></div>
     <div class="qcm" id="q5" style="margin-top:18px"></div>
-    <aside class="fiche" data-step="5"><span class="num">5</span><div><b class="t">Sur ta fiche</b><p>Décris ce que devient le territoire des doigts après l'entraînement, puis après l'amputation. Nomme cette propriété du cortex et donnes-en une définition.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="5"><span class="num">5</span><div><b class="t">Sur ta fiche</b><p>Décris l'effet de l'entraînement, puis celui de l'amputation dans la simulation. Nomme la propriété du cortex, définis-la, et indique une limite de la simulation.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e6" aria-labelledby="h-e6">
     <header><span class="step-n">6</span><h3 id="h-e6">Bilan de la partie 1</h3></header>
-    <p class="lead">Complète le bilan avec les mots que tu as trouvés dans les étapes 1 à 5.</p>
-    <div class="idf" id="f6" style="max-width:820px"></div>
-    <aside class="fiche" data-step="6"><span class="num">6</span><div><b class="t">Sur ta fiche</b><p>Recopie le bilan complété, puis réponds à la problématique : le cortex moteur se modifie-t-il au cours du temps ?</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <p class="lead">Rédige une réponse argumentée à la problématique : le cortex moteur se modifie-t-il au cours du temps ? Appuie-toi sur les documents et sur tes réponses aux étapes 1 à 5. La page vérifie que ta rédaction remplit chaque critère, sans te donner les réponses.</p>
+    <div class="redac" id="r6"></div>
+    <aside class="fiche" data-step="6"><span class="num">6</span><div><b class="t">Sur ta fiche</b><p>Recopie ta rédaction : ta réponse argumentée à la problématique de la partie 1.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 </section>
 
@@ -462,9 +475,9 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
 
   <section class="step" id="e7" aria-labelledby="h-e7">
     <header><span class="step-n">7</span><h3 id="h-e7">La nicotine et le récepteur <span class="badge-jeu">Simulation</span></h3></header>
-    <p class="lead">La nicotine du tabac agit sur une synapse. Lis le texte et observe les documents A et B, puis teste la simulation.</p>
+    <p class="lead">La nicotine du tabac agit sur une synapse. Lis le texte et observe les documents A et B, puis teste la simulation : c'est elle qui te montre ce qui traverse la membrane.</p>
     <div class="docs">
-      <article class="dcard"><p class="dl">Document 1 · texte</p><h4>Une action sur les récepteurs de l'acétylcholine</h4><p>La nicotine, substance contenue dans le tabac, agit au niveau de certains récepteurs du neurotransmetteur acétylcholine. Ces récepteurs portent d'ailleurs le nom de récepteurs nicotiniques. Ce sont des protéines-canaux. Lorsqu'ils sont activés, ils laissent pénétrer des ions Na<sup>+</sup> à travers la membrane, ce qui entraîne une légère dépolarisation. L'ouverture du canal est provoquée par le rapprochement de deux acides aminés du récepteur, Cys et Trp.</p><p class="credit">D'après le manuel de SVT Terminale, Bordas.</p></article>
+      <article class="dcard"><p class="dl">Document 1 · texte</p><h4>Une action sur les récepteurs de l'acétylcholine</h4><p>La nicotine, substance contenue dans le tabac, agit au niveau de certains récepteurs du neurotransmetteur acétylcholine. Ces récepteurs portent d'ailleurs le nom de récepteurs nicotiniques. Ce sont des protéines-canaux : lorsqu'ils sont activés, ils laissent passer des ions à travers la membrane. L'ouverture du canal dépend de deux acides aminés du récepteur, Cys et Trp (document 1B).</p><p class="credit">D'après le manuel de SVT Terminale, Bordas.</p></article>
       <figure class="dcard"><p class="dl">Document 1A</p><div class="pi" style="max-width:300px"><img class="zoom" src="img/s1A.jpg" width="366" height="292" alt="Modèle moléculaire du récepteur de l'acétylcholine vu de dessus : cinq chaînes colorées autour d'un canal central ; la nicotine, en rouge, est fixée sur le récepteur."></div><figcaption><b>Nicotine (en rouge) fixée sur le récepteur de l'acétylcholine</b>, vu de dessus.<span class="credit">D'après le manuel de SVT Terminale, Bordas.</span></figcaption></figure>
     </div>
     <figure class="panel"><div class="pi"><img class="zoom" src="img/s1B.jpg" width="791" height="266" alt="Document 1B : trois modèles moléculaires d'une partie du récepteur montrant deux acides aminés, Cys en haut et Trp en bas, reliés par un trait en pointillés : récepteur seul, récepteur avec acétylcholine, récepteur avec nicotine."></div>
@@ -484,7 +497,7 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
     <h4 class="sub">Ce que tu observes</h4>
     <div class="idf" id="f7" style="max-width:760px"></div>
     <div class="qcm" id="q7" style="margin-top:18px"></div>
-    <aside class="fiche" data-step="7"><span class="num">7</span><div><b class="t">Sur ta fiche</b><p>Explique comment la nicotine agit sur le récepteur de l'acétylcholine : ce que deviennent Cys et Trp, ce qui traverse la membrane, et la conséquence.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="7"><span class="num">7</span><div><b class="t">Sur ta fiche</b><p>Explique comment la nicotine agit sur le récepteur : ce que deviennent Cys et Trp, ce qui traverse la membrane, la variation du potentiel. Définis le mot « agoniste ».</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e8" aria-labelledby="h-e8">
@@ -496,14 +509,15 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
       <article class="dcard"><p class="dl">Document 1 · texte</p><h4>L'effet en cascade de la nicotine</h4><p>Les récepteurs nicotiniques sont présents non seulement sur la membrane postsynaptique des synapses à acétylcholine, mais aussi sur la membrane présynaptique de neurones qui libèrent d'autres neurotransmetteurs, comme la dopamine, le GABA ou le glutamate. La nicotine perturbe donc l'activité de nombreuses synapses du cerveau, ce qui explique ses divers effets.</p><p class="credit">D'après le manuel de SVT Terminale, Bordas.</p></article>
     </div>
     <h4 class="sub">Remets dans l'ordre ce qui se passe dans la terminaison du neurone à dopamine</h4>
+    <p class="note" style="margin-top:-4px">Attention : deux cartes sont fausses. Choisis les quatre bonnes, dans l'ordre.</p>
     <div class="ordre" id="o8"></div>
     <div class="qcm" id="q8" style="margin-top:18px"></div>
-    <aside class="fiche" data-step="8"><span class="num">8</span><div><b class="t">Sur ta fiche</b><p>Numérote les étapes de l'effet de la nicotine sur la synapse à dopamine, et indique où se trouvent les récepteurs nicotiniques.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="8"><span class="num">8</span><div><b class="t">Sur ta fiche</b><p>Numérote les quatre étapes de l'effet de la nicotine sur la synapse à dopamine (deux cartes étaient fausses), puis explique pourquoi on parle d'un effet en cascade.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e9" aria-labelledby="h-e9">
     <header><span class="step-n">9</span><h3 id="h-e9">Des substances plus ou moins addictives</h3></header>
-    <p class="lead">Le document 2A recense les principales substances addictives consommées en France. Lis-le attentivement, puis démêle le vrai du faux.</p>
+    <p class="lead">Le document 2A recense les principales substances addictives consommées en France. Certaines affirmations demandent un calcul : fais-le avant de répondre.</p>
     <div class="panel">
       <div class="scroll">
         <table class="tabdoc">
@@ -524,7 +538,7 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
     <h4 class="sub">Vrai ou faux ?</h4>
     <div class="vf" id="vf9"></div>
     <div class="qcm" id="q9" style="margin-top:18px"></div>
-    <aside class="fiche" data-step="9"><span class="num">9</span><div><b class="t">Sur ta fiche</b><p>Indique la substance qui a le plus fort pouvoir addictif, et écris la définition d'une addiction.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="9"><span class="num">9</span><div><b class="t">Sur ta fiche</b><p>Note tes calculs à partir du tableau 2A, puis justifie, à l'aide de la définition, que la situation décrite est une addiction.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e10" aria-labelledby="h-e10">
@@ -542,16 +556,16 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
       <div class="idf" id="f10"></div>
     </div>
     <div class="qcm" id="q10" style="margin-top:18px"></div>
-    <aside class="fiche" data-step="10"><span class="num">10</span><div><b class="t">Sur ta fiche</b><p>Note tes mesures sur le graphique C, puis explique le rôle de la dopamine dans le système de récompense.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="10"><span class="num">10</span><div><b class="t">Sur ta fiche</b><p>Note tes mesures et tes calculs sur le graphique C, l'effet de la dose d'alcool, et ce que l'on peut conclure de ces mesures chez le rat pour l'humain.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e11" aria-labelledby="h-e11">
     <header><span class="step-n">11</span><h3 id="h-e11">Le piège de l'addiction <span class="badge-jeu">Jeu</span></h3></header>
     <p class="lead">Avec le texte de l'étape 10, reconstitue le cercle qui entretient l'addiction. Le cercle commence par la consommation et y revient.</p>
     <div class="links" style="max-width:560px"><a href="https://leblob.fr/sante/plaisir-et-addiction" target="_blank" rel="noopener"><b>Vidéo · Plaisir et addiction</b><span>Le circuit de la récompense expliqué en 4 minutes (Inserm, Universcience). S'ouvre sur leblob.fr.</span></a></div>
+    <p class="note">Attention : deux cartes sont fausses.</p>
     <div class="ordre" id="o11"></div>
-    <div class="qcm" id="q11" style="margin-top:18px"></div>
-    <aside class="fiche" data-step="11"><span class="num">11</span><div><b class="t">Sur ta fiche</b><p>Complète le schéma en cercle de l'addiction, puis explique pourquoi la consommation augmente.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <aside class="fiche" data-step="11"><span class="num">11</span><div><b class="t">Sur ta fiche</b><p>Complète le schéma en cercle de l'addiction (deux cartes étaient fausses).</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 
   <section class="step" id="e12" aria-labelledby="h-e12">
@@ -577,9 +591,9 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
 
   <section class="step" id="e13" aria-labelledby="h-e13">
     <header><span class="step-n">13</span><h3 id="h-e13">Bilan de la partie 2</h3></header>
-    <p class="lead">Complète le bilan avec les mots que tu as trouvés dans les étapes 7 à 11.</p>
-    <div class="idf" id="f13" style="max-width:820px"></div>
-    <aside class="fiche" data-step="13"><span class="num">13</span><div><b class="t">Sur ta fiche</b><p>Recopie le bilan complété, réponds à la problématique de la partie 2, puis explique en quelques lignes pourquoi le cerveau est un organe à préserver.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
+    <p class="lead">Rédige une réponse argumentée à la problématique : comment ces substances agissent-elles sur le cerveau, et pourquoi entraînent-elles une addiction ? Appuie-toi sur les documents et sur tes réponses aux étapes 7 à 12.</p>
+    <div class="redac" id="r13"></div>
+    <aside class="fiche" data-step="13"><span class="num">13</span><div><b class="t">Sur ta fiche</b><p>Recopie ta rédaction, puis explique en quelques lignes pourquoi le cerveau est un organe à préserver.</p><label class="done"><input type="checkbox"> C'est fait</label></div></aside>
   </section>
 </section>
 
@@ -722,11 +736,11 @@ function classer(root,cats,rows){
   frAll(root);
 }
 
-/* remettre dans l'ordre */
-function ordre(root,items,{first,last,hint}){
+/* remettre dans l'ordre (les cartes au-delà de n sont des pièges) */
+function ordre(root,items,{first,last,hint,n}){
+  const N=n||items.length;
   const pool=document.createElement('div');pool.className='pool';
   const ol=document.createElement('ol');
-  const box=document.createElement('div');box.className='ordre';
   let seq=[];
   root.innerHTML='';
   if(first){const fx=document.createElement('div');fx.className='fixed';fx.innerHTML=`<span>★</span>${first}`;root.appendChild(fx);}
@@ -740,20 +754,42 @@ function ordre(root,items,{first,last,hint}){
   const order=shuffle(items.map((_,i)=>i));
   function render(){
     pool.innerHTML='';ol.innerHTML='';
-    order.filter(i=>!seq.includes(i)).forEach(i=>{const b=document.createElement('button');b.type='button';b.innerHTML=items[i];b.addEventListener('click',()=>{seq.push(i);render();clearFb();});pool.appendChild(b);});
+    order.filter(i=>!seq.includes(i)).forEach(i=>{const b=document.createElement('button');b.type='button';b.innerHTML=items[i];b.disabled=seq.length>=N;b.addEventListener('click',()=>{if(seq.length<N){seq.push(i);render();clearFb();}});pool.appendChild(b);});
     seq.forEach((i,k)=>{const li=document.createElement('li');const b=document.createElement('button');b.type='button';b.innerHTML=items[i]+`<span class="sr"> (retirer)</span>`;b.addEventListener('click',()=>{seq.splice(k,1);render();clearFb();});li.appendChild(b);ol.appendChild(li);});
-    bc.disabled=seq.length!==items.length;frAll(root);
+    bc.disabled=seq.length!==N;frAll(root);
   }
   const clearFb=()=>{fb.textContent='';fb.className='fb';hp.hidden=true;$$('li',ol).forEach(l=>l.classList.remove('good','wrong'));};
   bc.addEventListener('click',()=>{
     const lis=$$('li',ol);let bad=-1;
     seq.forEach((i,k)=>{const g=i===k;lis[k].classList.add(g?'good':'wrong');if(!g&&bad<0)bad=k;});
-    const ok=bad<0;fb.className='fb '+(ok?'ok':'bad');
-    fb.textContent=ok?'Juste : recopie cet ordre sur ta fiche.':`Faux : ${seq.filter((i,k)=>i===k).length} carte${seq.filter((i,k)=>i===k).length>1?'s':''} sur ${items.length} à la bonne place.`;
-    hp.hidden=ok;if(!ok)hp.innerHTML='<b>Indice :</b> '+hint(bad);frAll(root);
+    const ok=bad<0,good=seq.filter((i,k)=>i===k).length,trap=seq.some(i=>i>=N);
+    fb.className='fb '+(ok?'ok':'bad');
+    fb.textContent=ok?'Juste : recopie cet ordre sur ta fiche.':`Faux : ${good} carte${good>1?'s':''} sur ${N} à la bonne place.`;
+    hp.hidden=ok;if(!ok)hp.innerHTML='<b>Indice :</b> '+(trap?"une des cartes que tu as choisies est un piège : rien dans les documents ne la montre. Retire-la.":hint(bad));frAll(root);
   });
   br.addEventListener('click',()=>{seq=[];render();clearFb();});
   render();
+}
+
+/* rédaction : critères vérifiés par les idées attendues, sans donner la réponse */
+function redac(root,key,crit,minW){
+  root.innerHTML=`<label for="rd-${key}" style="font-weight:700">Ta rédaction</label><textarea id="rd-${key}" rows="9" placeholder="Rédige ta réponse ici, en phrases, puis vérifie-la."></textarea>
+    <p style="margin:0;font-weight:700">Critères de réussite</p><ul class="crit">${crit.map(c=>`<li><span class="ck" aria-hidden="true">○</span><span>${c.l}</span><span class="st" aria-live="polite"></span></li>`).join('')}</ul>
+    <div class="row"><button class="btn pri" type="button">Vérifier ma rédaction</button><span class="note wc"></span></div><p class="fb" aria-live="polite"></p>`;
+  const ta=$('textarea',root),lis=$$('.crit li',root),fb=$('.fb',root),wc=$('.wc',root);
+  ta.value=store.get('redac-'+key,'');
+  const count=()=>{const n=(ta.value.trim().match(/\S+/g)||[]).length;wc.textContent=n+' mot'+(n>1?'s':'');return n;};
+  const reset=()=>{lis.forEach(l=>{l.className='';$('.ck',l).textContent='○';$('.st',l).innerHTML='';});fb.textContent='';fb.className='fb';};
+  ta.addEventListener('input',()=>{store.set('redac-'+key,ta.value);count();reset();});
+  $('.btn',root).addEventListener('click',()=>{
+    const n=count(),t=norm(ta.value);let ok=0;
+    crit.forEach((c,i)=>{const li=lis[i],good=c.re?c.re.test(ta.value):c.kw.some(set=>set.every(k=>t.includes(k)));
+      li.className=good?'good':'wrong';$('.ck',li).textContent=good?'✔':'✘';$('.st',li).innerHTML=good?'':`<span class="hint"><b>Indice :</b> ${c.h}</span>`;if(good)ok++;});
+    fb.className='fb'+(ok===crit.length&&n>=minW?' ok':'');
+    fb.textContent=n<minW?`Ta rédaction est trop courte (${n} mots) : vise au moins ${minW} mots.`:ok===crit.length?'Tous les critères sont remplis : recopie ta rédaction sur ta fiche.':`${ok} critère${ok>1?'s':''} rempli${ok>1?'s':''} sur ${crit.length}. Complète ta rédaction à l'aide des indices.`;
+    frAll(root);
+  });
+  count();frAll(root);
 }
 
 /* ============ ÉTAPE 1 : le défi du pianiste ============ */
@@ -841,52 +877,48 @@ function ordre(root,items,{first,last,hint}){
     g.innerHTML=s;
   }
   render();
+  ident('#f1',[
+    {q:"Temps de réaction moyen des non-pianistes à l'essai 1",num:[535,560],u:'ms',hint:"Repère le point bleu au-dessus de l'essai 1, puis lis sa valeur sur l'axe vertical : entre quelles graduations se trouve-t-il ?"},
+    {q:"Temps de réaction moyen des pianistes professionnels à l'essai 5",num:[470,500],u:'ms',hint:"Repère le point rouge au-dessus de l'essai 5, puis lis sa valeur sur l'axe vertical."},
+    {q:"Écart entre les deux groupes à l'essai 5",num:[55,90],u:'ms',hint:"Lis les valeurs du point bleu et du point rouge à l'essai 5, puis fais la différence."}
+  ]);
   qcm($('#q1'),[
-    {q:"D'après le graphique, quel groupe a les temps de réaction les plus courts ?",o:["les non-pianistes","les pianistes professionnels","les deux groupes ont les mêmes temps"],a:1,h:"Plus le temps de réaction est court, plus la réponse est rapide. Quelle courbe est la plus basse ?"},
-    {q:"Au fil des 5 essais, le temps de réaction des pianistes professionnels :",o:["augmente","reste à peu près le même","diminue"],a:2,h:"Suis la droite des pianistes de l'essai 1 à l'essai 5 : monte-t-elle ou descend-elle ?"},
-    {q:"Quelle hypothèse peut expliquer la différence entre les deux groupes ?",o:["Les pianistes avaient un meilleur clavier de réponse.","Des années d'entraînement au piano ont rendu les pianistes plus habiles avec leurs doigts.","Les pianistes voient mieux l'écran."],a:1,h:"Relis le document 1 : que font les pianistes professionnels plusieurs heures par jour depuis l'enfance ? Et le document 2 : tous les participants ont-ils passé le même test ?"}
+    {q:"Ce test permet-il d'affirmer que c'est l'entraînement au piano qui a rendu les pianistes plus rapides ?",o:["Oui, car les pianistes sont plus rapides à chacun des 5 essais.","Oui, car le temps de réaction des pianistes diminue au fil des essais.","Non : il montre une différence entre deux groupes, mais les pianistes étaient peut-être déjà plus rapides avant d'apprendre le piano."],a:2,
+     h:"Le test compare deux groupes de personnes différentes, à un seul moment de leur vie. Pour prouver l'effet de l'entraînement, qui faudrait-il comparer, et à quels moments ?",
+     ok:"Pour le prouver, il faudrait suivre les mêmes personnes avant et après des années d'entraînement. Le test permet seulement de formuler une hypothèse."}
   ]);
 })();
 
 /* ============ ÉTAPE 2 : matière grise ============ */
 vf($('#vf2'),[
-  {s:"Dans les trois aires étudiées, ce sont les musiciens professionnels qui ont le plus grand volume de matière grise.",a:true,h:"Dans chacun des trois groupes de barres, quelle barre est la plus haute ? Regarde la légende pour savoir à quel groupe elle correspond."},
-  {s:"Les musiciens amateurs ont moins de matière grise dans les aires motrices que les non-musiciens.",a:false,h:"Dans le groupe de barres « Aires motrices », compare la barre grise (amateurs) et la barre blanche (non-musiciens)."},
-  {s:"Plus la pratique de la musique est importante, plus le volume de matière grise des aires motrices est grand.",a:true,h:"Range les trois groupes du moins entraîné au plus entraîné (non-musiciens, amateurs, professionnels), puis regarde comment évoluent leurs barres."},
-  {s:"La pratique de la musique ne modifie que les aires auditives.",a:false,h:"Les différences entre les groupes existent-elles seulement dans le groupe de barres « Aires auditives » ? Regarde aussi les zones colorées sur les IRM."}
+  {s:"Dans les trois aires, les musiciens professionnels ont plus de matière grise que les non-musiciens.",a:true,h:"Dans chaque groupe de barres, compare la barre bleu foncé (professionnels) et la barre blanche (non-musiciens), en tenant compte de leurs barres d'erreur."},
+  {s:"Dans les aires motrices, on peut affirmer que les professionnels ont plus de matière grise que les amateurs.",a:false,h:"Compare les barres d'erreur de la barre grise (amateurs) et de la barre bleu foncé (professionnels) : si elles se chevauchent largement, la différence n'est pas certaine."},
+  {s:"Ces résultats prouvent que la pratique de la musique fait augmenter le volume de matière grise.",a:false,h:"On compare des personnes différentes, à un seul moment de leur vie. Les musiciens avaient-ils peut-être déjà plus de matière grise avant de commencer la musique ?"}
 ]);
 ident('#f2',[
-  {q:"D'après le texte du document 3, que représente le volume de matière grise ?",ok:['nombre de neurones'],kw:[['neurone']],hint:"Relis la première phrase du texte du document 3 : la réponse est entre parenthèses."}
+  {q:"Rédige une phrase de conclusion sur les aires motrices des musiciens professionnels, en utilisant ce que représente le volume de matière grise.",ph:'Ta phrase de conclusion',kw:[['neuron','plu'],['neuron','augment'],['neuron','davantage'],['neuron','grand'],['neuron','nombreu'],['neuron','eleve']],not:['moin','diminu'],hint:"Ta phrase doit dire ce qui est plus important chez les professionnels, en utilisant ce que représente le volume de matière grise : relis la première phrase du texte du document 3."}
 ]);
 
 /* ============ ÉTAPE 3 : électromyogramme ============ */
 ident('#f3',[
   {q:"Amplitude moyenne chez les non-musiciens",num:[1.37,1.49],u:'(unité arbitraire)',hint:"Repère le haut de la barre rouge sur l'axe vertical : il se trouve entre les graduations 1,25 et 1,50. Est-il plus près de 1,25 ou de 1,50 ?"},
-  {q:"Amplitude moyenne chez les musiciens",num:[1.9,2.0],u:'(unité arbitraire)',hint:"Le haut de la barre bleue arrive presque sur une graduation de l'axe vertical : laquelle ?"}
+  {q:"Amplitude moyenne chez les musiciens",num:[1.9,2.0],u:'(unité arbitraire)',hint:"Le haut de la barre bleue arrive presque sur une graduation de l'axe vertical : laquelle ?"},
+  {q:"Augmentation de l'amplitude chez les musiciens par rapport aux non-musiciens",num:[28,45],u:'%',hint:"Calcule (amplitude des musiciens − amplitude des non-musiciens) ÷ amplitude des non-musiciens, puis multiplie par 100."},
+  {q:"Rédige une phrase de conclusion : que traduit cette amplitude plus élevée chez les musiciens ?",ph:'Ta phrase de conclusion',kw:[['synap','plu'],['synap','nombr'],['synap','renforc'],['synap','efficac'],['synap','augment'],['synap','davantage']],not:['moin'],hint:"Relis la dernière phrase du texte du document 4 : une amplitude plus élevée traduit le renforcement de quoi, dans l'aire du cortex qui commande le pouce ?"}
 ]);
 qcm($('#q3'),[
-  {q:"Une amplitude plus élevée chez les musiciens montre que :",o:["le muscle de leur pouce est plus gros","l'aire du cortex qui commande le pouce a plus de synapses et commande le muscle plus efficacement","leur nerf moteur est plus long"],a:1,h:"Relis la dernière phrase du texte du document 4 : que traduit une amplitude plus élevée ?"},
-  {q:"Comment expliquer l'habileté des pianistes de l'étape 1 ?",o:["Ils sont nés avec un cortex moteur différent.","L'entraînement a modifié leur cortex : plus de neurones dans les aires motrices et une voie motrice plus efficace.","L'entraînement a seulement musclé leurs doigts."],a:1,h:"Rassemble ce que tu as trouvé aux étapes 2 et 3 : qu'est-ce qui augmente dans les aires motrices des musiciens ? Le document 4 indique-t-il quand ces musiciens ont commencé à s'entraîner ?"}
+  {q:"Les chercheurs déclenchent la contraction en stimulant l'aire motrice, mais aussi directement le nerf moteur. Quel est l'intérêt de cette seconde stimulation ?",o:["Faire contracter le muscle plus fort, pour obtenir un meilleur enregistrement.","Vérifier que la différence ne vient pas du muscle ou du nerf : si la réponse au nerf est la même dans les deux groupes, la différence vient du cortex.","Mesurer la vitesse du message nerveux dans le nerf moteur."],a:1,h:"Pense au rôle d'un témoin dans une expérience. Quelle partie de la voie motrice est court-circuitée quand on stimule directement le nerf ?"}
 ]);
 
 /* ============ ÉTAPE 4 : amputation ============ */
-(()=>{
-  const C=["chez les deux singes","disparu chez le singe amputé","seulement chez le singe amputé"];
-  const H0="Cherche ce nom sur la carte du singe témoin (à gauche), puis sur celle du singe amputé (à droite).";
-  classer($('#cls4'),C,[
-    {n:'Tronc',a:0,h:H0},
-    {n:'Épaule',a:0,h:H0},
-    {n:'Coude',a:1,h:H0},
-    {n:'Poignet',a:1,h:H0},
-    {n:'Doigts',a:1,h:H0},
-    {n:'Moignon',a:2,h:H0+" Un moignon est ce qui reste d'un membre après une amputation."},
-    {n:'Visage',a:0,h:H0},
-    {n:'Langue',a:0,h:H0}
-  ]);
-  ident('#f4',[
-    {q:"Chez le singe amputé, quel territoire occupe maintenant la place des doigts et du poignet ?",ok:['moignon','territoire du moignon'],kw:[['moignon']],hint:"Sur la carte du singe témoin, repère où se trouvent les doigts et le poignet. Sur la carte du singe amputé, quel territoire, en rose, se trouve à cet endroit ? Lis son nom."}
-  ]);
-})();
+ident('#f4',[
+  {q:"Quels territoires ont disparu chez le singe amputé ?",kw:[['doigt','poignet','coude']],hint:"Compare les noms écrits sur les deux cartes : trois noms de la carte du singe témoin n'apparaissent plus sur celle du singe amputé. Cite-les tous les trois."},
+  {q:"Quel territoire nouveau occupe leur place ?",ok:['moignon'],kw:[['moignon']],hint:"Sur la carte du singe amputé, repère le territoire en rose, là où se trouvaient les doigts et le poignet. Un moignon est ce qui reste d'un membre après une amputation."},
+  {q:"Quel territoire voisin s'est nettement agrandi ?",ok:['epaule'],kw:[['epaule']],hint:"Compare la taille du territoire bleu foncé sur les deux cartes."}
+]);
+qcm($('#q4'),[
+  {q:"Pourquoi ce document montre-t-il, mieux que les documents 3 et 4, que le cortex moteur se modifie au cours de la vie ?",o:["Parce que les mesures sont faites avec des microélectrodes, plus précises que l'IRM.","Parce que la différence entre les deux cartes s'explique par un événement connu, survenu au cours de la vie des singes : l'amputation.","Parce que le cerveau du singe est plus simple que celui de l'être humain."],a:1,h:"Pour les musiciens, on ne savait pas si leur cerveau était déjà différent avant la musique. Ici, que sait-on de ce qui est arrivé aux singes amputés au cours de leur vie ?"}
+]);
 
 /* ============ ÉTAPE 5 : sculpte ton cortex ============ */
 (()=>{
@@ -928,17 +960,19 @@ qcm($('#q3'),[
     {q:"Comment appelle-t-on la capacité du cortex à se modifier, selon l'entraînement ou après un accident ?",ok:['plasticite cerebrale','plasticite'],kw:[['plastic']],hint:"Le cortex se laisse façonner, comme de la pâte à modeler. Le mot savant vient du grec <i>plassein</i>, « modeler », comme le mot « plastique »."}
   ]);
   qcm($('#q5'),[
-    {q:"Deux personnes peuvent-elles avoir exactement la même carte du cortex moteur ?",o:["Oui, la carte est la même chez tous les humains, toute la vie.","Non, car la carte dépend de l'histoire de chacun : entraînement, accidents… Chaque cerveau est unique."],a:1,h:"Compare les musiciens et les non-musiciens (étapes 2 et 3), puis le singe témoin et le singe amputé (étape 4) : leurs cortex sont-ils identiques ?"}
+    {q:"Quelle est une limite de cette simulation ?",o:["Elle montre que le cortex d'un adulte peut se modifier, ce qui est impossible.","Elle représente le cortex comme une simple bande où chaque case appartient à un seul territoire, alors que les vrais territoires sont imbriqués.","Elle exagère : en réalité, le territoire de la main ne change jamais."],a:1,h:"Compare la bande de la simulation avec la carte du cortex du document 5 : les territoires y sont-ils rangés les uns à côté des autres, ou imbriqués ? Et les documents 4 et 5 montrent-ils des modifications chez l'adulte ?"}
   ]);
 })();
 
-/* ============ ÉTAPE 6 : bilan partie 1 ============ */
-ident('#f6',[
-  {q:"1. Chez les musiciens, l'entraînement augmente le volume de matière grise, donc le nombre de <span class=\"blanc\"></span> des aires motrices.",ok:['neurones'],kw:[['neuron']],hint:"Revois l'étape 2 : que représente le volume de matière grise ?"},
-  {q:"2. Il renforce aussi le nombre de <span class=\"blanc\"></span> dans l'aire qui commande les doigts : la voie motrice devient plus efficace.",ok:['synapses'],kw:[['synap']],hint:"Revois la dernière phrase du texte du document 4 (étape 3)."},
-  {q:"3. Après une amputation, le territoire de la main est occupé par d'autres territoires voisins, comme celui du <span class=\"blanc\"></span>.",ok:['moignon','visage'],kw:[['moignon'],['visage'],['epaule']],hint:"Revois l'étape 4 : quel territoire nouveau apparaît chez le singe amputé ?"},
-  {q:"4. Cette capacité du cortex à se modifier tout au long de la vie s'appelle la <span class=\"blanc\"></span>.",ok:['plasticite cerebrale','plasticite'],kw:[['plastic']],hint:"Revois l'étape 5."}
-]);
+/* ============ ÉTAPE 6 : rédaction, partie 1 ============ */
+redac($('#r6'),'p1',[
+  {l:"Tu réponds clairement à la problématique.",kw:[['oui'],['modifi'],['change'],['remodel'],['evolu']],h:"Commence par répondre à la question posée : le cortex moteur se modifie-t-il au cours du temps ?"},
+  {l:"Tu expliques ce que l'entraînement modifie dans le cortex des musiciens.",kw:[['neuron','synap']],h:"Revois les étapes 2 et 3 : qu'est-ce qui est plus important dans les aires motrices, et dans l'aire qui commande le pouce ?"},
+  {l:"Tu t'appuies sur au moins une donnée chiffrée tirée d'un document.",re:/\d/,h:"Cite une valeur que tu as lue ou calculée aux étapes 1 à 3."},
+  {l:"Tu expliques ce qui se passe après une amputation.",kw:[['amput'],['moignon']],h:"Revois l'étape 4 : que deviennent les territoires de la main ?"},
+  {l:"Tu nommes la propriété du cortex.",kw:[['plastic']],h:"Revois l'étape 5."},
+  {l:"Tu indiques une limite d'un document ou une précaution.",re:/(corr[ée]lation|cause|causalit|d[ée]j[àa]|barres? d.erreur|effectifs?|chevauch|limite|significati|prouve)/i,h:"Revois la question sur les barres d'erreur (étape 2) et celle sur ce que le test du pianiste permet d'affirmer (étape 1)."}
+],60);
 
 /* ============ ÉTAPE 7 : le récepteur nicotinique ============ */
 (()=>{
@@ -1010,34 +1044,33 @@ ident('#f6',[
   }));
   setV(-70);
   ident('#f7',[
-    {q:"Quels ions entrent dans le neurone quand le récepteur est activé ?",ok:['ions sodium','na+','sodium'],kw:[['na'],['sodium']],hint:"Observe les ions qui traversent le canal dans la simulation, puis relis le texte du document 1."},
-    {q:"Sur le document 1B, que deviennent les acides aminés Cys et Trp quand l'acétylcholine ou la nicotine est fixée ?",ok:['ils se rapprochent'],kw:[['rapproch'],['proche'],['diminu'],['plus pres'],['moins loin'],['raccourc']],not:['eloign','ecart'],hint:"Compare la longueur du trait en pointillés entre Cys et Trp sur les trois images du document 1B."}
+    {q:"D'après la simulation, quels ions entrent dans le neurone quand le récepteur est activé ?",ok:['ions sodium','na+','sodium'],kw:[['na'],['sodium']],hint:"Ajoute une molécule dans la simulation, puis lis le nom des ions qui traversent le canal (la légende t'aide)."},
+    {q:"Sur le document 1B, que deviennent les acides aminés Cys et Trp quand l'acétylcholine ou la nicotine est fixée ?",ok:['ils se rapprochent'],kw:[['rapproch'],['proche'],['diminu'],['plus pres'],['moins loin'],['raccourc']],not:['eloign','ecart'],hint:"Compare la longueur du trait en pointillés entre Cys et Trp sur les trois images du document 1B."},
+    {q:"Le potentiel de membrane passe de −70 mV à −60 mV. Comment appelle-t-on cette variation ?",ok:['depolarisation'],kw:[['depolaris']],not:['hyper','repolar'],hint:"Le potentiel devient moins négatif. Revois le TP 2 sur le message nerveux : quel mot désigne cette variation ?"}
   ]);
   qcm($('#q7'),[
-    {q:"La nicotine agit donc sur le récepteur de l'acétylcholine :",o:["comme l'acétylcholine : elle se fixe sur le récepteur et ouvre le canal","en bloquant le récepteur : le canal reste fermé","elle n'a aucun effet sur le récepteur"],a:0,h:"Dans la simulation, compare ce qui se passe avec l'acétylcholine et avec la nicotine : le canal, les ions, le potentiel de membrane."},
-    {q:"L'entrée de ces ions modifie le potentiel de membrane. On parle de :",o:["dépolarisation","hyperpolarisation","repolarisation"],a:0,h:"Relis le texte du document 1. Dans la simulation, le potentiel passe de −70 mV à une valeur moins négative."}
+    {q:"On dit que la nicotine est un agoniste de l'acétylcholine. Que signifie « agoniste » ?",o:["Une molécule qui se fixe sur le récepteur d'un neurotransmetteur et l'empêche de fonctionner.","Une molécule qui se fixe sur le même récepteur qu'un neurotransmetteur et produit le même effet.","Une molécule qui détruit le neurotransmetteur dans la fente synaptique."],a:1,h:"Dans la simulation, compare l'effet de la nicotine et celui de l'acétylcholine sur le canal et sur le potentiel de membrane."}
   ]);
 })();
 
 /* ============ ÉTAPE 8 : l'effet en cascade ============ */
 (()=>{
-  const IT=["La nicotine se fixe sur le récepteur à acétylcholine de la terminaison du neurone à dopamine.","Des ions Na<sup>+</sup> entrent dans la terminaison.","Des ions Ca<sup>2+</sup> entrent par les canaux à calcium.","L'exocytose augmente : davantage de dopamine est libérée dans la fente synaptique."];
-  ordre($('#o8'),IT,{hint:k=>k===0?"Commence par ce que fait la nicotine en arrivant sur la synapse.":"Le document 1C numérote les étapes (1, 2, 3). Retrouve l'étape n° "+k+" sur le schéma « avec nicotine »."});
+  const IT=["La nicotine se fixe sur le récepteur à acétylcholine de la terminaison du neurone à dopamine.","Des ions Na<sup>+</sup> entrent dans la terminaison.","Des ions Ca<sup>2+</sup> entrent par les canaux à calcium.","L'exocytose augmente : davantage de dopamine est libérée dans la fente synaptique.","La nicotine bloque les canaux à calcium.","La dopamine est recaptée plus vite par le neurone à dopamine."];
+  ordre($('#o8'),IT,{n:4,hint:k=>k===0?"Commence par ce que fait la nicotine en arrivant sur la synapse.":"Le document 1C numérote les étapes (1, 2, 3). Retrouve l'étape n° "+k+" sur le schéma « avec nicotine »."});
   qcm($('#q8'),[
-    {q:"Sur la synapse à dopamine, où se trouvent les récepteurs nicotiniques ?",o:["sur la membrane présynaptique, celle de la terminaison du neurone à dopamine","sur la membrane postsynaptique uniquement","dans les vésicules de dopamine"],a:0,h:"Sur le document 1C, regarde sur quelle cellule est dessiné le récepteur à acétylcholine, puis relis le texte « L'effet en cascade »."}
+    {q:"Pourquoi parle-t-on d'un effet « en cascade » de la nicotine ?",o:["Parce qu'elle se fixe successivement sur plusieurs récepteurs à dopamine.","Parce qu'en agissant sur un premier récepteur, elle déclenche une suite d'événements qui aboutit à la libération d'un autre neurotransmetteur, la dopamine.","Parce qu'elle est elle-même libérée en grande quantité par exocytose."],a:1,h:"Relis l'ordre que tu as reconstitué : sur quel récepteur la nicotine agit-elle au départ, et quel neurotransmetteur est libéré à la fin ?"}
   ]);
 })();
 
 /* ============ ÉTAPE 9 : document 2A ============ */
 vf($('#vf9'),[
-  {s:"En France, plus de personnes ont déjà essayé l'alcool que le tabac.",a:true,h:"Compare les nombres de la ligne « Expérimentateurs » pour le tabac et pour l'alcool."},
-  {s:"L'héroïne est la substance qui a le plus fort pouvoir addictif.",a:false,h:"Compare les pourcentages de la ligne « Pouvoir addictif » : quelle est la plus grande valeur ?"},
-  {s:"Environ un consommateur de tabac sur trois développe une addiction.",a:true,h:"Lis le pouvoir addictif du tabac et la note 2 sous le tableau. Combien vaut environ un tiers, en pourcentage ?"},
-  {s:"Le cannabis n'entraîne jamais d'addiction.",a:false,h:"Lis le pouvoir addictif du cannabis : est-il égal à 0 % ?"},
-  {s:"C'est pour une addiction au tabac que le plus de personnes sont traitées.",a:true,h:"Compare les nombres de la ligne « Personnes traitées pour addiction »."}
+  {s:"Parmi les personnes qui ont essayé le tabac, environ 4 sur 10 en sont devenues des usagers réguliers.",a:true,h:"Divise le nombre d'usagers réguliers de tabac par le nombre d'expérimentateurs de tabac."},
+  {s:"Pour l'alcool, cette proportion d'usagers réguliers parmi les expérimentateurs est plus élevée que pour le tabac.",a:false,h:"Fais le même calcul pour l'alcool (usagers réguliers ÷ expérimentateurs), puis compare avec le tabac."},
+  {s:"L'héroïne a un pouvoir addictif plus élevé que l'alcool et la cocaïne, mais plus faible que le tabac.",a:true,h:"Compare les quatre valeurs concernées dans la ligne « Pouvoir addictif »."},
+  {s:"Le cannabis a le plus faible pouvoir addictif du tableau : il est donc sans danger.",a:false,h:"Le pouvoir addictif mesure-t-il tous les risques d'une substance ? Pense aussi à ses effets sur la santé (étape 12)."}
 ]);
 qcm($('#q9'),[
-  {q:"D'après le document 2A, une addiction est :",o:["le fait d'avoir déjà consommé une substance au moins une fois","une maladie du cerveau : le besoin de reproduire un comportement malgré ses conséquences néfastes","une consommation occasionnelle, sans danger"],a:1,h:"Relis la phrase qui définit une addiction sous le tableau. Attention : la note 1 définit un autre mot."}
+  {q:"Une personne fume tous les jours. Elle sait que le tabac provoque des cancers et essaie d'arrêter, mais n'y parvient pas. D'après la définition du document, s'agit-il d'une addiction ?",o:["Non, car le tabac est une substance légale.","Oui, car elle reproduit le comportement malgré la connaissance de ses conséquences néfastes.","Non, car une addiction suppose de consommer plusieurs substances."],a:1,h:"Relis la définition d'une addiction sous le tableau, et vérifie chacun de ses éléments dans la situation décrite."}
 ]);
 
 /* ============ ÉTAPE 10 : mesure sur le graphique C ============ */
@@ -1060,24 +1093,21 @@ qcm($('#q9'),[
   ident('#f10',[
     {q:"Après une injection de nicotine, quelle est la teneur maximale en dopamine ?",num:[190,235],u:'% de la teneur initiale',hint:"Place le réticule au sommet de la courbe orange (nicotine), puis lis la teneur."},
     {q:"Combien de minutes après l'injection ce maximum est-il atteint ?",num:[20,35],u:'min',hint:"Garde le réticule au sommet de la courbe orange et lis le temps sur l'axe horizontal."},
-    {q:"Combien de fois la teneur du témoin cela représente-t-il, environ ?",num:[1.8,2.4],u:'fois',hint:"La teneur du témoin reste à environ 100 %. Divise la teneur maximale après nicotine par celle du témoin."},
-    {q:"Quelle substance provoque la plus forte libération de dopamine ?",ok:['cocaine','la cocaine'],kw:[['cocain']],hint:"Quelle courbe monte le plus haut ? Lis la légende pour savoir à quelle substance elle correspond."},
+    {q:"Combien de fois la teneur du témoin cela représente-t-il ?",num:[1.8,2.4],u:'fois',hint:"La teneur du témoin reste à environ 100 %. Divise la teneur maximale après nicotine par celle du témoin."},
+    {q:"Même calcul pour la substance qui provoque la plus forte libération de dopamine",num:[3,3.6],u:'fois',hint:"Repère la courbe qui monte le plus haut, place le réticule à son sommet, puis divise par la teneur du témoin."},
     {q:"Dans quel centre nerveux du système de récompense la dopamine a-t-elle été mesurée ?",ok:['noyau accumbens'],kw:[['accumbens'],['acumbens'],['accubens']],hint:"Relis le dernier paragraphe du texte, puis repère ce centre nerveux sur le document 2B."}
   ]);
   qcm($('#q10'),[
-    {q:"Comparer les deux courbes de l'éthanol (l'alcool) montre que :",o:["plus la dose d'alcool est forte, plus la libération de dopamine est importante","plus la dose d'alcool est forte, moins la libération de dopamine est importante","la dose d'alcool ne change rien"],a:0,h:"Compare la courbe bleue en trait plein (1 g par kg) et la courbe bleue en pointillés (0,25 g par kg) : laquelle monte le plus haut ?"},
-    {q:"Dans le système de récompense, la dopamine libérée provoque :",o:["une sensation de plaisir, qui donne envie de renouveler le comportement","une sensation de douleur, qui fait arrêter le comportement","une contraction des muscles"],a:0,h:"Relis le premier paragraphe du texte du document 2 : de quelle sensation le système de récompense est-il à l'origine ?"}
+    {q:"Comparer les deux courbes de l'éthanol (l'alcool) montre que :",o:["plus la dose d'alcool est forte, plus la libération de dopamine est importante","plus la dose d'alcool est forte, moins la libération de dopamine est importante","la dose d'alcool ne change pas la libération de dopamine"],a:0,h:"Compare la courbe bleue en trait plein (1 g par kg) et la courbe bleue en pointillés (0,25 g par kg) : laquelle monte le plus haut ?"},
+    {q:"Ces mesures ont été faites chez le rat. Que peut-on en conclure pour l'être humain ?",o:["Rien du tout : le rat est trop différent de l'être humain.","Les résultats sont forcément identiques chez l'être humain.","On peut supposer un effet semblable, car le système de récompense existe aussi chez l'être humain, mais il faut le vérifier par d'autres méthodes, comme l'imagerie cérébrale."],a:2,h:"Le document 2B montre-t-il un système de récompense chez l'être humain ? Une expérience sur un animal suffit-elle pour conclure avec certitude sur l'humain ?"}
   ]);
 })();
 
 /* ============ ÉTAPE 11 : le cercle de l'addiction ============ */
 (()=>{
-  const IT=["Libération massive de dopamine dans le noyau accumbens.","Sensation de plaisir : la « récompense ».","Désir de recommencer, que le système inhibiteur ne parvient plus à freiner."];
-  ordre($('#o11'),IT,{first:'Consommation de la substance',last:'↻ … puis nouvelle consommation, et le cercle recommence.',
+  const IT=["Libération massive de dopamine dans le noyau accumbens.","Sensation de plaisir : la « récompense ».","Désir de recommencer, que le système inhibiteur ne parvient plus à freiner.","Diminution de la libération de dopamine dans le noyau accumbens.","Le système inhibiteur freine davantage le désir de consommer."];
+  ordre($('#o11'),IT,{n:3,first:'Consommation de la substance',last:'↻ … puis nouvelle consommation, et le cercle recommence.',
     hint:k=>["Que provoque d'abord la substance dans le cerveau ? Revois le graphique C de l'étape 10.","Quel est l'effet de la dopamine dans le système de récompense ? Relis le texte de l'étape 10.","Relis le texte de l'étape 10 : que renforce le système de récompense, et quel système devrait le réguler ?"][k]});
-  qcm($('#q11'),[
-    {q:"Pourquoi la consommation d'une substance addictive a-t-elle tendance à augmenter ?",o:["parce que le système inhibiteur ne régule plus suffisamment le système de récompense","parce que la substance diminue la libération de dopamine","parce que le corps élimine la substance trop vite"],a:0,h:"Relis le deuxième paragraphe du texte de l'étape 10 : qu'arrive-t-il à la régulation lors de la consommation de substances addictives ?"}
-  ]);
 })();
 
 /* ============ ÉTAPE 12 : info ou intox ============ */
@@ -1091,13 +1121,16 @@ vf($('#vf12'),[
   {s:"Les amphétamines sont sans danger pour le cœur.",a:false,h:"Ouvre la fiche « Amphétamines » du dico des drogues de Drogues Info Service et cherche leurs effets sur le cœur."}
 ],['Info','Intox']);
 
-/* ============ ÉTAPE 13 : bilan partie 2 ============ */
-ident('#f13',[
-  {q:"1. La nicotine se fixe sur les récepteurs de l'<span class=\"blanc\"></span> et les active, comme le ferait ce neurotransmetteur.",ok:['acetylcholine'],kw:[['acetylcholin'],['acetylcolin'],['ach']],hint:"Revois l'étape 7 : sur quels récepteurs agit la nicotine ?"},
-  {q:"2. Les substances addictives augmentent la libération de <span class=\"blanc\"></span> dans le système de récompense.",ok:['dopamine'],kw:[['dopamin']],hint:"Revois l'étape 10 : quel neurotransmetteur a été mesuré dans le noyau accumbens ?"},
-  {q:"3. Ce neurotransmetteur provoque une sensation de <span class=\"blanc\"></span>, qui donne envie de recommencer.",ok:['plaisir','bien etre','satisfaction','recompense'],kw:[['plaisir'],['recompens'],['bien etre'],['satisf']],hint:"Revois le texte de l'étape 10 : de quelle sensation le système de récompense est-il à l'origine ?"},
-  {q:"4. Quand le système inhibiteur ne régule plus assez ce système, la consommation augmente : c'est l'<span class=\"blanc\"></span>.",ok:['addiction'],kw:[['addict'],['dependan']],hint:"Revois les étapes 9 et 11."}
-]);
+/* ============ ÉTAPE 13 : rédaction, partie 2 ============ */
+redac($('#r13'),'p2',[
+  {l:"Tu expliques comment la nicotine agit sur les synapses.",kw:[['recepteur','acetylcholin'],['recepteur','nicotin'],['agonist']],h:"Revois l'étape 7."},
+  {l:"Tu expliques l'effet des substances addictives sur la dopamine.",kw:[['dopamin','liber'],['dopamin','augment'],['dopamin','exocyt']],h:"Revois les étapes 8 et 10."},
+  {l:"Tu t'appuies sur au moins une donnée chiffrée.",re:/\d/,h:"Cite une valeur mesurée sur le graphique C (étape 10) ou calculée à partir du tableau 2A (étape 9)."},
+  {l:"Tu expliques le rôle du système de récompense.",kw:[['recompens','plaisir']],h:"Revois le texte de l'étape 10."},
+  {l:"Tu expliques pourquoi la consommation augmente.",kw:[['inhib'],['regul']],h:"Revois l'étape 11."},
+  {l:"Tu emploies le mot qui désigne cette maladie du cerveau.",kw:[['addict']],h:"Revois la définition de l'étape 9."},
+  {l:"Tu indiques une limite d'un document.",re:/\b(rats?|animale?s?|animaux|humaine?s?|homme|limites?)\b/i,h:"Revois la question sur les mesures faites chez le rat (étape 10)."}
+],70);
 
 /* navigation active */
 (()=>{
