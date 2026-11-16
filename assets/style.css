@@ -95,3 +95,7 @@ footer{margin-top:clamp(56px,9vw,110px);border-top:1.5px solid var(--ink);paddin
 .brand{white-space:nowrap}
 @media (max-width:520px){.brand{font-size:1.05rem}.brand img{width:32px;height:32px}.top .wrap{gap:8px}.top nav a{padding:.6em .6em}.mark{width:min(100%,240px);justify-self:start}}
 @media (max-width:560px){.top .wrap{flex-wrap:wrap;row-gap:0;padding-block:6px}.top nav{width:100%;margin-left:-.6em;overflow-x:auto}}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;align-items:center}
+.prof-lien{display:inline-flex;align-items:center;gap:6px;font-size:.88rem;color:var(--ink2);text-decoration:none;border:1px solid var(--grid2);border-radius:999px;padding:.3em .85em}
+.prof-lien:hover{color:var(--ink);border-color:var(--ink)}
+.prof-lien svg{width:13px;height:13px}
