@@ -17,7 +17,8 @@ puis on les remet à leur place et on relance « fermer ».
 import base64, hashlib, json, os, secrets, sys, unicodedata
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-NIVEAUX = {'cinquieme': 'Cinquième', 'premiere': 'Première', 'terminale': 'Terminale'}
+NIVEAUX = {'cinquieme': 'Cinquième', 'premiere': 'Première', 'terminale': 'Terminale', 'prof': 'Espace professeur'}
+PHRASES = {'cinquieme': 'aux élèves de cinquième', 'premiere': 'aux élèves de première', 'terminale': 'aux élèves de terminale', 'prof': 'au professeur'}
 ITER = 300000
 MARQUE = '<meta name="revise-svt-verrou" content="1">'
 
@@ -127,7 +128,7 @@ function deriver(code){
 }
 var form=$("gform"),msg=$("gmsg"),fb=$("gfb"),inp=$("gcode"),btn=form.querySelector("button");
 function demander(){
-  msg.textContent="Cette page est réservée aux élèves de @@NOM_MIN@@. Entre le code d’accès donné par ton professeur.";
+  msg.textContent=@@PHRASE@@;
   form.hidden=false;
   if(window.matchMedia&&matchMedia("(pointer: fine)").matches){try{inp.focus();}catch(e){}}
 }
@@ -150,7 +151,7 @@ form.addEventListener("submit",function(e){
     });
   }).catch(function(){
     btn.disabled=false;btn.textContent="Ouvrir";fb.className="fb bad";
-    fb.textContent="Ce n’est pas le bon code. Vérifie-le auprès de ton professeur.";inp.select();
+    fb.textContent=@@ERREUR@@;inp.select();
   });
 });
 })();
@@ -162,9 +163,10 @@ form.addEventListener("submit",function(e){
 def enveloppe(chemin, niveau, P):
     prof = chemin.count('/')            # terminale/index.html -> 1 ; terminale/x/index.html -> 2
     nom = NIVEAUX[niveau]
-    nom_min = {'cinquieme': 'cinquième', 'premiere': 'première', 'terminale': 'terminale'}[niveau]
+    phrase = ('Cette page est réservée au professeur. Entre le code professeur.' if niveau == 'prof' else
+              'Cette page est réservée ' + PHRASES[niveau] + '. Entre le code d’accès donné par ton professeur.')
     return (GABARIT.replace('@@MARQUE@@', MARQUE).replace('@@R@@', '../' * prof)
-            .replace('@@NOM_MIN@@', nom_min).replace('@@NOM@@', nom).replace('@@NIVEAU@@', niveau)
+            .replace('@@PHRASE@@', json.dumps(phrase, ensure_ascii=False)).replace('@@ERREUR@@', json.dumps('Ce n’est pas le bon code.' if niveau == 'prof' else 'Ce n’est pas le bon code. Vérifie-le auprès de ton professeur.', ensure_ascii=False)).replace('@@NOM@@', nom).replace('@@NIVEAU@@', niveau)
             .replace('@@P@@', json.dumps(P, separators=(',', ':'))))
 
 def fermer(niveau, code):
