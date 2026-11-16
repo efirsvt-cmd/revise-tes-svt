@@ -3,65 +3,101 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="revise-svt-verrou" content="1">
+<meta name="robots" content="noindex">
 <title>Terminale – revise svt</title>
-<meta name="description" content="Chapitres de révision de SVT en terminale.">
 <link rel="icon" href="../assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
+<style>
+.gate{max-width:520px;margin:clamp(28px,7vw,64px) 0 48px;background:var(--panel);border:1.5px solid var(--ink);border-radius:14px;padding:clamp(18px,4vw,30px);box-shadow:6px 6px 0 var(--grid2)}
+.gate h1{margin:0 0 .3em}
+.gate p{margin:0 0 1em}
+.gate label{display:block;font-weight:700;margin-bottom:6px}
+.gate .row{display:flex;gap:10px;flex-wrap:wrap}
+.gate input{flex:1 1 12em;min-width:0;font:700 1.1rem var(--font-b,inherit);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:.55em .8em;min-height:46px}
+.gate button{font:700 1rem var(--font-b,inherit);color:var(--paper);background:var(--ink);border:1.5px solid var(--ink);border-radius:8px;padding:.55em 1.2em;min-height:46px;cursor:pointer}
+.gate button:disabled{opacity:.55;cursor:wait}
+.gate .fb{min-height:1.5em;margin:12px 0 0;font-weight:700}
+.gate .fb.bad{color:#C8342C}
+@media (prefers-color-scheme:dark){.gate .fb.bad{color:#FF8279}}
+.gate .note{font-size:.92rem;color:var(--ink2);margin:14px 0 0}
+[hidden]{display:none!important}
+</style>
 </head>
 <body>
-<a class="skip" href="#contenu">Aller au contenu</a>
 <header class="top"><div class="wrap">
   <a class="brand" href="../index.html"><img src="../assets/logo.png" alt="" width="38" height="38">revise svt</a>
-  <nav aria-label="Niveaux"><a href="../cinquieme/index.html">Cinquième</a><a href="../premiere/index.html">Première</a><a href="../terminale/index.html" aria-current="page">Terminale</a></nav>
+  <nav aria-label="Niveaux"><a href="../cinquieme/index.html">Cinquième</a><a href="../premiere/index.html">Première</a><a href="../terminale/index.html">Terminale</a></nav>
 </div></header>
 <main id="contenu">
-<div class="wrap level">
-  <p class="crumb"><a href="../index.html">Accueil</a> / Terminale</p>
-  <h1>Terminale</h1>
-  <p class="lead">Choisis un thème, puis un chapitre.</p>
-
-  <section class="theme" aria-labelledby="th1">
-    <h2 id="th1"><span class="theme-n">Thème 1</span>La Terre, la vie et l'organisation du vivant</h2>
-    <p class="soon-box">Les chapitres de ce thème arrivent bientôt.</p>
-  </section>
-  <section class="theme" aria-labelledby="th2">
-    <h2 id="th2"><span class="theme-n">Thème 2</span>Enjeux contemporains de la planète</h2>
-    <p class="soon-box">Les chapitres de ce thème arrivent bientôt.</p>
-  </section>
-  <section class="theme" aria-labelledby="th3">
-    <h2 id="th3"><span class="theme-n">Thème 3</span>Corps humain et santé</h2>
-    <p class="chap-name">Chapitre&nbsp;1 · Un exemple de communication nerveuse: le réflexe</p>
-    <div class="chaps">
-      <a class="chap" href="reflexe-myotatique/index.html">
-        <h3>TP&nbsp;1: le réflexe myotatique</h3>
-        <p>Électromyogrammes et temps de latence, moelle épinière et neurones, expériences de section de Magendie, arc réflexe.</p>
-        <ul class="chips"><li>Simulateur</li><li>Schémas animés</li><li>Fiches</li><li>QCM</li><li>Rédaction guidée</li></ul>
-      </a>
-      <a class="chap" href="message-nerveux/index.html">
-        <h3>TP&nbsp;2: le message nerveux</h3>
-        <p>Fonctionnement du neurone et message nerveux. Potentiel d'action, codage de l'intensité, synapse et curare.</p>
-        <ul class="chips"><li>Simulateur</li><li>Schémas animés</li><li>Fiches</li><li>QCM</li><li>Rédaction guidée</li></ul>
-      </a>
-    </div>
-    <p class="chap-name" style="margin-top:24px">Chapitre&nbsp;2 · Le cerveau et le mouvement volontaire</p>
-    <div class="chaps">
-      <a class="chap" href="cerveau-mouvement/index.html">
-        <h3>Activités&nbsp;1 et 2: les cellules du cerveau, le cortex moteur et la voie motrice</h3>
-        <p>Une enquête dans les documents : coupes de cerveau, neurones et cellules gliales, homoncule moteur, plans de coupe, vraies IRM fonctionnelles, voie motrice. Tu écris tes réponses, la page les vérifie et te donne des indices. Avec une fiche papier donnée par le professeur.</p>
-        <ul class="chips"><li>Enquête dans les documents</li><li>Vérification avec indices</li><li>IRM fonctionnelle</li><li>Fiche papier</li></ul>
-      </a>
-      <a class="chap" href="cerveau-preserver/index.html">
-        <h3>TP&nbsp;4: le cerveau, un organe à préserver</h3>
-        <p>La plasticité cérébrale (pianistes, musiciens, amputation), puis l'action des substances exogènes : nicotine et synapses, dopamine et système de récompense, addiction et risques pour la santé. Avec une fiche papier donnée par le professeur.</p>
-        <ul class="chips"><li>Jeu de réaction</li><li>Simulations</li><li>Mesure sur graphique</li><li>Vérification avec indices</li><li>Fiche papier</li></ul>
-      </a>
-    </div>
+<div class="wrap">
+  <p class="crumb" style="margin-top:24px"><a href="../index.html">Accueil</a> / Terminale</p>
+  <section class="gate" aria-labelledby="gt">
+    <h1 id="gt">Terminale</h1>
+    <p id="gmsg">Ouverture…</p>
+    <form id="gform" hidden novalidate>
+      <label for="gcode">Code d’accès</label>
+      <div class="row"><input id="gcode" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false"><button type="submit">Ouvrir</button></div>
+      <p class="fb" id="gfb" aria-live="polite"></p>
+      <p class="note">Tu n’as besoin de le saisir qu’une fois sur cet appareil&#8239;: toutes les pages du niveau s’ouvriront ensuite directement.</p>
+    </form>
   </section>
 </div>
 </main>
-<footer><div class="wrap">revise svt: des révisions interactives de SVT pour la cinquième, la première et la terminale.</div></footer>
+<noscript><p class="wrap">Cette page a besoin de JavaScript pour s’ouvrir.</p></noscript>
+<script>
+(function(){
+"use strict";
+var P={"s":"FmXHqoKZs0xkPohqD0rmDw==","i":"D9PtxfACgHGTrPro","n":300000,"c":"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"};
+var K="revise-svt:cle:terminale";
+var $=function(s){return document.getElementById(s);};
+function bin(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a;}
+function txt(buf){var a=new Uint8Array(buf),s="";for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s);}
+function norm(s){return String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]/g,"").toUpperCase();}
+function lire(k){return crypto.subtle.decrypt({name:"AES-GCM",iv:bin(P.i)},k,bin(P.c)).then(function(b){return new TextDecoder().decode(b);});}
+/* on attend la fin de l'analyse de cette page avant de la remplacer */
+var pret=false,attente=null;
+document.addEventListener("DOMContentLoaded",function(){pret=true;if(attente)setTimeout(attente,0);});
+function montrer(html){
+  var go=function(){document.open();document.write(html);document.close();};
+  if(pret)setTimeout(go,0);else attente=go;
+}
+function deriver(code){
+  return crypto.subtle.importKey("raw",new TextEncoder().encode(norm(code)),"PBKDF2",false,["deriveKey"])
+    .then(function(base){return crypto.subtle.deriveKey({name:"PBKDF2",salt:bin(P.s),iterations:P.n,hash:"SHA-256"},base,{name:"AES-GCM",length:256},true,["decrypt"]);});
+}
+var form=$("gform"),msg=$("gmsg"),fb=$("gfb"),inp=$("gcode"),btn=form.querySelector("button");
+function demander(){
+  msg.textContent="Cette page est réservée aux élèves de terminale. Entre le code d’accès donné par ton professeur.";
+  form.hidden=false;
+  if(window.matchMedia&&matchMedia("(pointer: fine)").matches){try{inp.focus();}catch(e){}}
+}
+if(!(window.crypto&&crypto.subtle&&window.TextEncoder)){
+  msg.textContent="Ton navigateur ne peut pas ouvrir cette page. Vérifie que l’adresse commence par https:// ou essaie un autre navigateur.";
+  return;
+}
+var cle=null;try{cle=localStorage.getItem(K);}catch(e){}
+if(cle){
+  crypto.subtle.importKey("raw",bin(cle),{name:"AES-GCM"},false,["decrypt"]).then(lire).then(montrer)
+    .catch(function(){try{localStorage.removeItem(K);}catch(e){} demander();});
+}else demander();
+form.addEventListener("submit",function(e){
+  e.preventDefault();if(btn.disabled)return;
+  if(!norm(inp.value)){fb.className="fb bad";fb.textContent="Écris d’abord le code.";return;}
+  btn.disabled=true;btn.textContent="Ouverture…";fb.textContent="";
+  deriver(inp.value).then(function(k){
+    return lire(k).then(function(html){
+      return crypto.subtle.exportKey("raw",k).then(function(raw){try{localStorage.setItem(K,txt(raw));}catch(e){} montrer(html);});
+    });
+  }).catch(function(){
+    btn.disabled=false;btn.textContent="Ouvrir";fb.className="fb bad";
+    fb.textContent="Ce n’est pas le bon code. Vérifie-le auprès de ton professeur.";inp.select();
+  });
+});
+})();
+</script>
 </body>
 </html>

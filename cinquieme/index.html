@@ -3,47 +3,101 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="revise-svt-verrou" content="1">
+<meta name="robots" content="noindex">
 <title>Cinquième – revise svt</title>
-<meta name="description" content="Activités de SVT en cinquième (cycle 4).">
 <link rel="icon" href="../assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
+<style>
+.gate{max-width:520px;margin:clamp(28px,7vw,64px) 0 48px;background:var(--panel);border:1.5px solid var(--ink);border-radius:14px;padding:clamp(18px,4vw,30px);box-shadow:6px 6px 0 var(--grid2)}
+.gate h1{margin:0 0 .3em}
+.gate p{margin:0 0 1em}
+.gate label{display:block;font-weight:700;margin-bottom:6px}
+.gate .row{display:flex;gap:10px;flex-wrap:wrap}
+.gate input{flex:1 1 12em;min-width:0;font:700 1.1rem var(--font-b,inherit);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:.55em .8em;min-height:46px}
+.gate button{font:700 1rem var(--font-b,inherit);color:var(--paper);background:var(--ink);border:1.5px solid var(--ink);border-radius:8px;padding:.55em 1.2em;min-height:46px;cursor:pointer}
+.gate button:disabled{opacity:.55;cursor:wait}
+.gate .fb{min-height:1.5em;margin:12px 0 0;font-weight:700}
+.gate .fb.bad{color:#C8342C}
+@media (prefers-color-scheme:dark){.gate .fb.bad{color:#FF8279}}
+.gate .note{font-size:.92rem;color:var(--ink2);margin:14px 0 0}
+[hidden]{display:none!important}
+</style>
 </head>
 <body>
-<a class="skip" href="#contenu">Aller au contenu</a>
 <header class="top"><div class="wrap">
   <a class="brand" href="../index.html"><img src="../assets/logo.png" alt="" width="38" height="38">revise svt</a>
-  <nav aria-label="Niveaux"><a href="../cinquieme/index.html" aria-current="page">Cinquième</a><a href="../premiere/index.html">Première</a><a href="../terminale/index.html">Terminale</a></nav>
+  <nav aria-label="Niveaux"><a href="../cinquieme/index.html">Cinquième</a><a href="../premiere/index.html">Première</a><a href="../terminale/index.html">Terminale</a></nav>
 </div></header>
 <main id="contenu">
-<div class="wrap level">
-  <p class="crumb"><a href="../index.html">Accueil</a> / Cinquième</p>
-  <h1>Cinquième</h1>
-  <p class="lead">Choisis un thème, puis une activité.</p>
-
-  <section class="theme" aria-labelledby="th1">
-    <h2 id="th1"><span class="theme-n">Thème 1</span>La planète Terre, l'environnement et l'action humaine</h2>
-    <p class="soon-box">Les activités de ce thème arrivent bientôt.</p>
-  </section>
-  <section class="theme" aria-labelledby="th2">
-    <h2 id="th2"><span class="theme-n">Thème 2</span>Le vivant et son évolution</h2>
-    <p class="chap-name">Chapitre&nbsp;1 · Activité&nbsp;4</p>
-    <div class="chaps">
-      <a class="chap" href="oursins-kelp/index.html">
-        <h3>Les oursins envahissent le kelp</h3>
-        <p>Une tâche complexe en forme d'enquête au large de l'Alaska : un graphique à lire avec une règle, un réseau alimentaire à explorer, le fil des causes à reconstituer, puis une rédaction guidée. L'activité s'ouvre avec le code donné par le professeur.</p>
-        <ul class="chips"><li>Enquête dans les documents</li><li>Réseau alimentaire</li><li>Rédaction guidée</li><li>Code d'accès</li></ul>
-      </a>
-    </div>
-  </section>
-  <section class="theme" aria-labelledby="th3">
-    <h2 id="th3"><span class="theme-n">Thème 3</span>Le corps humain et la santé</h2>
-    <p class="soon-box">Les activités de ce thème arrivent bientôt.</p>
+<div class="wrap">
+  <p class="crumb" style="margin-top:24px"><a href="../index.html">Accueil</a> / Cinquième</p>
+  <section class="gate" aria-labelledby="gt">
+    <h1 id="gt">Cinquième</h1>
+    <p id="gmsg">Ouverture…</p>
+    <form id="gform" hidden novalidate>
+      <label for="gcode">Code d’accès</label>
+      <div class="row"><input id="gcode" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false"><button type="submit">Ouvrir</button></div>
+      <p class="fb" id="gfb" aria-live="polite"></p>
+      <p class="note">Tu n’as besoin de le saisir qu’une fois sur cet appareil&#8239;: toutes les pages du niveau s’ouvriront ensuite directement.</p>
+    </form>
   </section>
 </div>
 </main>
-<footer><div class="wrap">revise svt: des révisions interactives de SVT pour la cinquième, la première et la terminale.</div></footer>
+<noscript><p class="wrap">Cette page a besoin de JavaScript pour s’ouvrir.</p></noscript>
+<script>
+(function(){
+"use strict";
+var P={"s":"tPK5JWZRB2l2Kt4ryCm8ww==","i":"pPUmobJ/Vd9uUkyv","n":300000,"c":"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"};
+var K="revise-svt:cle:cinquieme";
+var $=function(s){return document.getElementById(s);};
+function bin(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a;}
+function txt(buf){var a=new Uint8Array(buf),s="";for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s);}
+function norm(s){return String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]/g,"").toUpperCase();}
+function lire(k){return crypto.subtle.decrypt({name:"AES-GCM",iv:bin(P.i)},k,bin(P.c)).then(function(b){return new TextDecoder().decode(b);});}
+/* on attend la fin de l'analyse de cette page avant de la remplacer */
+var pret=false,attente=null;
+document.addEventListener("DOMContentLoaded",function(){pret=true;if(attente)setTimeout(attente,0);});
+function montrer(html){
+  var go=function(){document.open();document.write(html);document.close();};
+  if(pret)setTimeout(go,0);else attente=go;
+}
+function deriver(code){
+  return crypto.subtle.importKey("raw",new TextEncoder().encode(norm(code)),"PBKDF2",false,["deriveKey"])
+    .then(function(base){return crypto.subtle.deriveKey({name:"PBKDF2",salt:bin(P.s),iterations:P.n,hash:"SHA-256"},base,{name:"AES-GCM",length:256},true,["decrypt"]);});
+}
+var form=$("gform"),msg=$("gmsg"),fb=$("gfb"),inp=$("gcode"),btn=form.querySelector("button");
+function demander(){
+  msg.textContent="Cette page est réservée aux élèves de cinquième. Entre le code d’accès donné par ton professeur.";
+  form.hidden=false;
+  if(window.matchMedia&&matchMedia("(pointer: fine)").matches){try{inp.focus();}catch(e){}}
+}
+if(!(window.crypto&&crypto.subtle&&window.TextEncoder)){
+  msg.textContent="Ton navigateur ne peut pas ouvrir cette page. Vérifie que l’adresse commence par https:// ou essaie un autre navigateur.";
+  return;
+}
+var cle=null;try{cle=localStorage.getItem(K);}catch(e){}
+if(cle){
+  crypto.subtle.importKey("raw",bin(cle),{name:"AES-GCM"},false,["decrypt"]).then(lire).then(montrer)
+    .catch(function(){try{localStorage.removeItem(K);}catch(e){} demander();});
+}else demander();
+form.addEventListener("submit",function(e){
+  e.preventDefault();if(btn.disabled)return;
+  if(!norm(inp.value)){fb.className="fb bad";fb.textContent="Écris d’abord le code.";return;}
+  btn.disabled=true;btn.textContent="Ouverture…";fb.textContent="";
+  deriver(inp.value).then(function(k){
+    return lire(k).then(function(html){
+      return crypto.subtle.exportKey("raw",k).then(function(raw){try{localStorage.setItem(K,txt(raw));}catch(e){} montrer(html);});
+    });
+  }).catch(function(){
+    btn.disabled=false;btn.textContent="Ouvrir";fb.className="fb bad";
+    fb.textContent="Ce n’est pas le bon code. Vérifie-le auprès de ton professeur.";inp.select();
+  });
+});
+})();
+</script>
 </body>
 </html>
