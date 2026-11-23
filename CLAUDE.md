@@ -1,4 +1,6 @@
-# revise svt : consignes pour Claude
+# Les SVT de Madame B. (dépôt revise-tes-svt) : consignes pour Claude
+
+- Nom affiché du site : « Les SVT de Madame B. » (accueil, en-têtes, titres, portes des codes dans `_outils/verrou.py`). Icône : `assets/logo.png` et `assets/favicon.png` (trois paysages vus par satellite), grande image de l’accueil `assets/accueil-icone.jpg`. Les identifiants internes gardent « revise-svt » (clés localStorage `revise-svt:…`, sels de chiffrement `revise-svt/…`) : ne jamais les renommer, sinon les codes mémorisés et les réponses des élèves seraient perdus.
 
 - Les pages des niveaux (`cinquieme/`, `premiere/`, `terminale/`) et de l'espace professeur (`prof/`) sont chiffrées avec le code d'accès de leur niveau par `_outils/verrou.py` (AES-GCM, clé dérivée du code par PBKDF2). L'accueil (`index.html`) et `assets/` restent en clair.
 - Les codes ne sont écrits nulle part, ni dans le dépôt ni dans ce fichier : demander au professeur le code du niveau avant toute modification.

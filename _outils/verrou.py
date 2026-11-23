@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verrou par niveau pour revise svt.
+"""Verrou par niveau pour le site « Les SVT de Madame B. » (dépôt revise-tes-svt).
 
 Chaque page d'un niveau (cinquieme, premiere, terminale) est chiffrée avec le code
 d'accès du niveau (AES-GCM, clé dérivée du code par PBKDF2-SHA256). Le code n'est
@@ -62,7 +62,7 @@ GABARIT = r'''<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 @@MARQUE@@
 <meta name="robots" content="noindex">
-<title>@@NOM@@ – revise svt</title>
+<title>@@NOM@@ – Les SVT de Madame B.</title>
 <link rel="icon" href="@@R@@assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,7 +86,7 @@ GABARIT = r'''<!doctype html>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="brand" href="@@R@@index.html"><img src="@@R@@assets/logo.png" alt="" width="38" height="38">revise svt</a>
+  <a class="brand" href="@@R@@index.html"><img src="@@R@@assets/logo.png" alt="" width="38" height="38">Les SVT de Madame B.</a>
   <nav aria-label="Niveaux"><a href="@@R@@cinquieme/index.html">Cinquième</a><a href="@@R@@premiere/index.html">Première</a><a href="@@R@@terminale/index.html">Terminale</a></nav>
 </div></header>
 <main id="contenu">
