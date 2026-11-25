@@ -18,5 +18,10 @@
     "niveau": "Terminale",
     "titre": "TP 4 – Le muscle s’adapte : entraînement et dopage (simulateur, enquête antidopage)",
     "en_ligne": false
+  },
+  "premiere/arbres-genealogiques": {
+    "niveau": "Première",
+    "titre": "Chapitre 5 · Rappel – Comment étudier un arbre généalogique (échiquier interactif, exercices)",
+    "en_ligne": false
   }
 }
