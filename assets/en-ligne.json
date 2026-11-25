@@ -8,5 +8,10 @@
     "niveau": "Cinquième",
     "titre": "Chapitre 2 · Activité 1 – Histoire des sciences : la reproduction sexuée (Spallanzani)",
     "en_ligne": true
+  },
+  "terminale/voies-fibres": {
+    "niveau": "Terminale",
+    "titre": "Activité 3 – Sprint ou course de fond : quelles voies métaboliques, quelles fibres ? (microscope virtuel)",
+    "en_ligne": false
   }
 }
