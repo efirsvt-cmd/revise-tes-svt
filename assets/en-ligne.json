@@ -11,12 +11,12 @@
   },
   "terminale/voies-fibres": {
     "niveau": "Terminale",
-    "titre": "Activité 3 – Sprint ou course de fond : quelles voies métaboliques, quelles fibres ? (microscope virtuel)",
+    "titre": "TP 3 – Sprint ou course de fond : quelles voies métaboliques, quelles fibres ? (microscope virtuel)",
     "en_ligne": false
   },
   "terminale/entrainement-dopage": {
     "niveau": "Terminale",
-    "titre": "Activité 4 – Le muscle s’adapte : entraînement et dopage (simulateur, enquête antidopage)",
+    "titre": "TP 4 – Le muscle s’adapte : entraînement et dopage (simulateur, enquête antidopage)",
     "en_ligne": false
   }
 }
